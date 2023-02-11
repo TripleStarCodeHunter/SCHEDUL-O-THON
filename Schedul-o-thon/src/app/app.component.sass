@@ -1,13 +1,3 @@
-/*
-    Sass is an enhanced version of CSS.
-    It stands for Syntactically Awesome Cascading Style Sheets.
-    It has advanced variable declarations.
-    You can proceed with vanilla css. 
-    For that, change the same in app.component.ts, under styleUrls.
-    Create your new css file as app.component.css and work with it.
-*/
-
-
 /*Variable color declarations go here*/
 
 //text and backgroud colors
@@ -38,3 +28,23 @@ body
     background-color: $tertiary-blue
     color: $text-col1
     font: 2rem, $font-type,'Roboto'
+
+
+$gradients: () !default
+$gradients: map-merge((chill: linear-gradient(135deg, #09e485 0%,#0291e3 100%),warm: linear-gradient(135deg, #F2CD48 0%,#FD803F 100%),hot: linear-gradient(135deg, #F9445A 0%,#FD803F 100%),cold: linear-gradient(135deg, #8019C6 0%,#2F93CC 100%)), $gradients)
+
+// Gradient backgrounds
+@mixin bg-gradient($parent, $gradient){
+    #{$parent} {background: $gradient}
+}// Gradient text
+@mixin text-gradient($parent, $gradient) {
+    #{$parent} {background-image: $gradientcolor:transparent
+    -webkit-background-clip: text
+    background-clip: text
+}}// Gradient text
+@mixin text-gradient($parent, $gradient) {#{$parent} {background-image: $gradient color:transparent -webkit-background-clip: text background-clip: text}}
+
+// Gradient Classes 
+@each $gradient, $value in $gradients {@include bg-gradient(“.bg-gradient-#{$gradient}”, $value)
+}// Gradient Classes 
+@each $gradient, $value in $gradients {@include text-gradient(“.text-gradient-#{$gradient}”, $value)}
