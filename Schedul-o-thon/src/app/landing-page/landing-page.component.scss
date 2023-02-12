@@ -14,14 +14,28 @@
 }
 
 /* ==== CSS VARIABLES ==== */
-:root {
-  --primary-color: #335eea;
-  --link-color: #506690;
-  --btn-hover-color: #2b50c7;
-  --lg-heading: #161c2d;
-  --text-content: #869ab8;
-  --fixed-header-height: 4.5rem;
-}
+$primary-color: #335eea;
+  $link-color: #506690;
+  $btn-hover-color: #2b50c7;
+  $lg-heading: #161c2d;
+  $text-content: #869ab8;
+  $fixed-header-height: 4.5rem;
+// :root {
+//   --primary-color: #335eea;
+//   --link-color: #506690;
+//   --btn-hover-color: #2b50c7;
+//   --lg-heading: #161c2d;
+//   --text-content: #869ab8;
+//   --fixed-header-height: 4.5rem;
+// }
+// :root {
+//   --primary-color: #335eea;
+//   --link-color: #506690;
+//   --btn-hover-color: #2b50c7;
+//   --lg-heading: #161c2d;
+//   --text-content: #869ab8;
+//   --fixed-header-height: 4.5rem;
+// }
 
 /* ==== RESET HTML ==== */
 body {
@@ -58,7 +72,7 @@ button {
 }
 /* ==== HEADER ==== */
 .header {
-  height: var(--fixed-header-height);
+  height: $fixed-header-height;
   padding: 0 1.7rem;
 }
 
@@ -73,7 +87,7 @@ button {
 /* ==== LOGO ==== */
 .logo h2 {
   font-size: 28px;
-  color: var(--primary-color);
+  color: $primary-color;
 }
 /* ====  NAV-MENU  ==== */
 .nav_menu_list {
@@ -86,17 +100,17 @@ button {
 .nav_menu_item .nav_menu_link {
   font-size: 16.5px;
   line-height: 27px;
-  color: var(--link-color);
+  color: $link-color;
   text-transform: capitalize;
   letter-spacing: 0.5px;
 }
 .nav_menu_link:hover {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 .toggle_btn {
   font-size: 20px;
   font-weight: 600;
-  color: var(--lg-heading);
+  color: $lg-heading;
   z-index: 4;
 }
 .nav_menu,
@@ -131,10 +145,10 @@ button {
   line-height: 55px;
 }
 .main-heading span {
-  color: var(--primary-color);
+  color: $primary-color;
 }
 .main-heading-about-us span {
-  color: var(--primary-color);
+  color: $primary-color;
   font-weight: 700;
 }
 .main-heading-about-us{
@@ -170,7 +184,7 @@ button {
 .btn {
   width: 110px;
   height: 50px;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   display: block;
   font-size: 16px;
   color: #fff;
@@ -181,7 +195,7 @@ button {
 }
 .btn:hover {
   transform: translateY(-3px);
-  background-color: var(--btn-hover-color);
+  background-color: $btn-hover-color;
 }
 .view_more_btn {
   width: 180px;
@@ -260,7 +274,7 @@ button {
   display: block;
   font-size: 21px;
   line-height: 33px;
-  color: var(--lg-heading);
+  color: $lg-heading;
 }
 .featured_info p {
   display: block;
@@ -273,7 +287,7 @@ button {
 }
 footer {
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   height: 12px;
   margin-top: 8rem;
 }
