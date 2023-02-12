@@ -14,21 +14,14 @@
 }
 
 /* ==== CSS VARIABLES ==== */
-
-$primary-color: #335eea;
-$link-color: #506690;
-$btn-hover-color: #2b50c7;
-$lg-heading: #161c2d;
-$text-content: #869ab8;
-$fixed-header-height: 4.5rem;
-// :root {
-//   --primary-color: #335eea;
-//   --link-color: #506690;
-//   --btn-hover-color: #2b50c7;
-//   --lg-heading: #161c2d;
-//   --text-content: #869ab8;
-//   --fixed-header-height: 4.5rem;
-// }
+:root {
+  --primary-color: #335eea;
+  --link-color: #506690;
+  --btn-hover-color: #2b50c7;
+  --lg-heading: #161c2d;
+  --text-content: #869ab8;
+  --fixed-header-height: 4.5rem;
+}
 
 /* ==== RESET HTML ==== */
 body {
@@ -49,6 +42,10 @@ button {
   outline: none;
   cursor: pointer;
 }
+/* section { 
+    height: 80vh; 
+} */
+
 /* ==== CONTAINER ==== */
 .container {
   width: 100%;
@@ -61,7 +58,7 @@ button {
 }
 /* ==== HEADER ==== */
 .header {
-  height: $fixed-header-height;
+  height: var(--fixed-header-height);
   padding: 0 1.7rem;
 }
 
@@ -76,7 +73,7 @@ button {
 /* ==== LOGO ==== */
 .logo h2 {
   font-size: 28px;
-  color: $primary-color;
+  color: var(--primary-color);
 }
 /* ====  NAV-MENU  ==== */
 .nav_menu_list {
@@ -89,17 +86,17 @@ button {
 .nav_menu_item .nav_menu_link {
   font-size: 16.5px;
   line-height: 27px;
-  color: $link-color;
+  color: var(--link-color);
   text-transform: capitalize;
   letter-spacing: 0.5px;
 }
 .nav_menu_link:hover {
-  color: $primary-color;
+  color: var(--primary-color);
 }
 .toggle_btn {
   font-size: 20px;
   font-weight: 600;
-  color: $lg-heading;
+  color: var(--lg-heading);
   z-index: 4;
 }
 .nav_menu,
@@ -134,7 +131,30 @@ button {
   line-height: 55px;
 }
 .main-heading span {
-  color: $primary-color;
+  color: var(--primary-color);
+}
+.main-heading-about-us span {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+.main-heading-about-us{
+  padding: 10% 0;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 40px;
+}
+.service-section{
+  padding: 8% 0;
+}
+.contact-list {
+  padding: 10% 0;
+}
+.contact-list li{
+  padding: 2% 0;
+}
+.icon-img{
+  height: 20px;
+  width: 20px;
 }
 .info-text {
   margin-top: 1.5rem;
@@ -150,7 +170,7 @@ button {
 .btn {
   width: 110px;
   height: 50px;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   display: block;
   font-size: 16px;
   color: #fff;
@@ -161,7 +181,7 @@ button {
 }
 .btn:hover {
   transform: translateY(-3px);
-  background-color: $btn-hover-color;
+  background-color: var(--btn-hover-color);
 }
 .view_more_btn {
   width: 180px;
@@ -240,7 +260,7 @@ button {
   display: block;
   font-size: 21px;
   line-height: 33px;
-  color: $lg-heading;
+  color: var(--lg-heading);
 }
 .featured_info p {
   display: block;
@@ -253,7 +273,7 @@ button {
 }
 footer {
   width: 100%;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   height: 12px;
   margin-top: 8rem;
 }
