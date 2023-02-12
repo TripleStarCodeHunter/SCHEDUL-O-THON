@@ -1,59 +1,24 @@
-// /* */
-
-// // Use Express
-// const express = require("express");
-// // Use body-parser
-// const bodyParser = require("body-parser");
-// const router = express.Router();
-
-// // Create new instance of the express server
-// var app = express();
-
-// // Define the JSON parser as a default way 
-// // to consume and produce data through the 
-// // exposed APIs
-// app.use(bodyParser.json());
-
-// // Create link to Angular build directory
-// // The `ng build` command will save the result
-// // under the `dist` folder.
-// var distDir = __dirname + "/dist/";
-// app.use(express.static(distDir));
-
-// // Init the server
-// var server = app.listen(process.env.PORT || 3000, function () {
-//     var port = server.address().port;
-//     console.log("App now running on port", port);
-// });
-
-// /*  "/api/status"
-//  *   GET: Get server status
-//  *   PS: it's just an example, not mandatory
-//  */
-// app.get("/", function (req, res) {
-//     // res.sendFile('index.html',{root:'./src'});
-//     res.status(200).json({ status: "UP" });
-// });
-
-
-// app.post('/register', async (req, res) => {
-//     /*
-//     postgresql related code comes here
-//     */
-//   });
-  
-/*Code starts here*/ 
-
 const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 
-//Not sure but updateUserData will add user data everytime to an empty array which can be sent to postgresql database
+/*Importing pg module for connecting to database*/
+const {Client}=require('pg'); 
+const client = new Client({
+  connectionString: "postgres://qdueebqu:m-MJpr6-Emwb-9TqMeacMM2nOBqUV6GX@kandula.db.elephantsql.com/qdueebqu"
+});
+
+/* Connecting our file to database*/
+client.connect();
+
+/*Not sure but updateUserData will add user data everytime to an empty array which can be sent to postgresql database*/
 let user = [];
 
 const rootUrl = '/api';
 
 app.use(bodyParser.json());
+
+/*Some dummy requests */
 app.get(`${rootUrl}/user`, (req, res) => { res.json(user); });
 app.post(`${rootUrl}/user`, (req, res) => {
   const reqUser = req.body.user;
@@ -62,12 +27,25 @@ app.post(`${rootUrl}/user`, (req, res) => {
   res.json(user);
 });
 
+/*A dummy request of the server fetching the data from database*/ 
+
+app.get(`${rootUrl}/data`, (req, res) => {
+  client.query("SELECT * FROM batch_info", (err, result) => {
+    if (err) {
+      res.status(500).send("Error fetching data from the database");
+    } else {
+      res.send(result.rows);
+    }
+  });
+});
+
 app.get('/api/status', (req, res) => {
   res.json({info: 'Node.js, Express, and Postgres API'});
 });
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
 // Listen to the specified port, otherwise 3000
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
