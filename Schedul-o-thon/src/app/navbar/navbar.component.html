@@ -1,0 +1,75 @@
+<header class="container header">
+    <!-- ==== NAVBAR ==== -->
+    <nav class="nav">
+      <div class="logo">
+        <h2>Schedulo.</h2>
+      </div>
+
+      <div class="nav_menu" id="nav_menu">
+        <button class="close_btn" id="close_btn">
+          <i class="ri-close-fill"></i>
+        </button>
+
+        <ul class="nav_menu_list">
+          <li class="nav_menu_item">
+            <a href="#" class="nav_menu_link">account</a>
+          </li>
+          <li class="nav_menu_item">
+            <a href="#services" class="nav_menu_link">service</a>
+          </li>
+          <li class="nav_menu_item">
+            <a href="#about_us" class="nav_menu_link">about</a>
+          </li>
+          <li class="nav_menu_item">
+            <a href="#contact" class="nav_menu_link">contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <button class="toggle_btn" id="toggle_btn">
+        <i class="ri-menu-line"></i>
+      </button>
+    </nav>
+  </header>
+  <script>
+    const navId = document.getElementById("nav_menu"),
+  ToggleBtnId = document.getElementById("toggle_btn"),
+  CloseBtnId = document.getElementById("close_btn");
+
+// ==== SHOW MENU ==== //
+ToggleBtnId.addEventListener("click", () => {
+  navId.classList.add("show");
+});
+
+// ==== HIDE MENU ==== //
+CloseBtnId.addEventListener("click", () => {
+  navId.classList.remove("show");
+});
+
+// ==== Animate on Scroll Initialize  ==== //
+AOS.init();
+
+// ==== GSAP Animations ==== //
+// ==== LOGO  ==== //
+gsap.from(".logo", {
+  opacity: 0,
+  y: -10,
+  delay: 1,
+  duration: 0.5,
+});
+// ==== NAV-MENU ==== //
+gsap.from(".nav_menu_list .nav_menu_item", {
+  opacity: 0,
+  y: -10,
+  delay: 1.4,
+  duration: 0.5,
+  stagger: 0.3,
+});
+// ==== TOGGLE BTN ==== //
+gsap.from(".toggle_btn", {
+  opacity: 0,
+  y: -10,
+  delay: 1.4,
+  duration: 0.5,
+});
+</script>

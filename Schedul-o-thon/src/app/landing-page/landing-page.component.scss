@@ -28,14 +28,6 @@ $primary-color: #335eea;
 //   --text-content: #869ab8;
 //   --fixed-header-height: 4.5rem;
 // }
-// :root {
-//   --primary-color: #335eea;
-//   --link-color: #506690;
-//   --btn-hover-color: #2b50c7;
-//   --lg-heading: #161c2d;
-//   --text-content: #869ab8;
-//   --fixed-header-height: 4.5rem;
-// }
 
 /* ==== RESET HTML ==== */
 body {
@@ -70,56 +62,56 @@ button {
     margin: 0 auto;
   }
 }
-/* ==== HEADER ==== */
-.header {
-  height: $fixed-header-height;
-  padding: 0 1.7rem;
-}
+// /* ==== HEADER ==== */
+// .header {
+//   height: $fixed-header-height;
+//   padding: 0 1.7rem;
+// }
 
-/* ==== NAV ==== */
-.nav {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-/* ==== LOGO ==== */
-.logo h2 {
-  font-size: 28px;
-  color: $primary-color;
-}
-/* ====  NAV-MENU  ==== */
-.nav_menu_list {
-  display: flex;
-  align-items: center;
-}
-.nav_menu_list .nav_menu_item {
-  margin: 0 2rem;
-}
-.nav_menu_item .nav_menu_link {
-  font-size: 16.5px;
-  line-height: 27px;
-  color: $link-color;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-}
-.nav_menu_link:hover {
-  color: $primary-color;
-}
-.toggle_btn {
-  font-size: 20px;
-  font-weight: 600;
-  color: $lg-heading;
-  z-index: 4;
-}
-.nav_menu,
-.close_btn {
-  display: none;
-}
-.show {
-  right: 3% !important;
-}
+// /* ==== NAV ==== */
+// .nav {
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+// /* ==== LOGO ==== */
+// .logo h2 {
+//   font-size: 28px;
+//   color: $primary-color;
+// }
+// /* ====  NAV-MENU  ==== */
+// .nav_menu_list {
+//   display: flex;
+//   align-items: center;
+// }
+// .nav_menu_list .nav_menu_item {
+//   margin: 0 2rem;
+// }
+// .nav_menu_item .nav_menu_link {
+//   font-size: 16.5px;
+//   line-height: 27px;
+//   color: $link-color;
+//   text-transform: capitalize;
+//   letter-spacing: 0.5px;
+// }
+// .nav_menu_link:hover {
+//   color: $primary-color;
+// }
+// .toggle_btn {
+//   font-size: 20px;
+//   font-weight: 600;
+//   color: $lg-heading;
+//   z-index: 4;
+// }
+// .nav_menu,
+// .close_btn {
+//   display: none;
+// }
+// .show {
+//   right: 3% !important;
+// }
 /* ====  WRAPPER ==== */
 .wrapper {
   width: 100%;
