@@ -1,20 +1,45 @@
-<div class="wrapper">
-    <br>
-    <div class="text-center mt-4 name" align="center">
-        Welcome
-    </div><br>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text" name="userName" id="userName" placeholder="E-Mail">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Schedulo. Login</div>
+      <div class="content">
+        <form action="#">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Username</span>
+              <input type="text" placeholder="Enter your username" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Password</span>
+              <input type="password" placeholder="Enter your password" required>
+            </div>
+          </div>
+          <div class="details">
+            <input type="radio" name="details" id="dot-1">
+            <input type="radio" name="details" id="dot-2">
+            
+            <span class="details">Login as: </span>
+            <div class="category">
+                <label for="dot-1">
+                    <span class="dot one"></span>
+                    <span class="details">Student</span>
+                </label>
+                <label for="dot-2">
+                    <span class="dot two"></span>
+                    <span class="details">Admin</span>
+                </label>
+            
+            </div>
         </div>
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="password" name="password" id="pwd" placeholder="Password">
-        </div>
-        <button class="btn mt-3">Login</button>
     </form>
-    <div class="text-center fs-6" align="center">
-        <a href="#">Forgot password?</a> or <a routerLink="../register" align="center" >Sign up</a>
     </div>
-</div>
+    </div>
+  </body>
+</html>
