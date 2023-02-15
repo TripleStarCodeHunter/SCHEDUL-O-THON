@@ -19,7 +19,7 @@ body {
     padding: 40px 30px 30px 30px;
     background-color: #ecf0f3;
     border-radius: 15px;
-    box-shadow: 6px 6px 8px #cbced1, -6px -8px 10px #fff;
+    // box-shadow: 6px 6px 8px #cbced1, -6px -8px 10px #fff;
 }
 
 .wrapper .name {
@@ -29,7 +29,7 @@ body {
     padding-left: 10px;
     color: rgb(0, 0, 0);
 
-    text-shadow: 2px  2px 6px rgb(112, 111, 111);
+    // text-shadow: 2px  2px 6px rgb(112, 111, 111);
 }
 
 .wrapper .form-field input {
@@ -47,8 +47,8 @@ body {
 .wrapper .form-field {
     padding-left: 10px;
     margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    border-radius: 20px black;
+    // box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
 
 .wrapper .form-field .fas {
