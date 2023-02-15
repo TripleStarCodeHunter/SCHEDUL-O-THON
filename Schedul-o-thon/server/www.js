@@ -28,7 +28,7 @@ app.post(`${rootUrl}/user`, (req, res) => {
 });
 
 /*A dummy request of the server fetching the data from database*/ 
-
+//We even have a register_info table
 app.get(`${rootUrl}/data`, (req, res) => {
   client.query("SELECT * FROM batch_info", (err, result) => {
     if (err) {
