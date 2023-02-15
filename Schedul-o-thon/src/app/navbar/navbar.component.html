@@ -1,37 +1,46 @@
 
-<header class="container header">
-    <!-- ==== NAVBAR ==== -->
-    <nav class="nav">
-      <div class="logo">
-        <h2>Schedulo.</h2>
-      </div>
+<!-- ==== HEADER ==== -->
+    <header class="container header" >
+      <!-- ==== NAVBAR ==== -->
+      <nav class="nav">
+        <div class="logo" data-aos="fade-down" data-aos-duration="100">
+          <h2>Schedulo.</h2>
+        </div>
 
-      <div class="nav_menu" id="nav_menu">
-        <button class="close_btn" id="close_btn">
-          <i class="ri-close-fill"></i>
+        <div class="nav_menu" id="nav_menu" >
+          <button class="close_btn" id="close_btn">
+            <i class="ri-close-fill"></i>
+          </button>
+
+          <ul class="nav_menu_list">
+            <div data-aos="fade-down" data-aos-duration="1000"> 
+              <li class="nav_menu_item">
+                <a href="#" class="nav_menu_link">account</a>
+              </li>
+            </div>
+            <div data-aos="fade-down" data-aos-duration="1500">
+            <li class="nav_menu_item">
+              <a href="#services" class="nav_menu_link">service</a>
+            </li>
+          </div>
+            <div data-aos="fade-down" data-aos-duration="2000">
+            <li class="nav_menu_item">
+              <a href="#about_us" class="nav_menu_link">about</a>
+            </li>
+          </div>
+            <div data-aos="fade-down" data-aos-duration="2500">
+            <li class="nav_menu_item">
+              <a href="#contact" class="nav_menu_link">contact</a>
+            </li>
+          </div>
+          </ul>
+        </div>
+
+        <button class="toggle_btn" id="toggle_btn">
+          <i class="ri-menu-line"></i>
         </button>
-
-        <ul class="nav_menu_list">
-          <li class="nav_menu_item">
-            <a href="#" class="nav_menu_link">account</a>
-          </li>
-          <li class="nav_menu_item">
-            <a href="#services" class="nav_menu_link">service</a>
-          </li>
-          <li class="nav_menu_item">
-            <a href="#about_us" class="nav_menu_link">about</a>
-          </li>
-          <li class="nav_menu_item">
-            <a href="#contact" class="nav_menu_link">contact</a>
-          </li>
-        </ul>
-      </div>
-
-      <button class="toggle_btn" id="toggle_btn">
-        <i class="ri-menu-line"></i>
-      </button>
-    </nav>
-  </header>
+      </nav>
+    </header>
   <script>
     const navId = document.getElementById("nav_menu"),
   ToggleBtnId = document.getElementById("toggle_btn"),
