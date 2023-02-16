@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Login Form</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body>
+  <app-navbar></app-navbar>
     <div class="container">
       <div class="title">Login</div>
       <div class="content">
@@ -42,8 +40,8 @@
             <input type="submit" value="Log in">
           </div>
         </form>
-        <p>Don't have an account? <a href="#">Register here</a></p>
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
       </div>
     </div>
-  </body>
-</html>
+    <br>
+    <app-footer></app-footer>
