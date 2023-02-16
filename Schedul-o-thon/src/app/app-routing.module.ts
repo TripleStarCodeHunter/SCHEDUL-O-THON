@@ -6,6 +6,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
+    {path:'register',component:RegisterPageComponent},
     {path:'',component:LandingPageComponent}
   ];
 
