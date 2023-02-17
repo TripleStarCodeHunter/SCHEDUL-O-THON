@@ -7,12 +7,14 @@ import {FormGroup,FormControl,Validators} from '@angular/forms';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
-    constructor(){ }
+    constructor(){ 
+      toString();
+    }
     ngOnInit():void{
     }
     registration=new FormGroup({
       fullname: new FormControl("",[Validators.required]),
-      username: new FormGroup("",[Validators.required]),
+      username: new FormControl("",[Validators.required]),
       email: new FormControl("",[Validators.required]),
       mobile:new FormControl("",[Validators.required]),
       password:new FormControl("",[Validators.required]),
