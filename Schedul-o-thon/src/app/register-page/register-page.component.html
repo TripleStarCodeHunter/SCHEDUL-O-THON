@@ -3,31 +3,32 @@
 <div class="container">
     <div class="title">Schedulo Registration</div>
         <div class="content">
-            <form action="#">
+            <form [formGroup]="registration" {ngSubmit}="registerSubmitted()" action="#">
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">Full Name</span>
-                        <input type="text" placeholder="Enter your name" required>
+                        <input class="fullname" type="text" placeholder="Enter your name" required>
+                        <div class="form-invalid-warn-text" *ngIf="FullName.errors?.['required'] && FullName.touched">Name not valid</div>
                     </div>
                     <div class="input-box">
                         <span class="details">Username</span>
-                        <input type="text" placeholder="Enter your username" required>
+                        <input class="username" type="text" placeholder="Enter your username" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Email</span>
-                        <input type="text" placeholder="Enter your email" required>
+                        <input class="email" type="text" placeholder="Enter your email" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Phone Number</span>
-                        <input type="text" placeholder="Enter your number" required>
+                        <input class="mobile" type="text" placeholder="Enter your number" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Password</span>
-                        <input type="text" placeholder="Enter your password" required>
+                        <input class="password" type="text" placeholder="Enter your password" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Confirm Password</span>
-                        <input type="text" placeholder="Confirm your password" required>
+                        <input class="conf_password" type="text" placeholder="Confirm your password" required>
                     </div>
                 </div>
                 <div class="details">
