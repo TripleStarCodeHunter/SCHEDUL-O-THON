@@ -3,7 +3,7 @@
 <div class="container">
     <div class="title">Schedulo Registration</div>
         <div class="content">
-            <form [formGroup]="registration" {ngSubmit}="registerSubmitted()" action="#">
+            <form [formGroup]="registration"(ngSubmit)="registerSubmitted()" action="#">
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">Full Name</span>
