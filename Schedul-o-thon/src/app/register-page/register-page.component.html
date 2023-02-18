@@ -8,7 +8,7 @@
                     <div class="input-box">
                         <span class="details">Full Name</span>
                         <input class="fullname" type="text" placeholder="Enter your name" required
-                            formControlName="fullname">
+                        formControlName="fullname">
                         <div class="form-invalid-warn-text" *ngIf="FullName.errors?.['required'] && (FullName.touched || FullName.dirty)">Name should not be empty</div>
                     </div>
                     <div class="input-box">
@@ -43,7 +43,7 @@
                         <span class="details">Confirm Password</span>
                         <input class="conf_password" type="password" placeholder="Confirm your password" required
                         formControlName="conf_password">
-                        <div class="form-invalid-warn-text" *ngIf="registration.get('password')!=registration.get('conf_password') && ConfirmPassword.touched">Passwords don't match</div>
+                        <div class="form-invalid-warn-text" *ngIf="Compare()">Passwords don't match</div>
                     </div>
                 </div>
                 <div class="details">
@@ -64,7 +64,8 @@
                     </div>
                 </div>
                 <div class="button">
-                    <input type="submit" class ="btn btn-primary" value="Register">
+                    <input type="submit" class ="btn btn-primary" value="Register" (click)="registerSubmitted()">
+                    <div *ngIf="this.registration.invalid && ConfirmPassword.touched" class="form-invalid-warn-text">Please fill all required fields</div>
                 </div>
             </form>
     </div>
