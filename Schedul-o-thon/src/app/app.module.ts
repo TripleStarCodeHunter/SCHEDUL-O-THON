@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+// @NgModule({
+//   imports: [
+//     [...]
+//     FormsModule
+//   ],
+//   [...]
+// })
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,15 +28,10 @@ import { FooterComponent } from './footer/footer.component';
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
-    FooterComponent
-
+    FooterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
