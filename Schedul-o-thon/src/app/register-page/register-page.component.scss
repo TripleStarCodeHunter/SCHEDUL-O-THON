@@ -43,6 +43,12 @@ body {
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
+
+.error-mssg {
+  font-size: 1.2rem;
+  color: red;
+}
+
 form .user-details .input-box {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);

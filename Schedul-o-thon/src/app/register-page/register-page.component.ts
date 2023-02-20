@@ -16,6 +16,8 @@ export class RegisterPageComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   userType: string = '';
+  // responseData: any;
+  myMessage: string = '';
 
   // constructor(private apiService: ApiService) {}
   constructor(private http: HttpClient) {}
@@ -33,12 +35,14 @@ export class RegisterPageComponent implements OnInit {
       confirmPassword: this.confirmPassword,
       userType: this.userType,
     };
-    console.log(formData);
+    // console.log(formData);
 
     this.http
       .post('http://localhost:3000/api/register', formData)
       .subscribe((response) => {
         console.log(response);
+        const myObject: { [key: string]: any } = response;
+        this.myMessage = myObject['message'] as string;
       });
   }
 }
