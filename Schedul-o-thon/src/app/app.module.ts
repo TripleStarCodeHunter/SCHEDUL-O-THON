@@ -10,6 +10,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { BatchComponent } from './batch/batch.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { SubBatchComponent } from './batch/sub-batch/sub-batch.component';
+import { SectionComponent } from './batch/sub-batch/section/section.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { FooterComponent } from './footer/footer.component';
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BatchComponent,
+    CalendarComponent,
+    SubBatchComponent,
+    SectionComponent
 
   ],
   imports: [

@@ -66,6 +66,7 @@ button {
 .header {
   height: $fixed-header-height;
   padding: 0 1.7rem;
+  position: relative; //temporary solution to bleeding of header into body of html page 
 }
 
 /* ==== NAV ==== */
