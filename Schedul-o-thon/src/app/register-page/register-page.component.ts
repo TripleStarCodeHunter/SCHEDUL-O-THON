@@ -28,7 +28,14 @@ export class RegisterPageComponent {
         alert("Registeration successful");
     }
     Compare(){
-      return this.registration.get('password')!=this.registration.get('conf_password') && this.registration.touched;
+      // console.log(this.registration.get('password'),"   ", this.registration.get('conf_password'))
+      return this.registration.get('password')!==this.registration.get('conf_password') && this.registration.touched;
+      // if (this.registration.get('password')==this.registration.get('conf_password')){
+      //   return true;
+      // }
+      // else{
+      //   return false;
+      // }
     }
     get FullName():FormControl{
         return this.registration.get("fullname") as FormControl;
