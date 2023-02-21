@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+//import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit{
+
   username: string = '';
   password: string = '';
   userType: string = '';
 
-  ngOnInit(): void {}
-
+  ngOnInit() {
+    // window.location.reload();
+  }
   constructor(private http: HttpClient) {}
   onSubmit() {
     const formData = {
