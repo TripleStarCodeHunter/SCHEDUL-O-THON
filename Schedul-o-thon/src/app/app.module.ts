@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+
 
 // @NgModule({
 //   imports: [
@@ -46,8 +45,6 @@ import { RegisterPageModule } from './register-page/register-page.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
-    BrowserModule,
     FormsModule,
     RegisterPageModule,
     ReactiveFormsModule
