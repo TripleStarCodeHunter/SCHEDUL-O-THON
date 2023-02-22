@@ -21,11 +21,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BatchComponent } from './batch/batch.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { SubBatchComponent } from './batch/sub-batch/sub-batch.component';
-import { SectionComponent } from './batch/sub-batch/section/section.component';
-
-import { NgForm,FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubBatchComponent } from './sub-batch/sub-batch.component';
+import { NgForm } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
+import { SectionFormComponent } from './section-form/section-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +36,7 @@ import { RegisterPageModule } from './register-page/register-page.module';
     BatchComponent,
     CalendarComponent,
     SubBatchComponent,
-    SectionComponent
-
-
+    SectionFormComponent
   ],
   imports: [
     BrowserModule,
