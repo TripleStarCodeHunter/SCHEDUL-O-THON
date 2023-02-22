@@ -2,6 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+
+// @NgModule({
+//   imports: [
+//     [...]
+//     FormsModule
+//   ],
+//   [...]
+// })
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,11 +25,12 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { SubBatchComponent } from './batch/sub-batch/sub-batch.component';
 import { SectionComponent } from './batch/sub-batch/section/section.component';
 
+import { NgForm,FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterPageModule } from './register-page/register-page.module';
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
@@ -30,15 +40,19 @@ import { SectionComponent } from './batch/sub-batch/section/section.component';
     SubBatchComponent,
     SectionComponent
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
+
+    BrowserModule,
     FormsModule,
+    RegisterPageModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
