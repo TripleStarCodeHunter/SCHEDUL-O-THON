@@ -5,9 +5,11 @@ const cors = require("cors");
 
 const app = express();
 
+const rootUrl = "/api";
+
 app.use(
   cors({
-    origin: ["url of angular app"],
+    origin: ["http://localhost:4200"],
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -16,6 +18,7 @@ app.use(
 client.connect();
 
 app.use("/", routes);
+app.use(`/${rootUrl}`, routes);
 app.use(`${rootUrl}/register`, routes);
 app.use(`${rootUrl}/isUserAuth`, routes);
 app.use(`${rootUrl}/login`, routes);

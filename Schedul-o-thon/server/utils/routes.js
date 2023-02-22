@@ -11,44 +11,81 @@ const rootUrl = "/api";
 
 const saltrounds = 10;
 
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+router.use(cookieParser());
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
-app.use(
+router.use(
   session({
     key: "userid",
-    secret: "hello and welcome to chitkara university",
+    secret: "hello and welcome to schedulothon",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expire: 60 * 60 * 12,
+      expire: 60 * 30,
     },
   })
 );
 
-app.post(`${rootUrl}/register`, (req, res) => {
-  const name = req.body.name;
+router.get(`${rootUrl}/register`, (req, res) => {
+  let sqlqeury = "SELECT * FROM register_info";
+  client.query(sqlqeury, (err, result) => {
+    if (err) throw err;
+    else res.json(result);
+  });
+});
+
+router.post(`${rootUrl}/register`, (req, res) => {
+  const name = req.body.fullname;
   const username = req.body.username;
   const email = req.body.email;
-  const phonenumber = req.body.phonenumber;
+  const phonenumber = req.body.mobile;
   const password = req.body.password;
-  const authority = req.body.authority;
-  console.log(username, password);
+  const cpassword = req.body.conf_password;
+  const authority = req.body.userType;
 
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    if (err) console.log(err);
+  // console.log(req.body);
 
-    let sqlquery =
-      "INSERT INTO register_info(name,user_name,email,phonenumber,password,authority) values(?,?,?,?,?,?);";
+  let sqlq =
+    "SELECT * FROM register_info where user_name='" +
+    username +
+    "' OR email = '" +
+    email +
+    "'";
 
-    client.query(
-      sqlquery,
-      [name, username, email, phonenumber, password, authority],
-      (err, results) => {
+  client.query(sqlq, (err, response) => {
+    if (err) {
+      res.json({ message: err });
+    }
+    if (response.rows.length > 0) {
+      res.json({ message: "already exists" });
+    } else {
+      res.json({ message: "done" });
+      bcrypt.hash(password, saltrounds, (err, hash) => {
         if (err) console.log(err);
-        else res.send({ message: "user registered successfully" });
-      }
-    );
+
+        let sqlquery =
+          "INSERT INTO register_info (name,user_name,email,phone_number,password,roll) VALUES ($1, $2,$3,$4,$5,$6)";
+
+        if (password !== cpassword) {
+          res.send({ message: "passwords do not match!!!" });
+        } else {
+          bcrypt.hash(password, saltrounds, (err, hash) => {
+            if (err) console.log(err);
+            else {
+              client.query(
+                sqlquery,
+                [name, username, email, phonenumber, hash, authority],
+                (err, results) => {
+                  if (err) console.log(err);
+                  else res.send({ message: "user registered successfully" });
+                }
+              );
+            }
+          });
+        }
+      });
+    }
   });
 });
 
@@ -69,30 +106,38 @@ const verifyJWT = (req, res, next) => {
   }
 };
 
-app.get(`${rootUrl}/isUserAuth`, verifyJWT, (req, res) => {
+router.get(`${rootUrl}/isUserAuth`, verifyJWT, (req, res) => {
   res.send("you are authenticated!!");
 });
 
-app.post(`${rootUrl}/login`, (req, res) => {
+router.post(`${rootUrl}/login`, (req, res) => {
   const username = req.body.username;
+  console.log(username);
   const password = req.body.password;
-  let sqlquery = "SELECT * from register_info where username=?;";
+  console.log(password);
 
-  db.query(sqlquery, [username], (err, result) => {
+  let sqlquery =
+    "SELECT * FROM register_info where user_name='" + username + "'";
+
+  client.query(sqlquery, (err, result) => {
     if (err) {
       res.send({ err: err });
     }
 
-    if (result.length > 0) {
+    if (result.rows.length > 0) {
       console.log(result);
-      bcrypt.compare(password, result[0].password, (error, response) => {
+      bcrypt.compare(password, result.rows[0].password, (error, response) => {
         if (response) {
-          const id = result[0].id;
+          const id = result.rows[0].id;
           const token = jwt.sign({ id }, "jwtsecret", {
             expiresIn: 300,
           });
-          req.session.user = result;
-          res.json({ auth: true, token: token, result: result });
+          req.session.user = result.rows[0].user_name;
+          res.json({
+            auth: true,
+            token: token,
+            username: result.rows[0].user_name,
+          });
         } else {
           res.send({ auth: false, message: "wrong username and password!!" });
         }
@@ -102,3 +147,5 @@ app.post(`${rootUrl}/login`, (req, res) => {
     }
   });
 });
+
+module.exports = router;
