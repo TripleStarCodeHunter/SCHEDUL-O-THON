@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+
 
 // @NgModule({
 //   imports: [
@@ -43,8 +42,6 @@ import { SectionFormComponent } from './section-form/section-form.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
-    BrowserModule,
     FormsModule,
     RegisterPageModule,
     ReactiveFormsModule
