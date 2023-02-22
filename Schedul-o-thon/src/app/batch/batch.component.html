@@ -75,68 +75,102 @@
 							</div>
 							
 						</div>
-						<form>
+						<form [formGroup]="batch" (ngSubmit)="onSubmit()">
+							
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
+								<label class="col-sm-12 col-md-2 col-form-label" for="batchname">Batch Name</label>
 								<div class="col-sm-12 col-md-10">
 									<input
-										class="form-control"
+										id="batchname"
+										class="batchname form-control"
 										type="text"
 										placeholder="Batch Name"
+										formControlName="batchname"
 									/>
+									<!-- <div class="form-invalid-warn-text" *ngIf="batchname.errors?.['required'] && (batchname.touched || batchname.dirty)">Name should not be empty</div> -->
+								<!-- <div *ngIf="batch.invalid && (batch.dirty || batch.touched)" class="alert alert-danger"> -->
+
+  									<!-- <div *ngIf="batch.errors?.['required']"> -->
+										<!-- Name is required. -->
+									<!-- </div> -->
+  
+								<!-- </div> -->
+								
+							</div></div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch">Number of Sub Batches</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="1" type="text" formControlName="noOfSubBatch"/>
+										<div class="invalid-feedback" style="color: #e91e63;" *ngIf="isSubmitted && noOfSubBatch?.invalid">
+											<sup>*</sup>Enter Correct value
+										  </div>
+								
+									<!-- <div *ngIf="noOfSubBatch.errors?.['required']" style="color: red">Enter No. of Sub Batches</div>
+									<div  *ngIf="noOfSubBatch.errors?.['pattern']" style="color: red" >Only Numbers are allowed
+      </div> -->
 								</div>
 							</div>
                             <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Number of Sub Batches</label>
+								<label class="col-sm-12 col-md-2 col-form-label" for="location">Location</label>
 								<div class="col-sm-12 col-md-10">
-									<input class="form-control" value="1" type="number" />
-								</div>
-							</div>
-                            <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Location</label>
-								<div class="col-sm-12 col-md-10">
-									<select class="custom-select col-12">
-										<option selected="">Choose...</option>
-										<option value="1">Mysore</option>
-										<option value="2">Banglore</option>
-										<option value="3">Online</option>
+									<select 
+									class="custom-select col-12" id="location"
+									(change)="changeLocation($event)"
+									formControlName="location">
+										<option selected="" value="">Choose Location</option>
+										<option 
+										*ngFor="let location of Location" [ngValue]="location">{{location}}</option>
+										<!-- <option value="2"
+										*ngFor="let Bengaluru of City" [ngValue]="Bengaluru">Bengaluru</option>
+										<option value="3"
+										*ngFor="let Online of City" [ngValue]="Online">Online</option> -->
 									</select>
+									<div class="invalid-feedback" *ngIf="isSubmitted && location?.invalid">
+										<sup>*</sup>Please provide Location
+									  </div>
 								</div>
 							</div>
                             <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Batch size</label>
+								<label class="col-sm-12 col-md-2 col-form-label" for="batchSize">Batch size</label>
 								<div class="col-sm-12 col-md-10">
-									<input class="form-control" value="10" type="number" />
+									<input class="form-control" value="10" type="number" formControlName="batchSize"/>
 								</div>
 							</div>
                             <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
+								<label class="col-sm-12 col-md-2 col-form-label" for="start
+								">Start Date</label>
 								<div class="col-sm-12 col-md-10">
 									<input
 										class="form-control date-picker"
 										placeholder="Select Date"
 										type="date"
+										formControlName="start"
 									/>
 								</div>
 							</div>
                             <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Batch Type</label>
 								<div class="col-sm-12 col-md-10">
-									<select class="custom-select col-12">
-										<option selected="">Choose...</option>
-										<option value="1">Engineering CS</option>
+									<select class="custom-select col-12" (change)="changeBatchType($event)"
+									formControlName="batchType" >
+										<option selected=""
+										value="">Choose Type of Batch</option>
+										<option 
+										*ngFor="let batchType of TypeOfBatch" [ngValue]="batchType">{{batchType}}</option>
+										<!-- <option value="1">Engineering CS</option>
 										<option value="2">Non Engineering CS</option>
 										<option value="3">Special</option>
-										<option value="4">Diploma</option>
+										<option value="4">Diploma</option> -->
 									</select>
 								</div>
 							</div>
                             <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label"></label>
                                 <div class="col-sm-12 col-md-10">
-                                    <a href="sub-batch.html"><button type="button" class="btn btn-outline-primary" >
+                                    <button type="submit" 
+									class="btn btn-outline-primary"  >
                                         Submit
-                                    </button></a>
+                                    </button>
                                     
                                 </div>
                             </div>
