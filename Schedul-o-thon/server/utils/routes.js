@@ -39,33 +39,50 @@ router.post(`${rootUrl}/register`, (req, res) => {
   const name = req.body.fullname;
   const username = req.body.username;
   const email = req.body.email;
-  const phonenumber = req.body.phoneNumber;
+  const phonenumber = req.body.mobile;
   const password = req.body.password;
-  const cpassword = req.body.confirmPassword;
+  const cpassword = req.body.conf_password;
   const authority = req.body.userType;
 
-  console.log(req.body);
+  // console.log(req.body);
 
-  bcrypt.hash(password, saltrounds, (err, hash) => {
-    if (err) console.log(err);
+  let sqlq =
+    "SELECT * FROM register_info where user_name='" +
+    username +
+    "' OR email = '" +
+    email +
+    "'";
 
-    let sqlquery =
-      "INSERT INTO register_info (name,user_name,email,phone_number,password,roll) VALUES ($1, $2,$3,$4,$5,$6)";
-
-    if (password !== cpassword) {
-      res.send({ message: "passwords do not match!!!" });
+  client.query(sqlq, (err, response) => {
+    if (err) {
+      res.json({ message: err });
+    }
+    if (response.rows.length > 0) {
+      res.json({ message: "already exists" });
     } else {
+      res.json({ message: "done" });
       bcrypt.hash(password, saltrounds, (err, hash) => {
         if (err) console.log(err);
-        else {
-          client.query(
-            sqlquery,
-            [name, username, email, phonenumber, hash, authority],
-            (err, results) => {
-              if (err) console.log(err);
-              else res.send({ message: "user registered successfully" });
+
+        let sqlquery =
+          "INSERT INTO register_info (name,user_name,email,phone_number,password,roll) VALUES ($1, $2,$3,$4,$5,$6)";
+
+        if (password !== cpassword) {
+          res.send({ message: "passwords do not match!!!" });
+        } else {
+          bcrypt.hash(password, saltrounds, (err, hash) => {
+            if (err) console.log(err);
+            else {
+              client.query(
+                sqlquery,
+                [name, username, email, phonenumber, hash, authority],
+                (err, results) => {
+                  if (err) console.log(err);
+                  else res.send({ message: "user registered successfully" });
+                }
+              );
             }
-          );
+          });
         }
       });
     }

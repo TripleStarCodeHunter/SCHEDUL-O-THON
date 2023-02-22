@@ -1,80 +1,183 @@
 <app-navbar></app-navbar>
 <br />
 <div class="container">
-    <div class="title">Schedulo Registration</div>
-        <div class="content">
-            <form action="#" [formGroup]="registration"(ngOnSubmit)="registerSubmitted();onSubmit()">
-                <div class="user-details">
-                    <div class="input-box">
-                        <span class="details">Full Name</span>
-                        <input type="text" class="fullname" placeholder="Enter your name" required formControlName="fullname" [(ngModel)]="fullname"
-                        name="fullname">
-                        <div class="form-invalid-warn-text" *ngIf="FullName.errors?.['required'] && (FullName.touched || FullName.dirty)">Name should not be empty</div>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Username</span>
-                        <input class="username" type="text" placeholder="Enter your username" required formControlName="username" [(ngModel)]="username"
-                        name="username">
-                        <div class="form-invalid-warn-text" *ngIf="UserName.errors?.['required'] && (UserName.touched || UserName.dirty)">Username should not be empty</div>
-                        <div class="form-invalid-warn-text" *ngIf="UserName.errors?.['minlength']">Name must be at least 8 characters long.</div>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" class="email" placeholder="Enter your email" required [(ngModel)]="email"
-                        name="email" formControlName="email">
-                        <div class="form-invalid-warn-text" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">Email field should not be empty</div>
-                        <div class="form-invalid-warn-text" *ngIf="Email.errors?.['pattern']">Enter a valid email. Ex: abc@xyz.com</div>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Phone Number</span>
-                        <input class="mobile" formControlName="mobile" type="text" placeholder="Enter your number" required [(ngModel)]="phoneNumber"
-                        name="phoneNumber">
-                        <div class="form-invalid-warn-text" *ngIf="Mobile.errors?.['required'] && (Mobile.touched || Mobile.dirty)">Phone number is required</div>
-                        <div class="form-invalid-warn-text" *ngIf="Mobile.errors?.['pattern']">Enter a 10 digit phone number. Ex: +91 98765 43210</div>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Password</span>
-                        <input class="password" type="text" placeholder="Enter your password" required [(ngModel)]="password"
-                        name="password" formControlName="password">
-                        <div class="form-invalid-warn-text" *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">Please enter a password</div>
-                        <div class="form-invalid-warn-text" *ngIf="Password.errors?.['pattern']">Enter a valid password of 8 characters with atleast 1 uppercase, 1 lowercase and special character</div>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Confirm Password</span>
-                        <input class="conf_password" formControlName="conf_password" type="text" placeholder="Confirm your password" required [(ngModel)]="confirmPassword"
-                        name="confirmPassword">
-                        <div class="form-invalid-warn-text" *ngIf="Compare()">Passwords don't match</div>
-                    </div>
-                </div>
-                <div class="details">
-                    <input type="radio" name="details" id="dot-1" [(ngModel)]="userType"
-                    value="student">
-                    <input type="radio" name="details" id="dot-2" [(ngModel)]="userType"
-                    value="admin">
-                    
-                    <span class="details">Are you a : </span>
-                    <div class="category">
-                        <label for="dot-1">
-                            <span class="dot one"></span>
-                            <span class="details">Student</span>
-                        </label>
-                        <label for="dot-2">
-                            <span class="dot two"></span>
-                            <span class="details">Admin</span>
-                        </label>
-                    
-                    </div>
-                </div>
-                <div>
-                  <p class="error-mssg">{{ myMessage }}</p>
-                </div>
-                <div class="button">
-                    <input type="submit" value="Register" class ="btn btn-primary" value="Register" (click)="registerSubmitted()">
-                    <div *ngIf="this.registration.invalid && ConfirmPassword.touched" class="form-invalid-warn-text">Please fill all required fields</div>
+  <div class="title">Schedulo Registration</div>
+  <div class="content">
+    <form
+      action="#"
+      [formGroup]="registration"
+      (ngOnSubmit)="registerSubmitted()"
+    >
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Full Name</span>
+          <input
+            type="text"
+            class="fullname"
+            placeholder="Enter your name"
+            required
+            formControlName="fullname"
+            name="fullname"
+          />
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="FullName.errors?.['required'] && (FullName.touched || FullName.dirty)"
+          >
+            Name should not be empty
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Username</span>
+          <input
+            class="username"
+            type="text"
+            placeholder="Enter your username"
+            required
+            formControlName="username"
+            name="username"
+          />
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="UserName.errors?.['required'] && (UserName.touched || UserName.dirty)"
+          >
+            Username should not be empty
+          </div>
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="UserName.errors?.['minlength']"
+          >
+            Name must be at least 8 characters long.
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Email</span>
+          <input
+            type="text"
+            class="email"
+            placeholder="Enter your email"
+            required
+            formControlName="email"
+            name="email"
+          />
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)"
+          >
+            Email field should not be empty
+          </div>
+          <div class="form-invalid-warn-text" *ngIf="Email.errors?.['pattern']">
+            Enter a valid email. Ex: abc@xyz.com
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Phone Number</span>
+          <input
+            class="mobile"
+            formControlName="mobile"
+            type="number"
+            maxlength="10"
+            placeholder="Enter your number"
+            required
+            name="mobile"
+          />
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="Mobile.errors?.['required'] && (Mobile.touched || Mobile.dirty)"
+          >
+            Phone number is required
+          </div>
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="Mobile.errors?.['pattern']"
+          >
+            Enter a 10 digit phone number. Ex: +91 98765 43210
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Password</span>
+          <input
+            class="password"
+            type="password"
+            placeholder="Enter your password"
+            required
+            formControlName="password"
+            name="password"
+          />
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)"
+          >
+            Please enter a password
+          </div>
+          <div
+            class="form-invalid-warn-text"
+            *ngIf="Password.errors?.['pattern']"
+          >
+            Enter a valid password of 8 characters with atleast 1 uppercase, 1
+            lowercase and special character
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Confirm Password</span>
+          <input
+            class="conf_password"
+            formControlName="conf_password"
+            type="password"
+            placeholder="Confirm your password"
+            required
+            name="conf_password"
+          />
+          <div class="form-invalid-warn-text" *ngIf="Compare()">
+            Passwords don't match
+          </div>
+        </div>
+      </div>
+      <div class="details">
+        <input
+          type="radio"
+          id="dot-1"
+          formControlName="userType"
+          value="student"
+        />
+        <input
+          type="radio"
+          id="dot-2"
+          formControlName="userType"
+          value="admin"
+        />
 
-                </div>
-            </form>
-    </div>
+        <span class="details">Are you a : </span>
+        <div class="category">
+          <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="details">Student</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="details">Admin</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <p class="error-mssg">{{ myMessage }}</p>
+      </div>
+      <div class="button">
+        <input
+          type="submit"
+          value="Register"
+          class="btn btn-primary"
+          value="Register"
+          (click)="registerSubmitted()"
+        />
+        <div
+          *ngIf="this.registration.invalid && ConfirmPassword.touched"
+          class="form-invalid-warn-text"
+        >
+          Please fill all required fields
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 <br />
 <app-footer></app-footer>
