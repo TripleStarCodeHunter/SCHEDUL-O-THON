@@ -18,6 +18,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 export class BatchComponent {
 
+
+
   isSubmitted = false;
 
   Location: any = ['Mysore' , 'Bengaluru' , 'Online'];
@@ -75,6 +77,7 @@ export class BatchComponent {
     return this.batch.get('start');
   }
   
+  
 // batchname: FormControl<any>;
 onSubmit(){
   this.isSubmitted = true;
@@ -84,7 +87,7 @@ onSubmit(){
   }
   else{
     console.log(JSON.stringify(this.batch.value));
-    alert("OK");
+    alert("Form Submitted");
     this.batch.reset();
   }
   // console.warn(this.batch.value);
