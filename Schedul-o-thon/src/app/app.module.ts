@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 // @NgModule({
 //   imports: [
 //     [...]
@@ -18,9 +19,12 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-
-import { NgForm,FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BatchComponent } from './batch/batch.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { SubBatchComponent } from './sub-batch/sub-batch.component';
+import { NgForm } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
+import { SectionFormComponent } from './section-form/section-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,12 +33,15 @@ import { RegisterPageModule } from './register-page/register-page.module';
     RegisterPageComponent,
     NavbarComponent,
     FooterComponent,
+    BatchComponent,
+    CalendarComponent,
+    SubBatchComponent,
+    SectionFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserModule,
     FormsModule,
     RegisterPageModule,
     ReactiveFormsModule

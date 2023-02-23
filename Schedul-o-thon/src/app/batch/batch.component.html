@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body>
+		
+
+		<div class="main-container">
+			
+					<!-- Default Basic Forms Start -->
+					<div class="pd-20 card-box mb-30">
+						<div class="clearfix">
+							<div class="pull-left">
+								<h4 class="text-blue h4">Create Batch</h4>
+								<!-- <p class="mb-30">All bootstrap element classies</p> -->
+							</div>
+							
+						</div>
+						<form [formGroup]="batch" (ngSubmit)="onSubmit()">
+							
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="batchname">Batch Name</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										id="batchname"
+										class="batchname form-control"
+										type="text"
+										placeholder="Batch Name"
+										formControlName="batchname"
+									/>
+									<div class="form-invalid-warn-text alert alert-danger" *ngIf="batchname?.errors?.['required'] && (batchname?.touched || batchname?.dirty)">Batch Name should not be empty</div>
+								
+							</div></div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch">Number of Sub Batches</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="1" type="number" formControlName="noOfSubBatch"/>
+										  <div class="form-invalid-warn-text alert alert-danger" *ngIf="noOfSubBatch?.errors?.['required'] && (noOfSubBatch?.touched || noOfSubBatch?.dirty)">No.of Subbatch should not be empty</div>
+										  <!-- <div class="form-invalid-warn-text alert alert-danger" *ngIf="noOfSubBatch?.errors?.['pattern'] && (noOfSubBatch?.touched || noOfSubBatch?.dirty)">No.of Subbatch should not be empty</div> -->
+
+									
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="location">Location</label>
+								<div class="col-sm-12 col-md-10">
+									<select 
+									class="custom-select col-12" id="location"
+									(change)="changeLocation($event)"
+									formControlName="location">
+										<option selected="" value="">Choose Location</option>
+										<option 
+										*ngFor="let location of Location" [ngValue]="location">{{location}}</option>
+										
+									</select>
+									<div class="form-invalid-warn-text alert alert-danger" *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)">Enter Location</div>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="batchSize">Batch size</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="10" type="number" formControlName="batchSize"/>
+									<div class="form-invalid-warn-text alert alert-danger" *ngIf="batchSize?.errors?.['required'] && (batchSize?.touched || batchSize?.dirty)">Batch Name should not be empty</div>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label" for="start
+								">Start Date</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control date-picker"
+										placeholder="Select Date"
+										type="date"
+										formControlName="start"
+									/>
+									<div class="form-invalid-warn-text alert alert-danger" *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)">Enter Correct Name</div>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Batch Type</label>
+								<div class="col-sm-12 col-md-10">
+									<select class="custom-select col-12" (change)="changeBatchType($event)"
+									formControlName="batchType" >
+										<option selected=""
+										value="">Choose Type of Batch</option>
+										<option 
+										*ngFor="let batchType of TypeOfBatch" [ngValue]="batchType">{{batchType}}</option>
+									</select>
+									<div class="form-invalid-warn-text alert alert-danger" *ngIf="batchType?.errors?.['required'] && (batchType?.touched || batchType?.dirty)">Enter Btach Type</div>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label"></label>
+                                <div class="col-sm-12 col-md-10">
+                                    <button type="submit" 
+									class="btn btn-outline-primary"  >
+                                        Submit
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </form>
+							</div>
+						</div>
+					<!-- Default Basic Forms End -->
+
+					
+		<!-- js -->
+		<script src="/src/assets/assets/vendors/scripts/core.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/process.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>
