@@ -7,17 +7,17 @@
           <div class="user-details">
             <div class="input-box">
               <span class="details">Username</span>
-              <input type="text" placeholder="Enter your username" required [(ngModel)]="username" name="username">
+              <input type="text" placeholder="Enter your username" required formControlName="username" name="username">
             </div>
             <div class="input-box">
               <span class="details">Password</span>
-              <input type="password" placeholder="Enter your password" required [(ngModel)]="password" name="password">
+              <input type="password" placeholder="Enter your password" required formControlName="password" name="password">
             </div>
           </div>
           <div class="details">
-              <input type="radio" name="details" id="dot-1" [(ngModel)]="userType"
+              <input type="radio" name="details" id="dot-1" formControlName="userType"
               value="student">
-              <input type="radio" name="details" id="dot-2" [(ngModel)]="userType"
+              <input type="radio" name="details" id="dot-2" formControlName="userType"
               value="admin">
               
               <span class="details">Login as : </span>
