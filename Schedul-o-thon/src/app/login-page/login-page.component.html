@@ -3,21 +3,46 @@
     <div class="container">
       <div class="title">Login</div>
       <div class="content" >
-        <form action="#" (ngSubmit)="onSubmit()">
+        <form action="#" (ngSubmit)="onSubmit()" [formGroup]="loginpage">
           <div class="user-details">
+
+            <!-- username -->
             <div class="input-box">
               <span class="details">Username</span>
-              <input type="text" placeholder="Enter your username" required formControlName="username" name="username">
+              <input type="text" placeholder="Enter your username" 
+              formControlName="username" 
+              name="username">
+              <!-- Validations -->
+              <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="username?.errors?.['required'] && (username?.touched || username?.dirty)"
+              >
+                Username should not be empty
+              </div>
             </div>
+
+            <!-- password -->
             <div class="input-box">
               <span class="details">Password</span>
-              <input type="password" placeholder="Enter your password" required formControlName="password" name="password">
+              <input type="password" 
+              placeholder="Enter your password"
+              formControlName="password" 
+              name="password">
+              <!-- Validations -->
+              <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="password?.errors?.['required'] && (password?.touched || password?.dirty)"
+              >
+                Password should not be empty
+              </div>
             </div>
           </div>
+
+          <!-- Login as -->
           <div class="details">
-              <input type="radio" name="details" id="dot-1" formControlName="userType"
+              <input type="radio"  id="dot-1" formControlName="userType"
               value="student">
-              <input type="radio" name="details" id="dot-2" formControlName="userType"
+              <input type="radio"  id="dot-2" formControlName="userType"
               value="admin">
               
               <span class="details">Login as : </span>
@@ -31,6 +56,13 @@
                       <span class="details">Admin</span>
                   </label>
               
+              </div>
+              <!-- Validations -->
+              <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="userType?.errors?.['required'] && (userType?.touched || userType?.dirty)"
+              >
+                Choose user type
               </div>
           </div>
           

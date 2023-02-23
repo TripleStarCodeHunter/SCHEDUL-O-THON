@@ -32,7 +32,7 @@
   </head>
   <body>
     <div class="main-container">
-      <!-- Default Basic Forms Start -->
+      
       <div class="pd-20 card-box mb-30">
         <div class="clearfix">
           <div class="pull-left">
@@ -41,6 +41,8 @@
           </div>
         </div>
         <form [formGroup]="batch" (ngSubmit)="onSubmit()">
+
+			<!-- Batch Name -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="batchname"
               >Batch Name</label
@@ -53,6 +55,7 @@
                 placeholder="Batch Name"
                 formControlName="batchname"
               />
+			  <!-- Validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="batchname?.errors?.['required'] && (batchname?.touched || batchname?.dirty)"
@@ -61,6 +64,8 @@
               </div>
             </div>
           </div>
+
+		  <!-- no of sub batches -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch"
               >Number of Sub Batches</label
@@ -72,15 +77,17 @@
                 type="number"
                 formControlName="noOfSubBatch"
               />
+			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="noOfSubBatch?.errors?.['required'] && (noOfSubBatch?.touched || noOfSubBatch?.dirty)"
               >
                 No.of Subbatch should not be empty
               </div>
-              <!-- <div class="form-invalid-warn-text alert alert-danger" *ngIf="noOfSubBatch?.errors?.['pattern'] && (noOfSubBatch?.touched || noOfSubBatch?.dirty)">No.of Subbatch should not be empty</div> -->
             </div>
           </div>
+
+		  <!-- location -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="location"
               >Location</label
@@ -97,6 +104,7 @@
                   {{ location }}
                 </option>
               </select>
+			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
@@ -105,6 +113,8 @@
               </div>
             </div>
           </div>
+
+		  <!-- batch size -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="batchSize"
               >Batch size</label
@@ -116,6 +126,7 @@
                 type="number"
                 formControlName="batchSize"
               />
+			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="batchSize?.errors?.['required'] && (batchSize?.touched || batchSize?.dirty)"
@@ -124,11 +135,12 @@
               </div>
             </div>
           </div>
+
+		  <!-- start date -->
           <div class="form-group row">
             <label
               class="col-sm-12 col-md-2 col-form-label"
-              for="start
-								"
+              for="start"
               >Start Date</label
             >
             <div class="col-sm-12 col-md-10">
@@ -138,6 +150,7 @@
                 type="date"
                 formControlName="start"
               />
+			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
@@ -146,6 +159,8 @@
               </div>
             </div>
           </div>
+
+		  <!-- batch type -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Batch Type</label>
             <div class="col-sm-12 col-md-10">
@@ -162,11 +177,12 @@
                   {{ batchType }}
                 </option>
               </select>
+			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
                 *ngIf="batchType?.errors?.['required'] && (batchType?.touched || batchType?.dirty)"
               >
-                Enter Btach Type
+                Enter Batch Type
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -8,15 +8,45 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit{
 
-  username: string = '';
-  password: string = '';
-  userType: string = '';
+  isSubmitted = false;
+
+  constructor(private http: HttpClient, 
+    private fb: FormBuilder) {}
+
+  loginpage= this.fb.group({
+  username: ['', Validators.required],
+  password: ['', Validators.required],
+  userType: ['', Validators.required],
+  });
 
   ngOnInit() {
     // window.location.reload();
   }
-  constructor(private http: HttpClient) {}
+  
+  get username() {
+    return this.loginpage.get('username');
+  }
+  get password() {
+    return this.loginpage.get('password');
+  }
+  get userType() {
+    return this.loginpage.get('userType');
+  }
+
+
   onSubmit() {
+
+    this.isSubmitted = true;
+  if (!this.loginpage.valid){
+    false;
+    alert("Form is Invalid")
+  }
+  else{
+    console.log(JSON.stringify(this.loginpage.value));
+    alert("Form Submitted");
+    this.loginpage.reset();
+  }
+
     const formData = {
       username: this.username,
       password: this.password,
