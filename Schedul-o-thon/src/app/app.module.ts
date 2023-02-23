@@ -44,7 +44,7 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // FormsModule,
+    FormsModule,
     RegisterPageModule,
     ReactiveFormsModule
   ],
