@@ -60,7 +60,7 @@ router.post(`${rootUrl}/register`, (req, res) => {
     if (response.rows.length > 0) {
       res.json({ message: "already exists" });
     } else {
-      res.json({ message: "done" });
+      // res.json({ message: "done" });
       bcrypt.hash(password, saltrounds, (err, hash) => {
         if (err) console.log(err);
 
@@ -78,13 +78,14 @@ router.post(`${rootUrl}/register`, (req, res) => {
                 [name, username, email, phonenumber, hash, authority],
                 (err, results) => {
                   if (err) console.log(err);
-                  else res.send({ message: "user registered successfully" });
+                  // else res.send({ message: "user registered successfully" });
                 }
               );
             }
           });
         }
       });
+      res.json({ message: "done" });
     }
   });
 });
