@@ -22,7 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BatchComponent } from './batch/batch.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SubBatchComponent } from './sub-batch/sub-batch.component';
-import { NgForm } from '@angular/forms';
+import { NgForm,FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
 @NgModule({
