@@ -24,6 +24,7 @@ import { SubBatchComponent } from './sub-batch/sub-batch.component';
 import { NgForm,FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
+import { BatchCardComponent } from './batch-card/batch-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { SectionFormComponent } from './section-form/section-form.component';
     BatchComponent,
     CalendarComponent,
     SubBatchComponent,
-    SectionFormComponent
+    SectionFormComponent,
+    BatchCardComponent
   ],
   imports: [
     BrowserModule,
