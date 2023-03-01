@@ -1,6 +1,13 @@
+.batch-container{
+    width:50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 .card {
-    width: 190px;
-    height: 254px;
+    margin-bottom: 30px;
+    width: 210px; //original : 190px
+    height: 280px; //original : 254px
     border-radius: 20px;
     background: #f5f5f5;
     position: relative;

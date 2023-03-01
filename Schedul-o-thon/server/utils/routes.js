@@ -159,14 +159,9 @@ router.post(`${rootUrl}/login`, (req, res) => {
 router.post(`${rootUrl}/batch`, async (req, res) => {
   const { batchname, noOfSubBatch, batchSize, location, start, batchType, created_by } = req.body;
 
-
-
   console.log(req.body)
   const currentDate = new Date();
-
   const created_on = currentDate;
-
-
 
   const query = {
     text: 'INSERT INTO batch_info(batch_name, subbatch_count, batch_size, location, start_date, batch_type, created_by, created_on) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
@@ -187,14 +182,15 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
 //disply batches
 
 
-router.get(`${rootUrl}/batches`, async (req, res) => {
+router.get(`${rootUrl}/display-batches`, async (req, res) => {
   try {
     // Fetch batch information from the database
-    const result = await client.query('SELECT batch_name, created_by, batch_type FROM batch_info');
+    const result = await client.query('SELECT batch_name, created_by,batch_size,start_date,location, batch_type,subbatch_count FROM batch_info');
 
     // Return the batch information as a JSON response
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (error) {
+    console.log("eerror here")
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }

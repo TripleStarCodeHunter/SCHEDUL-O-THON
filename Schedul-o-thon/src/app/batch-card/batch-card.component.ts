@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { DataService } from '../shared/services/data-service.service';
 
 @Component({
   selector: 'app-batch-card',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./batch-card.component.scss']
 })
 export class BatchCardComponent {
+  data !: any[];
 
-}
+  constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    this.dataService.getData()
+      .subscribe(data => {
+        this.data = data;
+      });
+  }
+} 
