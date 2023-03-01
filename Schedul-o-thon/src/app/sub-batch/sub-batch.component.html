@@ -39,7 +39,6 @@
         </div>
       </div>
       <form [formGroup]="subBatch" (ngSubmit)="onSubmit()">
-
         <!-- subBatchName -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="subBatchName"
@@ -50,16 +49,16 @@
               class="form-control"
               type="text"
               placeholder="Sub Batch Name"
-              formControlName ="subBatchName"
+              formControlName="subBatchName"
             />
 
             <!-- Validatiors -->
-            <div 
-              class="form-invalid-warn-text alert alert-danger" 
-              *ngIf="subBatchName?.errors?.['required'] && (subBatchName?.touched || subBatchName?.dirty)" >
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="subBatchName?.errors?.['required'] && (subBatchName?.touched || subBatchName?.dirty)"
+            >
               Sub Batch Name should not be empty
             </div>
-
           </div>
         </div>
 
@@ -91,20 +90,22 @@
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Stream</label>
           <div class="col-sm-12 col-md-10">
-            <select class="custom-select col-12"
-            formControlName="stream" 
-            (change)="changeStream($event)">
+            <select
+              class="custom-select col-12"
+              formControlName="stream"
+              (change)="changeStream($event)"
+            >
               <option selected="" value="">Choose...</option>
-              <option 
-              *ngFor="let stream of Stream" [ngValue]="stream"
-              >{{stream}}
-            </option>
+              <option *ngFor="let stream of Stream" [ngValue]="stream">
+                {{ stream }}
+              </option>
             </select>
 
             <!-- Validators -->
             <div
               class="form-invalid-warn-text alert alert-danger"
-              *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"    >
+              *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"
+            >
               Enter Valid Stream
             </div>
           </div>
@@ -114,11 +115,12 @@
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Size</label>
           <div class="col-sm-12 col-md-10">
-            <input class="form-control" type="number" formControlName="size"/>
+            <input class="form-control" type="number" formControlName="size" />
             <!-- Validators -->
             <div
               class="form-invalid-warn-text alert alert-danger"
-              *ngIf="size?.errors?.['required'] && (size?.touched || size?.dirty)"    >
+              *ngIf="size?.errors?.['required'] && (size?.touched || size?.dirty)"
+            >
               Enter size of sub-batch
             </div>
           </div>
@@ -129,23 +131,24 @@
           <label class="col-sm-12 col-md-2 col-form-label">Location</label>
           <div class="col-sm-12 col-md-10">
             <select
-                class="custom-select col-12"
-                id="location"
-                (change)="changeLocation($event)"
-                formControlName="location"
-              >
-                <option selected="" value="">Choose Location</option>
-                <option *ngFor="let location of Location" [ngValue]="location">
-                  {{ location }}
-                </option>
-              </select>
+              class="custom-select col-12"
+              id="location"
+              (change)="changeLocation($event)"
+              formControlName="location"
+            >
+              <option selected="" value="">Choose Location</option>
+              <option *ngFor="let location of Location" [ngValue]="location">
+                {{ location }}
+              </option>
+            </select>
 
-              <!-- Validators -->
-              <div
-                class="form-invalid-warn-text alert alert-danger"
-                *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"    >
-                Enter Location
-              </div>
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
+            >
+              Enter Location
+            </div>
           </div>
         </div>
 
@@ -162,10 +165,10 @@
 
             <!-- Validators -->
             <div
-                class="form-invalid-warn-text alert alert-danger"
-                *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
-              >
-                Enter Correct Date
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+            >
+              Enter Correct Date
             </div>
           </div>
         </div>
@@ -182,10 +185,10 @@
             />
             <!-- Validators -->
             <div
-                class="form-invalid-warn-text alert alert-danger"
-                *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
-              >
-                Enter Correct Date
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
+            >
+              Enter Correct Date
             </div>
           </div>
         </div>
@@ -202,10 +205,10 @@
             />
             <!-- Validators -->
             <div
-                class="form-invalid-warn-text alert alert-danger"
-                *ngIf="adminName?.errors?.['required'] && (adminName?.touched || adminName?.dirty)"
-              >
-                Enter Correct Admin Name
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="adminName?.errors?.['required'] && (adminName?.touched || adminName?.dirty)"
+            >
+              Enter Correct Admin Name
             </div>
           </div>
         </div>
@@ -219,7 +222,6 @@
             </button>
           </div>
         </div>
-
       </form>
     </div>
   </div>
