@@ -1,7 +1,14 @@
-<div class="card">
-    <div class="card-details">
-      <p class="text-title">Card title</p>
-      <p class="text-body">Here are the details of the card</p>
-    </div>
-    <button class="card-button">More info</button>
+<div class="batch-container">
+  <div class="card" *ngFor="let item of data">
+      <div class="card-details">
+        <p class="text-title">{{item.sub_batch_name | titlecase}}</p>
+        <p class="text-body">Subbatch size : {{item.size}}</p>
+        <p class="text-body">Location : {{item.location|titlecase}}</p>
+  
+        <p class="text-body">Start date : {{item.start_date| date:'longDate'}}</p>
+  
+  
+      </div>
+      <button class="card-button">More info</button>
+  </div>
   </div>
