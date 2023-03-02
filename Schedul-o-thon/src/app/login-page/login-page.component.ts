@@ -51,6 +51,7 @@ export class LoginPageComponent implements OnInit {
 
         const auth = myObject['auth'];
         // console.log(typeof auth);
+        localStorage.setItem('user', myObject['username']);
 
         if (auth == true) {
           alert('login successful');

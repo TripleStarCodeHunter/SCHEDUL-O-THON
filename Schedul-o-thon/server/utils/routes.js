@@ -190,6 +190,10 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
   }
 });
 
+router.get(`${rootUrl}/login`, (req, res) => {
+  res.send(localStorage.getItem("user"));
+});
+
 ////////////////////////////////////////////////////////////////////
 //disply batches
 
