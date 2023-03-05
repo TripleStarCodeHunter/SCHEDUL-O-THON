@@ -25,6 +25,8 @@ import { SubBatchComponent } from './sub-batch/sub-batch.component';
 import { NgForm } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,9 @@ import { SectionFormComponent } from './section-form/section-form.component';
     HttpClientModule,
     // FormsModule,
     RegisterPageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -65,18 +65,24 @@
             </div>
           </div>
 
-		  <!-- no of sub batches -->
+
+
+          <!-- sub batch and location in one row -->
+          <!-- no of sub batches -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch"
               >Number of Sub Batches</label
             >
-            <div class="col-sm-12 col-md-10">
+            <div class="col-sm-12 col-md-4">
               <input
                 class="form-control"
                 value="1"
-                type="number"
+                [pattern]="numberPattern"
+                type="text"
+                placeholder="Enter number of sub batches"
                 formControlName="noOfSubBatch"
               />
+              
 			  <!-- validations -->
               <div
                 class="form-invalid-warn-text alert alert-danger"
@@ -84,15 +90,15 @@
               >
                 No.of Subbatch should not be empty
               </div>
+              <div class="form-invalid-warn-text alert alert-danger"
+              *ngIf="noOfSubBatch?.errors?.['pattern']">
+                number of sub batch not valid. Enter correct number.
+           </div> 
             </div>
-          </div>
-
-		  <!-- location -->
-          <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="location"
+            <label class="col-sm-12 col-md-1 col-form-label" for="location"
               >Location</label
             >
-            <div class="col-sm-12 col-md-10">
+            <div class="col-sm-12 col-md-5">
               <select
                 class="custom-select col-12"
                 id="location"
@@ -114,16 +120,76 @@
             </div>
           </div>
 
-		  <!-- batch size -->
-          <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="batchSize"
-              >Batch size</label
+          
+
+		  <!-- no of sub batches -->
+          <!-- <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch"
+              >Number of Sub Batches</label
             >
             <div class="col-sm-12 col-md-10">
               <input
                 class="form-control"
+                value="1"
+                [pattern]="numberPattern"
+                type="text"
+                formControlName="noOfSubBatch"
+              /> -->
+			  <!-- validations -->
+              <!-- <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="noOfSubBatch?.errors?.['required'] && (noOfSubBatch?.touched || noOfSubBatch?.dirty)"
+              >
+                No.of Subbatch should not be empty
+              </div>
+              <div class="form-invalid-warn-text alert alert-danger"
+              *ngIf="noOfSubBatch?.errors?.['pattern']">
+                number of sub batch not valid. Enter correct number.
+           </div> 
+            </div>
+          </div> -->
+
+		  <!-- location -->
+          <!-- <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="location"
+              >Location</label
+            >
+            <div class="col-sm-12 col-md-10">
+              <select
+                class="custom-select col-12"
+                id="location"
+                (change)="changeLocation($event)"
+                formControlName="location"
+              >
+                <option selected="" value="">Choose Location</option>
+                <option *ngFor="let location of Location" [ngValue]="location">
+                  {{ location }}
+                </option>
+              </select> -->
+			  <!-- validations -->
+              <!-- <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
+              >
+                Enter Location
+              </div>
+            </div>
+          </div> -->
+
+
+          <!-- batch size and start date in one row -->
+
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="batchSize"
+              >Batch size</label
+            >
+            <div class="col-sm-12 col-md-4">
+              <input
+                class="form-control"
                 value="10"
-                type="number"
+                type="text"
+                placeholder="Enter Batch Size"
+                [pattern]="numberPattern"
                 formControlName="batchSize"
               />
 			  <!-- validations -->
@@ -133,17 +199,18 @@
               >
                 Batch Name should not be empty
               </div>
+              <div class="form-invalid-warn-text alert alert-danger"
+              *ngIf="batchSize?.errors?.['pattern']">
+                Batch Size not valid. Enter correct number.
+           </div>
             </div>
-          </div>
 
-		  <!-- start date -->
-          <div class="form-group row">
             <label
-              class="col-sm-12 col-md-2 col-form-label"
+              class="col-sm-12 col-md-1 col-form-label"
               for="start"
               >Start Date</label
             >
-            <div class="col-sm-12 col-md-10">
+            <div class="col-sm-12 col-md-5">
               <input
                 class="form-control date-picker"
                 placeholder="Select Date"
@@ -158,12 +225,61 @@
                 Enter Correct Date
               </div>
             </div>
+
+
           </div>
+
+
+		  <!-- batch size -->
+          <!-- <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="batchSize"
+              >Batch size</label
+            >
+            <div class="col-sm-12 col-md-10">
+              <input
+                class="form-control"
+                value="10"
+                type="number"
+                formControlName="batchSize"
+              /> -->
+			  <!-- validations -->
+              <!-- <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="batchSize?.errors?.['required'] && (batchSize?.touched || batchSize?.dirty)"
+              >
+                Batch Name should not be empty
+              </div>
+            </div>
+          </div> -->
+
+		  <!-- start date -->
+          <!-- <div class="form-group row">
+            <label
+              class="col-sm-12 col-md-2 col-form-label"
+              for="start"
+              >Start Date</label
+            >
+            <div class="col-sm-12 col-md-10">
+              <input
+                class="form-control date-picker"
+                placeholder="Select Date"
+                type="date"
+                formControlName="start"
+              /> -->
+			  <!-- validations -->
+              <!-- <div
+                class="form-invalid-warn-text alert alert-danger"
+                *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+              >
+                Enter Correct Date
+              </div>
+            </div>
+          </div> -->
 
 		  <!-- batch type -->
           <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Batch Type</label>
-            <div class="col-sm-12 col-md-10">
+            <div class="col-sm-12 col-md-4">
               <select
                 class="custom-select col-12"
                 (change)="changeBatchType($event)"

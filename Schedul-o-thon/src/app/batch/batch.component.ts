@@ -1,8 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-
-
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-batch',
   templateUrl: './batch.component.html',
@@ -27,10 +25,10 @@ export class BatchComponent {
 
   TypeOfBatch : any = ['Engineering CS' , 'Non Engineering CS', 'Special', 'Diploma'] ;
 
-  numberRegEx = /[1-100]/ ;
-  
-  constructor(private fb: FormBuilder) { }
-  
+  // numberRegEx = /[1-100]/ ;
+  numberPattern = "^[0-9]{1,4}$";
+  constructor(private fb: FormBuilder , private _snackBar:MatSnackBar) { }
+  // constructor(private _snackbar:MatSnackBar) {}
   
 
   batch = this.fb.group({
@@ -78,17 +76,21 @@ export class BatchComponent {
     return this.batch.get('start');
   }
   
-  
+  durationInSeconds = 5;
 // batchname: FormControl<any>;
 onSubmit(){
   this.isSubmitted = true;
   if (!this.batch.valid){
     false;
-    alert("Form is Invalid")
+    // alert("Form is Invalid")
+    this._snackBar.open("Form Invalid", "OK");
   }
   else{
     console.log(JSON.stringify(this.batch.value));
-    alert("Form Submitted");
+    // alert("Form Submitted");
+    this._snackBar.open("Batch Created", "OK",{
+      duration: this.durationInSeconds * 1000,
+    });
     this.batch.reset();
   }
   // console.warn(this.batch.value);
