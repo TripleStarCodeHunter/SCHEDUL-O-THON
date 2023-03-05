@@ -1,20 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
-// @NgModule({
-//   imports: [
-//     [...]
-//     FormsModule
-//   ],
-//   [...]
-// })
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,10 +11,14 @@ import { FooterComponent } from './footer/footer.component';
 import { BatchComponent } from './batch/batch.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SubBatchComponent } from './sub-batch/sub-batch.component';
-import { NgForm } from '@angular/forms';
+import { NgForm,FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
 import { SideNavbarComponent } from './side-navbar/side-navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BatchCardComponent } from './batch-card/batch-card.component';
+import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +32,8 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     SubBatchComponent,
     SectionFormComponent,
     SideNavbarComponent
+    BatchCardComponent,
+    SubbatchCardComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +41,9 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     HttpClientModule,
     FormsModule,
     RegisterPageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
