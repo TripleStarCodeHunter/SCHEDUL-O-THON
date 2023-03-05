@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ export class BatchComponent implements OnInit {
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
   TypeOfBatch: any = ['Engineering CS', 'Non Engineering CS', 'Special', 'Diploma'];
   numberPattern = "^[0-9]{1,4}$";
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, @Inject(MatSnackBar)private _snackBar: MatSnackBar, private http: HttpClient) { }
   batch = this.fb.group({
     batchname: ['', Validators.required],
     location: ['', Validators.required],
