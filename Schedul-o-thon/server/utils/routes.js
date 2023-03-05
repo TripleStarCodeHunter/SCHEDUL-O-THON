@@ -78,7 +78,6 @@ router.post(`${rootUrl}/register`, (req, res) => {
                 [name, username, email, phonenumber, hash, authority],
                 (err, results) => {
                   if (err) console.log(err);
-                  // else res.send({ message: "user registered successfully" });
                 }
               );
             }
@@ -146,6 +145,115 @@ router.post(`${rootUrl}/login`, (req, res) => {
     } else {
       res.send({ auth: false, message: "user does not exist" });
     }
+  });
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//batch creation
+
+// Define API endpoints for batch creation
+router.post(`${rootUrl}/batch`, async (req, res) => {
+  const {
+    b_batchname,
+    num_sub_batches,
+    size_batch,
+    location_batch,
+    start_batch,
+    batch_type,
+  } = req.body;
+
+  console.log(req.body);
+  const currentDate = new Date();
+  const created_on = currentDate;
+
+  const query = {
+    text: "INSERT INTO batch_info(batch_name, subbatch_count, batch_size, location, start_date, batch_type, created_by, created_on) VALUES($1, $2, $3, $4, $5, $6, 'Gulshan', $7) RETURNING *",
+    values: [
+      b_batchname,
+      num_sub_batches,
+      size_batch,
+      location_batch,
+      start_batch,
+      batch_type,
+      created_on,
+    ],
+  };
+
+  try {
+    const result = await client.query(query);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get(`${rootUrl}/login`, (req, res) => {
+  res.send(localStorage.getItem("user"));
+});
+
+////////////////////////////////////////////////////////////////////
+//disply batches
+
+router.get(`${rootUrl}/batches`, async (req, res) => {
+  try {
+    // Fetch batch information from the database
+    const result = await client.query("SELECT * FROM batch_info");
+
+    // Return the batch information as a JSON response
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("eerror here")
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// route for sub_batch
+
+router.post(`${rootUrl}/sub_batch`, async (req, res) => {
+  const {
+    s_batchname,
+    batch_name,
+    stream_name,
+    size_batch,
+    location_batch,
+    start_batch,
+    end_batch,
+    admin_batch,
+  } = req.body;
+
+  console.log(req.body);
+
+  const query = {
+    text: "INSERT INTO sub_batches(sub_batch_name,f_batchid, batch_name,stream,size, location, start_date, end_date,batch_admin, feedback, dl_name) VALUES($1,1,$2,$3,$4,$5,$6,$7,$8,'this is dummy feedback','kanika@gmail.com') RETURNING *",
+    values: [
+      s_batchname,
+      batch_name,
+      stream_name,
+      size_batch,
+      location_batch,
+      start_batch,
+      end_batch,
+      admin_batch,
+    ],
+  };
+
+  try {
+    const result = await client.query(query);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get(`${rootUrl}/sub_batches`, (req, res) => {
+  let sqlqeury = "SELECT * FROM sub_batches";
+  client.query(sqlqeury, (err, result) => {
+    if (err) throw err;
+    else res.json(result.rows);
   });
 });
 
