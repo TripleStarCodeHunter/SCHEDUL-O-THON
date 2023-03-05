@@ -1,3 +1,8 @@
+
+import { Component, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -20,6 +25,34 @@ import { HttpClient } from '@angular/common/http';
   ],
   encapsulation: ViewEncapsulation.None,
 })
+
+
+
+export class BatchComponent {
+
+
+
+  isSubmitted = false;
+
+  Location: any = ['Mysore' , 'Bengaluru' , 'Online'];
+
+  TypeOfBatch : any = ['Engineering CS' , 'Non Engineering CS', 'Special', 'Diploma'] ;
+
+  // numberRegEx = /[1-100]/ ;
+  numberPattern = "^[0-9]{1,4}$";
+  constructor(private fb: FormBuilder , private _snackBar:MatSnackBar) { }
+  // constructor(private _snackbar:MatSnackBar) {}
+  
+
+  batch = this.fb.group({
+    batchname: ['', Validators.required],
+    location: ['', Validators.required],
+    batchType : ['', Validators.required],
+    noOfSubBatch : ['', Validators.required],
+    batchSize: ['', Validators.required],
+    start : ['', Validators.required],
+  });
+
 export class BatchComponent implements OnInit {
   ngOnInit(): void {}
 
@@ -89,6 +122,25 @@ export class BatchComponent implements OnInit {
     return this.batch.get('start');
   }
 
+  
+  durationInSeconds = 5;
+// batchname: FormControl<any>;
+onSubmit(){
+  this.isSubmitted = true;
+  if (!this.batch.valid){
+    false;
+    // alert("Form is Invalid")
+    this._snackBar.open("Form Invalid", "OK");
+  }
+  else{
+    console.log(JSON.stringify(this.batch.value));
+    // alert("Form Submitted");
+    this._snackBar.open("Batch Created", "OK",{
+      duration: this.durationInSeconds * 1000,
+    });
+    this.batch.reset();
+
+
   // batchname: FormControl<any>;
   onSubmit() {
     if (this.batch.invalid) {
@@ -114,5 +166,6 @@ export class BatchComponent implements OnInit {
           this.batch.reset();
         }
       });
+
   }
 }
