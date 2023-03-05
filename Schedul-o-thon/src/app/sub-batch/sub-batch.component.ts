@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../shared/services/data-service.service';
 @Component({
@@ -8,34 +9,26 @@ import { DataService } from '../shared/services/data-service.service';
   styleUrls: ['./sub-batch.component.scss'],
 })
 export class SubBatchComponent implements OnInit {
-  subBatch: FormGroup = new FormGroup({});
+  isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
+  numberPattern = "^[0-9]{1,4}$";
   BatchName: any = ['Batch 1', 'Batch 2', 'Batch 3', 'Batch 4'];
   Stream: any = ['Java', 'Python', 'Big Data', 'C/C++'];
-  s_batchname: string = '';
-  batch_name: string = '';
-  stream_name: string = '';
-  size_batch: string = '';
-  location_batch: string = '';
-  start_batch: string = '';
-  end_batch: string = '';
-  admin_batch: any;
-
-  constructor(private http: HttpClient,private dataService: DataService) {
-    this.subBatch = new FormGroup({
-      subBatchName: new FormControl('', [Validators.required]),
-      batch: new FormControl(['', Validators.required]),
-      stream: new FormControl(['', Validators.required]),
-      size: new FormControl(['', Validators.required]),
-      location: new FormControl(['', Validators.required]),
-      start: new FormControl(['', Validators.required]),
-      end: new FormControl(['', Validators.required]),
-      adminName: new FormControl('', [Validators.required]),
-    });
-  }
 
 
-data !: any[];
+  constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService, private _snackBar: MatSnackBar) { }
+  subBatch = this.fb.group({
+    subBatchName: ['', Validators.required],
+    batch: ['', Validators.required],
+    stream: ['', Validators.required],
+    size: ['', Validators.required],
+    location: ['', Validators.required],
+    start: ['', Validators.required],
+    end: ['', Validators.required],
+    adminName: ['', Validators.required],
+  });
+
+  data !: any[];
 
   ngOnInit() {
     this.dataService.getData()
@@ -43,88 +36,78 @@ data !: any[];
         this.data = data;
       });
   }
-  // sub batch name
-  get subBatchName(): FormControl {
-    return this.subBatch.get('subBatchName') as FormControl;
+  get subBatchName() {
+    return this.subBatch.get('subBatchName');
   }
-
-  // batchname
   changeBatchName(e: any) {
     this.batch?.setValue(e.target.value, {
       onlySelf: true,
     });
   }
-  get batch(): FormControl {
-    return this.subBatch.get('batch') as FormControl;
+  get batch() {
+    return this.subBatch.get('batch');
   }
-
   changeStream(e: any) {
     this.stream?.setValue(e.target.value),
-      {
-        onlySelf: true,
-      };
+    {
+      onlySelf: true,
+    };
   }
-
-  // stream
-  get stream(): FormControl {
-    return this.subBatch.get('stream') as FormControl;
+  get stream() {
+    return this.subBatch.get('stream');
   }
-
-  // size
-  get size(): FormControl {
-    return this.subBatch.get('size') as FormControl;
+  get size() {
+    return this.subBatch.get('size');
   }
-
-  // location
   changeLocation(e: any) {
     this.location?.setValue(e.target.value, {
       onlySelf: true,
     });
   }
-  get location(): FormControl {
-    return this.subBatch.get('location') as FormControl;
+  get location() {
+    return this.subBatch.get('location');
   }
-
-  // start date
-  get start(): FormControl {
-    return this.subBatch.get('start') as FormControl;
+  get start() {
+    return this.subBatch.get('start');
   }
-
-  // end date
-  get end(): FormControl {
-    return this.subBatch.get('end') as FormControl;
+  get end() {
+    return this.subBatch.get('end');
   }
-
-  // admin name
-  get adminName(): FormControl {
-    return this.subBatch.get('adminName') as FormControl;
+  get adminName() {
+    return this.subBatch.get('adminName');
   }
-
+  durationInSeconds = 5;
   onSubmit() {
+    this.isSubmitted = true;
     if (this.subBatch.invalid) {
+      false;
+      this._snackBar.open("Form Invalid", "OK");
       return;
     }
-    const formData = {
-      s_batchname: this.subBatch.value.subBatchName,
-      batch_name: this.subBatch.value.batch,
-      stream_name: this.subBatch.value.stream,
-      size_batch: this.subBatch.value.size,
-      location_batch: this.subBatch.value.location,
-      start_batch: this.subBatch.value.start,
-      end_batch: this.subBatch.value.end,
-      admin_batch: this.subBatch.value.adminName,
-    };
-
-    this.http
-      .post('http://localhost:3000/api/sub_batch', formData)
-      .subscribe((response) => {
-        console.log(response);
-        if (response) {
-          alert('sub_batch created successfully!');
-          this.subBatch.reset();
-        }
-      });
-
-    console.log(formData);
+    else {
+      const formData = {
+        s_batchname: this.subBatch.value.subBatchName,
+        batch_name: this.subBatch.value.batch,
+        stream_name: this.subBatch.value.stream,
+        size_batch: this.subBatch.value.size,
+        location_batch: this.subBatch.value.location,
+        start_batch: this.subBatch.value.start,
+        end_batch: this.subBatch.value.end,
+        admin_batch: this.subBatch.value.adminName,
+      };
+      this.http
+        .post('http://localhost:3000/api/sub_batch', formData)
+        .subscribe((response) => {
+          console.log(response);
+          if (response) {
+            // alert('sub_batch created successfully!');
+            this._snackBar.open("Sub Batch Created", "OK", {
+              duration: this.durationInSeconds * 1000,
+            });
+            this.subBatch.reset();
+          }
+        });
+      console.log(formData);
+    }
   }
 }
