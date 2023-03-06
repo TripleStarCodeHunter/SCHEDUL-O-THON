@@ -23,7 +23,9 @@ app.use(`${rootUrl}/register`, routes);
 app.use(`${rootUrl}/isUserAuth`, routes);
 app.use(`${rootUrl}/login`, routes);
 app.use(`${rootUrl}/batch`, routes);
-app.use(`${rootUrl}/batches`, routes);
+app.use(`${rootUrl}/sub_batch`, routes);
+
+// app.use(`${rootUrl}/batches`, routes);
 
 app.listen(3000, () => {
   console.log("port running on port 3000");
