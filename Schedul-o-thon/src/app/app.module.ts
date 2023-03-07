@@ -1,15 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
-// @NgModule({
-//   imports: [
-//     [...]
-//     FormsModule
-//   ],
-//   [...]
-// })
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,7 +14,14 @@ import { SubBatchComponent } from './sub-batch/sub-batch.component';
 import { NgForm,FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
-import { SideNavbarComponent } from './side-navbar/side-navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BatchCardComponent } from './batch-card/batch-card.component';
+import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +34,9 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     CalendarComponent,
     SubBatchComponent,
     SectionFormComponent,
-    SideNavbarComponent
+    BatchCardComponent,
+    SubbatchCardComponent,
+    // AdminSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +44,13 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
     HttpClientModule,
     FormsModule,
     RegisterPageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    FullCalendarModule,
+    MatSidenavModule,
+    NgbCollapseModule,
+    AdminSidebarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

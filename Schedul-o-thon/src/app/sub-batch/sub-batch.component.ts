@@ -1,24 +1,22 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
+import { DataService } from '../shared/services/data-service.service';
 @Component({
   selector: 'app-sub-batch',
   templateUrl: './sub-batch.component.html',
-  styleUrls: ['./sub-batch.component.scss']
-  // encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./sub-batch.component.scss'],
 })
-export class SubBatchComponent {
-
+export class SubBatchComponent implements OnInit {
   isSubmitted = false;
-
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
-
+  numberPattern = "^[0-9]{1,4}$";
   BatchName: any = ['Batch 1', 'Batch 2', 'Batch 3', 'Batch 4'];
-
   Stream: any = ['Java', 'Python', 'Big Data', 'C/C++'];
 
-  constructor(private fb: FormBuilder) { }
 
+  constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService, private _snackBar: MatSnackBar) { }
   subBatch = this.fb.group({
     subBatchName: ['', Validators.required],
     batch: ['', Validators.required],
@@ -29,13 +27,18 @@ export class SubBatchComponent {
     end: ['', Validators.required],
     adminName: ['', Validators.required],
   });
-  
-  // sub batch name
+
+  data !: any[];
+
+  ngOnInit() {
+    this.dataService.getData()
+      .subscribe(data => {
+        this.data = data;
+      });
+  }
   get subBatchName() {
     return this.subBatch.get('subBatchName');
   }
-  
-  // batchname
   changeBatchName(e: any) {
     this.batch?.setValue(e.target.value, {
       onlySelf: true,
@@ -44,24 +47,18 @@ export class SubBatchComponent {
   get batch() {
     return this.subBatch.get('batch');
   }
-  
   changeStream(e: any) {
-    this.stream?.setValue(e.target.value), {
-      onlySelf: true
-    }
+    this.stream?.setValue(e.target.value),
+    {
+      onlySelf: true,
+    };
   }
-  
-  // stream
   get stream() {
     return this.subBatch.get('stream');
   }
-  
-  // size
   get size() {
     return this.subBatch.get('size');
   }
-  
-  // location
   changeLocation(e: any) {
     this.location?.setValue(e.target.value, {
       onlySelf: true,
@@ -70,32 +67,47 @@ export class SubBatchComponent {
   get location() {
     return this.subBatch.get('location');
   }
-
-  // start date
   get start() {
     return this.subBatch.get('start');
   }
-
-  // end date
   get end() {
     return this.subBatch.get('end');
   }
-
-  // admin name
   get adminName() {
     return this.subBatch.get('adminName');
   }
-
+  durationInSeconds = 5;
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.subBatch.valid) {
+    if (this.subBatch.invalid) {
       false;
-      alert("Form is Invalid")
+      this._snackBar.open("Form Invalid", "OK");
+      return;
     }
     else {
-      console.log(JSON.stringify(this.subBatch.value));
-      alert("Form Submitted");
-      this.subBatch.reset();
+      const formData = {
+        s_batchname: this.subBatch.value.subBatchName,
+        batch_name: this.subBatch.value.batch,
+        stream_name: this.subBatch.value.stream,
+        size_batch: this.subBatch.value.size,
+        location_batch: this.subBatch.value.location,
+        start_batch: this.subBatch.value.start,
+        end_batch: this.subBatch.value.end,
+        admin_batch: this.subBatch.value.adminName,
+      };
+      this.http
+        .post('http://localhost:3000/api/sub_batch', formData)
+        .subscribe((response) => {
+          console.log(response);
+          if (response) {
+            // alert('sub_batch created successfully!');
+            this._snackBar.open("Sub Batch Created", "OK", {
+              duration: this.durationInSeconds * 1000,
+            });
+            this.subBatch.reset();
+          }
+        });
+      console.log(formData);
     }
   }
 }
