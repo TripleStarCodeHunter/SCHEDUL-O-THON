@@ -31,9 +31,20 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/assets/vendors/scripts/core.js",
+              "src/assets/assets/vendors/scripts/script.js",
+            "src/assets/assets/vendors/scripts/script.min.js",
+            "src/assets/assets/vendors/scripts/process.js",
+            "src/assets/assets/vendors/scripts/layout-settings.js",
+            "src/assets/assets/src/plugins/datatables/js/jquery.dataTables.min.js",
+            "src/assets/assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js",
+            "src/assets/assets/src/plugins/datatables/js/dataTables.responsive.min.js",
+            "src/assets/assets/src/plugins/datatables/js/responsive.bootstrap4.min.js"
+          ]
           },
           "configurations": {
             "production": {
