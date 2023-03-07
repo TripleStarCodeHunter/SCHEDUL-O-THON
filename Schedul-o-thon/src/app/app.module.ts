@@ -21,11 +21,8 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
-    AppComponent,
-    LandingPageComponent,
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
@@ -37,6 +34,10 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     BatchCardComponent,
     SubbatchCardComponent,
     // AdminSidebarComponent,
+    // SideNavbarComponent,
+    BatchCardComponent,
+    SubbatchCardComponent
+
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     MatSnackBarModule,
     FullCalendarModule,
     MatSidenavModule,
-    NgbCollapseModule,
+    // NgbCollapseModule,
     AdminSidebarComponent,
   ],
   providers: [],
