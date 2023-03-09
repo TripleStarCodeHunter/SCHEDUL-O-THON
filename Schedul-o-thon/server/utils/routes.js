@@ -291,4 +291,54 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
   });
 });
 
+
+
+////////////////////////////////////////////////////
+//section creation
+
+router.post(`${rootUrl}/section`, async (req, res) => {
+  const {
+    sectionName,
+    strength,
+    track,
+    section_owner,
+    classroom,
+    section_dl,
+    trainee_list,
+  } = req.body;
+
+  console.log(req.body);
+
+  const query = {
+    text: "INSERT INTO sections_info(section_name,strength,track,section_owner,classroom,section_dl, trainee_list,sub_batch_id) VALUES($1,$2,$3,$4,$5,$6,$7,3) RETURNING *",
+    values: [
+      sectionName,
+      strength,
+      track,
+      section_owner,
+      classroom,
+      section_dl,
+      trainee_list,
+      
+    ],
+  };
+
+  try {
+    const result = await client.query(query);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get(`${rootUrl}/sections`, (req, res) => {
+  let sqlqeury = "SELECT * FROM sections_info";
+  client.query(sqlqeury, (err, result) => {
+    if (err) throw err;
+    else res.json(result.rows);
+  });
+});
+
+
 module.exports = router;

@@ -1,1 +1,225 @@
-<p>section-form works!</p>
+
+<head>
+    
+</head>
+<body>
+  <!-- <app-admin-sidebar></app-admin-sidebar> -->
+  <div class="main-container">
+    <div class="pd-20 card-box mb-30">
+      <div class="clearfix">
+        <div class="pull-left">
+          <h4 class="text-blue h4">Create Section</h4>
+        </div>
+      </div>
+
+      <form [formGroup]="section" (ngSubmit)="onSubmit()">
+        <!-- section Name -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label" for="sectionname"
+            >Section Name</label
+          >
+          <div class="col-sm-12 col-md-10">
+            <input
+              id="sectionname"
+              class="sectionname form-control"
+              type="text"
+              placeholder="Section Name"
+              formControlName="sectionName"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="sectionName?.errors?.['required'] && (sectionName?.touched || sectionName?.dirty)"
+            >
+              Section Name should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- strength and track in one row -->
+        <div class="form-group row">
+          <!-- strength -->
+          <label class="col-sm-12 col-md-2 col-form-label" for="strength"
+            >Strength of a section </label>
+          <div class="col-sm-12 col-md-4">
+            <input  class="form-control" 
+            value="1" 
+            [pattern]="numberPattern" 
+            type="text" 
+            placeholder="Section Strength" 
+            formControlName="strength" />
+            <!-- validations -->
+            <div class="form-invalid-warn-text alert alert-danger"  
+            *ngIf="strength?.errors?.['required'] && (strength?.touched || strength?.dirty)" >
+              Strength should not be empty
+            </div>
+            <div  class="form-invalid-warn-text alert alert-danger"  
+            *ngIf="strength?.errors?.['pattern']"  >
+              strength not valid. Enter correct number.
+            </div>
+          </div>
+          <!-- Track -->
+          <label class="col-sm-12 col-md-2 col-form-label" for="track"
+            >Track</label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="track"
+              (change)="changeTrack($event)"
+              formControlName="track"
+            >
+              <option selected="" value="">Choose Track</option>
+              <option *ngFor="let track of Track" [ngValue]="track">
+                {{ track }}
+              </option>
+            </select>
+            <!-- validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="track?.errors?.['required'] && (track?.touched || track?.dirty)"
+            >
+              Enter Track
+            </div>
+          </div>
+        </div>
+
+        <!-- section_owner and classroom in one row -->
+
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="section_owner"
+            >Section Owner</label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="section_owner"
+              (change)="changeSectionOwner($event)"
+              formControlName="section_owner"
+            >
+              <option selected="" value="">Choose Section Owner</option>
+              <option *ngFor="let section_owner of SectionOwner" [ngValue]="section_owner">
+                {{ section_owner }}
+              </option>
+            </select>
+            <!-- validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="section_owner?.errors?.['required'] && (section_owner?.touched || section_owner?.dirty)"
+            >
+              Enter Section Owner
+            </div>
+          </div>
+
+          <!-- Classroom -->
+          <label class="col-sm-12 col-md-2 col-form-label" for="classroom"
+            >Classroom Name</label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              id="classroom"
+              class="classroom form-control"
+              type="text"
+              placeholder="Classroom Name"
+              formControlName="classroom"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="classroom?.errors?.['required'] && (classroom?.touched || classroom?.dirty)"
+            >
+              Classroom Name should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- Section_dl and schedule in one row -->
+
+        <!-- section_dl -->
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="section_dl"
+            >Section DL</label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              id="section_dl"
+              class="section_dl form-control"
+              type="email"
+              placeholder="Section DL"
+              formControlName="section_dl"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="section_dl?.errors?.['required'] && (section_dl?.touched || section_dl?.dirty)"
+            >
+              Input Field should not be empty
+            </div>
+          </div>
+
+          <!-- Trainee list -->
+          <!-- <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"
+            >Trainee List</label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              id="trainee_list"
+              class="trainee_list form-control"
+              type="text"
+              placeholder="Trainee List"
+              formControlName="trainee_list"
+            />
+            Validations
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="trainee_list?.errors?.['required'] && (trainee_list?.touched || trainee_list?.dirty)"
+            >
+              Trainee List should not be empty
+            </div>
+          </div> -->
+        </div>
+
+        <!-- trainee list -->
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"
+            >Trainee List</label
+          >
+          <div class="col-sm-12 col-md-10">
+            <input
+              id="trainee_list"
+              class="trainee_list form-control"
+              type="text"
+              placeholder="Trainee List"
+              formControlName="trainee_list"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="trainee_list?.errors?.['required'] && (trainee_list?.touched || trainee_list?.dirty)"
+            >
+              Trainee List should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label"></label>
+          <div class="col-sm-12 col-md-10">
+            <button type="submit" class="btn btn-outline-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Default Basic Forms End -->
+
+  <!-- js -->
+  <!-- <script src="/src/assets/assets/vendors/scripts/core.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/process.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script> -->
+
+</body>
