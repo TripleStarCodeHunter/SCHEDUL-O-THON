@@ -31,8 +31,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     CalendarComponent,
     SubBatchComponent,
     SectionFormComponent,
+    AppComponent,
     BatchCardComponent,
     SubbatchCardComponent,
+    LandingPageComponent
     // AdminSidebarComponent,
   ],
   imports: [
@@ -46,7 +48,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     MatSnackBarModule,
     MatSidenavModule,
     // NgbCollapseModule,
-    AdminSidebarComponent,
+    AdminSidebarComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
