@@ -4,6 +4,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: "['app-admin-sidebar','ngbd-collapse-horizontal']",
   // selector: 'ngbd-collapse-horizontal',
+  exportAs:'ngbCollapse',
 	standalone: true,
 	imports: [NgbCollapseModule],
   templateUrl: './admin-sidebar.component.html',
