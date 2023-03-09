@@ -1,32 +1,5 @@
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-GBZ3SGGX85");
-  </script>
-  <!-- Google Tag Manager -->
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-  </script>
-  <!-- End Google Tag Manager -->
+  
 </head>
 <body>
   <div class="main-container">
@@ -62,7 +35,53 @@
           </div>
         </div>
 
-        <!-- Select Batch Name -->
+        <!-- batch name and stream in one row -->
+        <div class="form-group row">
+          <!-- Select Batch Name -->
+          <label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="batch"
+              (change)="changeBatchName($event)"
+              formControlName="batch"
+            >
+              <option selected="" value="">Choose Batch</option>
+              <option *ngFor="let item of data" [ngValue]="item.batch_name">
+                {{ item.batch_name }}
+              </option>
+            </select>
+            <!-- validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="batch?.errors?.['required'] && (batch?.touched || batch?.dirty)"
+            >
+              Enter Batch Name
+            </div>
+          </div>
+          <!-- Stream -->
+          <label class="col-sm-12 col-md-2 col-form-label">Stream</label>
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              formControlName="stream"
+              (change)="changeStream($event)"
+            >
+              <option selected="" value="">Choose...</option>
+              <option *ngFor="let stream of Stream" [ngValue]="stream">
+                {{ stream }}
+              </option>
+            </select>
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"
+            >
+              Enter Valid Stream
+            </div>
+          </div>
+        </div>
+        <!-- Select Batch Name
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
           <div class="col-sm-12 col-md-10">
@@ -81,12 +100,12 @@
               class="form-invalid-warn-text alert alert-danger"
               *ngIf="batch?.errors?.['required'] && (batch?.touched || batch?.dirty)"
             >
-              Enter Location
+              Enter Batch Name
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Stream -->
+        <!-- Stream
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Stream</label>
           <div class="col-sm-12 col-md-10">
@@ -101,7 +120,7 @@
               </option>
             </select>
 
-            <!-- Validators -->
+            Validators
             <div
               class="form-invalid-warn-text alert alert-danger"
               *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"
@@ -109,13 +128,19 @@
               Enter Valid Stream
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Size -->
+        <!-- size and location in one row -->
         <div class="form-group row">
+          <!-- Size -->
           <label class="col-sm-12 col-md-2 col-form-label">Size</label>
-          <div class="col-sm-12 col-md-10">
-            <input class="form-control" type="number" formControlName="size" />
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              [pattern]="numberPattern"
+              formControlName="size"
+            />
             <!-- Validators -->
             <div
               class="form-invalid-warn-text alert alert-danger"
@@ -123,10 +148,53 @@
             >
               Enter size of sub-batch
             </div>
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="size?.errors?.['pattern']"
+            >
+              Sub Batch Size not valid. Enter correct number.
+            </div>
+          </div>
+          <!-- Location -->
+          <label class="col-sm-12 col-md-2 col-form-label">Location</label>
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="location"
+              (change)="changeLocation($event)"
+              formControlName="location"
+            >
+              <option selected="" value="">Choose Location</option>
+              <option *ngFor="let location of Location" [ngValue]="location">
+                {{ location }}
+              </option>
+            </select>
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
+            >
+              Enter Location
+            </div>
           </div>
         </div>
 
-        <!-- Location -->
+        <!-- Size
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Size</label>
+          <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="number" formControlName="size" />
+            Validators
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="size?.errors?.['required'] && (size?.touched || size?.dirty)"
+            >
+              Enter size of sub-batch
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Location
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Location</label>
           <div class="col-sm-12 col-md-10">
@@ -141,8 +209,7 @@
                 {{ location }}
               </option>
             </select>
-
-            <!-- Validators -->
+            Validators
             <div
               class="form-invalid-warn-text alert alert-danger"
               *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
@@ -150,12 +217,13 @@
               Enter Location
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Start Date -->
+        <!-- start and end date in one row -->
         <div class="form-group row">
+          <!-- Start Date -->
           <label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
-          <div class="col-sm-12 col-md-10">
+          <div class="col-sm-12 col-md-4">
             <input
               class="form-control date-picker"
               placeholder="Select Date"
@@ -171,12 +239,10 @@
               Enter Correct Date
             </div>
           </div>
-        </div>
 
-        <!-- End Date -->
-        <div class="form-group row">
+          <!-- End Date -->
           <label class="col-sm-12 col-md-2 col-form-label">End Date</label>
-          <div class="col-sm-12 col-md-10">
+          <div class="col-sm-12 col-md-4">
             <input
               class="form-control date-picker"
               placeholder="Select Date"
@@ -193,10 +259,50 @@
           </div>
         </div>
 
+        <!-- Start Date -->
+        <!-- <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control date-picker"
+              placeholder="Select Date"
+              type="date"
+              formControlName="start"
+            /> -->
+        <!-- Validators -->
+        <!-- <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div> -->
+
+        <!-- End Date -->
+        <!-- <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">End Date</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control date-picker"
+              placeholder="Select Date"
+              type="date"
+              formControlName="end"
+            /> -->
+        <!-- Validators -->
+        <!-- <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div> -->
+
         <!-- Batch Admin Name -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label">Batch Admin</label>
-          <div class="col-sm-12 col-md-10">
+          <div class="col-sm-12 col-md-4">
             <input
               class="form-control"
               type="text"
