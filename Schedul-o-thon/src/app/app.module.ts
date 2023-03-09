@@ -1,15 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
-// @NgModule({
-//   imports: [
-//     [...]
-//     FormsModule
-//   ],
-//   [...]
-// })
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,20 +11,18 @@ import { FooterComponent } from './footer/footer.component';
 import { BatchComponent } from './batch/batch.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SubBatchComponent } from './sub-batch/sub-batch.component';
-import { NgForm,FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { SectionFormComponent } from './section-form/section-form.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BatchCardComponent } from './batch-card/batch-card.component';
 import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
+import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LandingPageComponent,
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
@@ -44,7 +32,8 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
     SubBatchComponent,
     SectionFormComponent,
     BatchCardComponent,
-    SubbatchCardComponent
+    SubbatchCardComponent,
+    // AdminSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +44,9 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatSidenavModule,
+    // NgbCollapseModule,
+    AdminSidebarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
