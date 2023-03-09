@@ -35,7 +35,7 @@ export class SectionFormComponent implements OnInit{
     section_owner: ['', Validators.required],
     section_dl: ['', Validators.required],
     classroom: ['', Validators.required],
-    schedule: ['', Validators.required],
+    // schedule: ['', Validators.required],
     trainee_list: ['', Validators.required],
   });
   
@@ -83,27 +83,29 @@ export class SectionFormComponent implements OnInit{
       this._snackBar.open('Form Invalid', 'OK');
     } else {
       const formData = {
-        // sectionName: this.section.value.sectionName,
-        // strength: this.section.value.strength,
-        // track: this.section.value.track,
-        // num_sub_batches: this.section.value.noOfSubBatch,
-        // size_batch: this.section.value.batchSize,
-        // start_batch: this.section.value.start,
+        sectionName: this.section.value.sectionName,
+        strength: this.section.value.strength,
+        track: this.section.value.track,
+        section_owner: this.section.value.section_owner,
+        section_dl: this.section.value.section_dl,
+        classroom: this.section.value.classroom,
+        trainee_list: this.section.value.trainee_list,
+
       };
       // console.log(formData);
       this.http
-        .post('http://localhost:3000/api/batch', formData)
+        .post('http://localhost:3000/api/section', formData)
         .subscribe((response) => {
           // console.log(response);
           const myObject: { [key: string]: any } = response;
           const check = myObject['add'];
           if (check == true) {
-            this._snackBar.open('Batch Created', 'OK', {
+            this._snackBar.open('section created', 'OK', {
               duration: this.durationInSeconds * 1000,
             });
             this.section.reset();
           } else if (check == false) {
-            this._snackBar.open('Batch already exists', 'Cancel', {
+            this._snackBar.open('section already exists', 'Cancel', {
               duration: this.durationInSeconds * 1000,
             });
             this.section.reset();
