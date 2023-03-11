@@ -20,7 +20,7 @@ import { BatchCardComponent } from './batch-card/batch-card.component';
 import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
-
+import {MatCardModule} from "@angular/material/card";
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -48,6 +48,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     MatSnackBarModule,
     MatSidenavModule,
     // NgbCollapseModule,
+    MatCardModule,
     AdminSidebarComponent
   ],
   providers: [],
