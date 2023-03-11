@@ -1,5 +1,6 @@
-<div class="batch-container">
+<!-- <div class="batch-container">
   <div class="card" *ngFor="let item of data">
+      Card data
       <div class="card-details">
         <p class="text-title">{{item.sub_batch_name | titlecase}}</p>
         <p class="text-body">Subbatch size : {{item.size}}</p>
@@ -11,4 +12,26 @@
       </div>
       <button class="card-button">More info</button>
   </div>
+  </div> -->
+ <mat-card>
+    <nav class="navbar navbar-dark bg-primary">
+      <a href="" class ="navbar-brand">Schedulo Batch Page</a>
+    </nav>
+ </mat-card>
+<section class="mt-3">
+  <div class="container">
+    <!-- <div class="row" class="row-cols-1 row-cols-md-3 g-4"> -->
+      <!-- <div class="col-md-3"> -->
+            <div class="row">
+              <div  *ngFor="let item of d" class="col md-3 col lg-3">
+                <div class="card">
+                  <p class="text-title">{{item.sub_batch_name | titlecase}}</p>
+                  <p class="text-body">Subbatch size : {{item.size}}</p>
+                  <p class="text-body">Location : {{item.location|titlecase}}</p>
+                  <p class="text-body">Start date : {{item.start_date| date:'longDate'}}</p>
+                </div>
+            </div>
+      <!-- </div> -->
+    </div> 
   </div>
+</section>

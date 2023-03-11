@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>Schedulo</title>
+
+	
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="/src/assets/assets/vendors/styles/core.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="/src/assets/assets/vendors/styles/icon-font.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="/src/assets/assets/src/plugins/jquery-steps/jquery.steps.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="/src/assets/assets/vendors/styles/style.css" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body>
+		
+
+		<div class="main-container">
+			
+					<!-- Default Basic Forms Start -->
+					<div class="pd-20 card-box mb-30">
+						<div class="clearfix">
+							<div class="pull-left">
+								<h4 class="text-blue h4">Create Batch</h4>
+								<!-- <p class="mb-30">All bootstrap element classies</p> -->
+							</div>
+							
+						</div>
+						<form>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Batch Name"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Number of Sub Batches</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="1" type="number" />
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Location</label>
+								<div class="col-sm-12 col-md-10">
+									<select class="custom-select col-12">
+										<option selected="">Choose...</option>
+										<option value="1">Mysore</option>
+										<option value="2">Banglore</option>
+										<option value="3">Online</option>
+									</select>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Batch size</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="10" type="number" />
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control date-picker"
+										placeholder="Select Date"
+										type="date"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Batch Type</label>
+								<div class="col-sm-12 col-md-10">
+									<select class="custom-select col-12">
+										<option selected="">Choose...</option>
+										<option value="1">Engineering CS</option>
+										<option value="2">Non Engineering CS</option>
+										<option value="3">Special</option>
+										<option value="4">Diploma</option>
+									</select>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label"></label>
+                                <div class="col-sm-12 col-md-10">
+                                    <a href="sub-batch.html"><button type="button" class="btn btn-outline-primary" >
+                                        Submit
+                                    </button></a>
+                                    
+                                </div>
+                            </div>
+                        </form>
+							</div>
+						</div>
+					</div>
+					<!-- Default Basic Forms End -->
+
+					
+		<!-- js -->
+		<script src="vendors/scripts/core.js"></script>
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>

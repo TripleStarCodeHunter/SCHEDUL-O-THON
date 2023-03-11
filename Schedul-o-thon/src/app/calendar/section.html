@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>Schedulo</title>
+
+		
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="/src/assets/assets/vendors/styles/core.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="/src/assets/assets/vendors/styles/icon-font.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="/src/assets/assets/src/plugins/jquery-steps/jquery.steps.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="/src/assets/assets/vendors/styles/style.css" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body>
+		<div class="main-container">
+					<!-- Default Basic Forms Start -->
+					<div class="pd-20 card-box mb-30">
+						<div class="clearfix">
+							<div class="pull-left">
+								<h4 class="text-blue h4">Create Section</h4>
+								<!-- <p class="mb-30">All bootstrap element classies</p> -->
+							</div>
+							
+						</div>
+						<form>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Section Name</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Section Name"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Number of Trainees</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="1" type="number" />
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Track</label>
+								<div class="col-sm-12 col-md-10">
+									<select class="custom-select col-12">
+										<option selected="">Choose...</option>
+										<option value="1">Java</option>
+										<option value="2">Python</option>
+										<option value="3">Big Data</option>
+										<option value="4">C/C++</option>
+										<option value="5">Web Development</option>
+									</select>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Section Owner</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Section Owner"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">DL Email</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										value="bootstrap@example.com"
+										type="email"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Classroom</label>
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Classroom Name"
+									/>
+								</div>
+							</div>
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Schedule</label>
+                                <!-- doubt -->
+								<div class="col-sm-12 col-md-10">
+									<input
+										class="form-control"
+										type="text"
+										placeholder="Schedule link"
+									/>
+								</div>
+							</div>
+                            
+                            <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label"></label>
+                                <div class="col-sm-12 col-md-10">
+                                    <button type="button" class="btn btn-outline-primary">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+							
+                        </form>
+							</div>
+						</div>
+					
+					<!-- Default Basic Forms End -->
+
+					
+		<!-- js -->
+		<script src="/src/assets/assets/vendors/scripts/core.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/process.js"></script>
+		<script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>
