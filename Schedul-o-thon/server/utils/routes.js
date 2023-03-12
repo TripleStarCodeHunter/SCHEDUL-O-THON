@@ -341,4 +341,45 @@ router.get(`${rootUrl}/sections`, (req, res) => {
 });
 
 
+/////////////////////////////////
+//delete batches 
+
+router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
+  const { batchId } = req.params;
+  
+
+  try {
+    const result = await client.query('DELETE FROM batch_info WHERE batch_id = $1', [batchId]);
+    if (result.rowCount > 0) {
+      res.status(200).send(`Batch ${batchId} has been deleted.`);
+    } else {
+      res.status(404).send(`Batch ${batchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+//////////////////
+//subbatch deletaion
+
+router.delete(`${rootUrl}/:batchId/:subbatchId`, async (req, res, next) => {
+  const { subbatchId } = req.params;
+  try {
+    const result = await client.query('DELETE FROM sub_batches WHERE sub_batch_id = $1', [subbatchId]);
+    if (result.rowCount > 0) {
+      res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
+    } else {
+      res.status(404).send(`Subbatch ${subbatchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+
+
 module.exports = router;
