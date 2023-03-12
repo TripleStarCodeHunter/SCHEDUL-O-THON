@@ -21,6 +21,8 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import {MatCardModule} from "@angular/material/card";
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -34,7 +36,9 @@ import {MatCardModule} from "@angular/material/card";
     AppComponent,
     BatchCardComponent,
     SubbatchCardComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ProfileComponent,
+    DashboardComponent
     // AdminSidebarComponent,
   ],
   imports: [
