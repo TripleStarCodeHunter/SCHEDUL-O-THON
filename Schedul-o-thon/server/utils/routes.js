@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const client = require("./conn");
+const cookieParser = require("cookie-parser");
 const rootUrl = "/api";
 
 const saltrounds = 10;
@@ -163,6 +164,14 @@ router.get("/api/login", (req, res) => {
   res.send(req.session.user.username);
 });
 
+router.get("/api/logout", (req, res) => {
+  if (req.session.user) {
+    req.session.destroy();
+    res.clearCookie("token");
+    res.send({ message: "successful logout" });
+  }
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //batch creation
@@ -291,8 +300,6 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
   });
 });
 
-
-
 ////////////////////////////////////////////////////
 //section creation
 
@@ -319,7 +326,6 @@ router.post(`${rootUrl}/section`, async (req, res) => {
       classroom,
       section_dl,
       trainee_list,
-      
     ],
   };
 
@@ -340,16 +346,17 @@ router.get(`${rootUrl}/sections`, (req, res) => {
   });
 });
 
-
 /////////////////////////////////
-//delete batches 
+//delete batches
 
 router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
   const { batchId } = req.params;
-  
 
   try {
-    const result = await client.query('DELETE FROM batch_info WHERE batch_id = $1', [batchId]);
+    const result = await client.query(
+      "DELETE FROM batch_info WHERE batch_id = $1",
+      [batchId]
+    );
     if (result.rowCount > 0) {
       res.status(200).send(`Batch ${batchId} has been deleted.`);
     } else {
@@ -360,14 +367,16 @@ router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
   }
 });
 
-
 //////////////////
 //subbatch deletaion
 
 router.delete(`${rootUrl}/:batchId/:subbatchId`, async (req, res, next) => {
   const { subbatchId } = req.params;
   try {
-    const result = await client.query('DELETE FROM sub_batches WHERE sub_batch_id = $1', [subbatchId]);
+    const result = await client.query(
+      "DELETE FROM sub_batches WHERE sub_batch_id = $1",
+      [subbatchId]
+    );
     if (result.rowCount > 0) {
       res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
     } else {
@@ -377,9 +386,5 @@ router.delete(`${rootUrl}/:batchId/:subbatchId`, async (req, res, next) => {
     next(err);
   }
 });
-
-
-
-
 
 module.exports = router;
