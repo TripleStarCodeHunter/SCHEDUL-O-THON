@@ -254,13 +254,23 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
     end_batch,
     admin_batch,
   } = req.body;
-
+  const new_batch_name=batch_name.slice(3,)
+  console.log(new_batch_name)
   // console.log(req.body);
 
-  let sqlq =
-    "SELECT * FROM sub_batches where sub_batch_name='" + s_batchname + "'";
-
-  client.query(sqlq, (err, result) => {
+  let sqlq ="SELECT * FROM sub_batches where sub_batch_name='" + s_batchname + "'";
+  let f_batchid;  
+  let get_fbatchid= "SELECT batch_id FROM batch_info WHERE batch_name = '"+new_batch_name+"'";
+  console.log(get_fbatchid)
+  client.query(get_fbatchid, (err, result) => {
+    if (err) {
+      res.json({ message: err });
+    } else {
+      f_batchid = result.rows[0].batch_id;
+    }
+  })  
+    
+    client.query(sqlq, (err, result) => {
     if (err) {
       res.json({ message: err });
     }
@@ -268,10 +278,11 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
       res.json({ add: false, message: "already exists" });
     } else {
       const query = {
-        text: "INSERT INTO sub_batches(sub_batch_name,f_batchid, batch_name,stream,size, location, start_date, end_date,batch_admin, feedback, dl_name) VALUES($1,1,$2,$3,$4,$5,$6,$7,$8,'this is dummy feedback','kanika@gmail.com') RETURNING *",
+        text: "INSERT INTO sub_batches(sub_batch_name,f_batchid, batch_name,stream,size, location, start_date, end_date,batch_admin, feedback, dl_name) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,'this is dummy feedback','kanika@gmail.com') RETURNING *",
         values: [
           s_batchname,
-          batch_name,
+          f_batchid,
+          new_batch_name,
           stream_name,
           size_batch,
           location_batch,
@@ -292,6 +303,7 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
   });
 });
 
+//Subbatch display
 router.get(`${rootUrl}/sub_batch`, (req, res) => {
   let sqlqeury = "SELECT * FROM sub_batches";
   client.query(sqlqeury, (err, result) => {
