@@ -27,6 +27,9 @@ app.use(`${rootUrl}/batches`, routes);
 app.use(`${rootUrl}/sub_batch`, routes);
 app.use(`${rootUrl}/section`, routes);
 app.use(`${rootUrl}/sections`, routes);
+app.use(`${rootUrl}/:batchId`, routes);
+app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
+
 
 app.listen(3000, () => {
   console.log("port running on port 3000");
