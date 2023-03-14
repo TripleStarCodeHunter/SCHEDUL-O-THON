@@ -5,6 +5,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import {Router} from '@angular/router';
+
 // import { FullCalendarComponent } from '@fullcalendar/angular';
 @Component({
   selector: 'app-calendar',
@@ -12,6 +14,10 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
+  onsubmit()
+  {
+    this.router.navigateByUrl('/profile');
+  }
   calendarVisible = true;
   calendarOptions: CalendarOptions = {
     plugins: [
@@ -43,7 +49,7 @@ export class CalendarComponent {
   };
   currentEvents: EventApi[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef,private router:Router) {
   }
 
   handleCalendarToggle() {
