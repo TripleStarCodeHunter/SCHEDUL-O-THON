@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import {
   FormGroup,
@@ -8,6 +9,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -15,10 +17,12 @@ import {
 })
 export class LoginPageComponent implements OnInit {
   isSubmitted = false;
+  // validUser = false;
 
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
+    private router: Router,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar
   ) {}
 
@@ -63,10 +67,11 @@ export class LoginPageComponent implements OnInit {
         const message = myObject['message'];
 
         if (auth == true) {
+          this.loginpage.reset();
           this._snackBar.open('Login successful', 'OK', {
             duration: this.durationInSeconds * 1000,
           });
-          this.loginpage.reset();
+          this.router.navigate(['/dashboard']);
         } else {
           this._snackBar.open(message, 'Cancel', {
             duration: this.durationInSeconds * 1000,
