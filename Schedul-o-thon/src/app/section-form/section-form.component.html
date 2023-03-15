@@ -137,9 +137,8 @@
 
         <!-- section_dl -->
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="section_dl"
-            >Section DL</label
-          >
+            <label class="col-sm-12 col-md-2 col-form-label" for="section_dl">Section DL</label>
+
           <div class="col-sm-12 col-md-4">
             <input
               id="section_dl"
@@ -178,7 +177,21 @@
             </div>
           </div> -->
         </div>
-
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Belonging to Subbatch</label>
+          <div class="col-sm-12 col-md-4">
+              <select
+              class="custom-select col-12"
+              id="subb"
+              (change)="changeSubbatch($event)"
+              formControlName="subb">
+              <option selected="" value="">Choose Subbatch</option>
+              <option *ngFor="let sub of Subbatch" [ngValue]="sub">
+                {{ sub }}
+              </option>
+            </select>
+            </div>
+        </div>
         <!-- trainee list -->
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"

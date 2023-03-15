@@ -22,6 +22,8 @@ export class SectionFormComponent implements OnInit{
     'Big Data',
     'Python'
   ];
+  Subbatch:any=['S1','S2','S3'];
+
   numberPattern = '^[0-9]{1,4}$';
   constructor(
     private fb: FormBuilder,
@@ -37,8 +39,14 @@ export class SectionFormComponent implements OnInit{
     classroom: ['', Validators.required],
     // schedule: ['', Validators.required],
     trainee_list: ['', Validators.required],
+    subb:['',Validators.required]
   });
   
+  changeSubbatch(e: any) {
+    this.Subbatch?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
   
   get sectionName() {
     return this.section.get('sectionName');
