@@ -323,12 +323,12 @@ router.post(`${rootUrl}/section`, async (req, res) => {
     classroom,
     section_dl,
     trainee_list,
-    sub_batch_name
+    subb
   } = req.body;
 
   console.log(req.body);
 
-  const new_sub_batch_name = sub_batch_name;
+  const new_sub_batch_name = subb;
   console.log(new_sub_batch_name)
 
 
@@ -337,7 +337,7 @@ router.post(`${rootUrl}/section`, async (req, res) => {
   let sqlq = "SELECT * FROM sections_info where section_name='" + sectionName + "'";
   let sub_batch_id;
   let get_subbatchid = "SELECT sub_batch_id FROM sub_batches WHERE sub_batch_name = '" + new_sub_batch_name + "'";
-  console.log(get_subbatchid)
+  // console.log(get_subbatchid)
   client.query(get_subbatchid, (err, result) => {
     if (err) {
       res.json({ message: err });
@@ -350,7 +350,7 @@ router.post(`${rootUrl}/section`, async (req, res) => {
   })
 
   client.query(sqlq, (err, result) => {
-    console.log(result)
+    // console.log(result)
     if (err) {
       res.json({ message: err });
     }
@@ -370,7 +370,7 @@ router.post(`${rootUrl}/section`, async (req, res) => {
           section_dl,
           trainee_list,
           sub_batch_id,
-          sub_batch_name,
+          subb,
 
         ],
       };
