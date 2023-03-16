@@ -186,8 +186,8 @@
               (change)="changeSubbatch($event)"
               formControlName="subb">
               <option selected="" value="">Choose Subbatch</option>
-              <option *ngFor="let sub of Subbatch" [ngValue]="sub">
-                {{ sub }}
+              <option *ngFor="let sub of data" [ngValue]="sub.sub_batch_name">
+                {{ sub.sub_batch_name }}
               </option>
             </select>
             </div>
