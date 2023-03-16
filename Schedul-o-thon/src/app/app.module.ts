@@ -23,6 +23,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import {MatCardModule} from "@angular/material/card";
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction'
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -53,7 +57,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatSidenavModule,
     // NgbCollapseModule,
     MatCardModule,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

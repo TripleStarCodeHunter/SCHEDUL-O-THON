@@ -6,8 +6,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import {Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+//import { FullCalendarModule } from '@fullcalendar/angular';
 
-// import { FullCalendarComponent } from '@fullcalendar/angular';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -19,6 +21,8 @@ export class CalendarComponent {
     this.router.navigateByUrl('/profile');
   }
   calendarVisible = true;
+  title='fullCal';
+  Events: any[]=[];
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -49,9 +53,11 @@ export class CalendarComponent {
   };
   currentEvents: EventApi[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef,private router:Router) {
+  constructor(private httpClient: HttpClient,private changeDetector: ChangeDetectorRef,private router:Router) {
   }
-
+  // ngOnInit(){
+  //   this.httpClient.get().subscribe();
+  // }
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }
