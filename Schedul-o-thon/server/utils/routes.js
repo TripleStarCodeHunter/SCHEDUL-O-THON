@@ -305,8 +305,12 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
 
 //Subbatch display
 router.get(`${rootUrl}/sub_batch`, (req, res) => {
-  let sqlqeury = "SELECT * FROM sub_batches";
-  client.query(sqlqeury, (err, result) => {
+  const f_batchid = req.query.fbatch_id;
+  let sqlQuery = "SELECT * FROM sub_batches";
+  if (f_batchid) {
+    sqlQuery += ` WHERE f_batchid = '${f_batchid}'`;
+  }
+  client.query(sqlQuery, (err, result) => {
     if (err) throw err;
     else res.json(result.rows);
   });
