@@ -5,14 +5,24 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
-// import { FullCalendarComponent } from '@fullcalendar/angular';
+import {Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+//import { FullCalendarModule } from '@fullcalendar/angular';
+
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
+  onsubmit()
+  {
+    this.router.navigateByUrl('/profile');
+  }
   calendarVisible = true;
+  title='fullCal';
+  Events: any[]=[];
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -43,9 +53,11 @@ export class CalendarComponent {
   };
   currentEvents: EventApi[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private httpClient: HttpClient,private changeDetector: ChangeDetectorRef,private router:Router) {
   }
-
+  // ngOnInit(){
+  //   this.httpClient.get().subscribe();
+  // }
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }

@@ -97,7 +97,7 @@
                 <ul>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/img.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/img.jpg" alt="" />
                       <h3>John Doe</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -107,7 +107,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/photo1.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/photo1.jpg" alt="" />
                       <h3>Lea R. Frith</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -117,7 +117,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/photo2.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/photo2.jpg" alt="" />
                       <h3>Erik L. Richards</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -127,7 +127,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/photo3.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/photo3.jpg" alt="" />
                       <h3>John Doe</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -137,7 +137,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/photo4.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/photo4.jpg" alt="" />
                       <h3>Renee I. Hansen</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -147,7 +147,7 @@
                   </li>
                   <li>
                     <a href="#">
-                      <img src="vendors/images/img.jpg" alt="" />
+                      <img src="../../assets/assets/vendors/images/img.jpg" alt="" />
                       <h3>Vicki M. Coleman</h3>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -169,14 +169,14 @@
               data-toggle="dropdown"
             >
               <span class="user-icon">
-                <img src="vendors/images/photo1.jpg" alt="" />
+                <img src="../../assets/assets/vendors/images/photo1.jpg" alt="" />
               </span>
               <span class="user-name">Ross C. Lopez</span>
             </a>
             <div
               class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
             >
-              <a class="dropdown-item" href="profile.html"
+              <a class="dropdown-item" (click)="onsubmit()" href="profile.html"
                 ><i class="dw dw-user1"></i> Profile</a
               >
               <a class="dropdown-item" href="profile.html"
@@ -427,7 +427,7 @@
             <li>
               <a href="javascript:;" class="dropdown-toggle no-arrow">
                 <span class="micon bi bi-command"></span
-                ><span class="mtext">Profile</span>
+                ><span class="mtext" >Profile</span>
               </a>
             </li>
           </ul>
@@ -441,7 +441,16 @@
         <div class="min-height-200px">
           <div class="pd-20 card-box mb-30">
             <div class="calendar-wrap">
-              <div id="calendar"></div>
+              <div id="calendar">
+                <div class='container'>
+                  <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
+                    <ng-template #eventContent let-arg>
+                      <b>{{ arg.timeText }}</b>
+                      <i>{{ arg.event.title }}</i>
+                    </ng-template>
+                  </full-calendar>
+                </div>
+              </div>
             </div>
             <!-- calendar modal -->
             <div
@@ -542,12 +551,13 @@
     </div>
 
     <!-- js -->
-    <script src="vendors/scripts/core.js"></script>
-    <script src="vendors/scripts/script.min.js"></script>
-    <script src="vendors/scripts/process.js"></script>
-    <script src="vendors/scripts/layout-settings.js"></script>
-    <script src="src/plugins/fullcalendar/fullcalendar.min.js"></script>
-    <script src="vendors/scripts/calendar-setting.js"></script>
+    <!-- Schedul-o-thon/src/assets/assets/vendors/scripts/core.js -->
+    <script src="../../assets/assets/vendors/scripts/core.js"></script>
+    <script src="../../assets/assets/vendors/scripts/script.min.js"></script>
+    <script src="../../assets/assets/vendors/scripts/process.js"></script>
+    <script src="../../assets/assets/vendors/scripts/layout-settings.js"></script>
+    <script src="../../assets/assets/src/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="../../assets/assets/vendors/scripts/calendar-setting.js"></script>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -564,14 +574,14 @@
         
       </div>
     
-      <div class='container'>
-        <!-- <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
+      <!-- <div class='container'>
+        <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
           <ng-template #eventContent let-arg>
             <b>{{ arg.timeText }}</b>
             <i>{{ arg.event.title }}</i>
           </ng-template>
-        </full-calendar> -->
-      </div>
+        </full-calendar>
+      </div> -->
     
     </div>
   </body>
