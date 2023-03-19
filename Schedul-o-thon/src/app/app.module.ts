@@ -21,13 +21,14 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import {MatCardModule} from "@angular/material/card";
+import { MatCardModule} from "@angular/material/card";
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction'
+import { SectionCardsComponent } from './section-cards/section-cards.component';
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -42,7 +43,9 @@ import interactionPlugin from '@fullcalendar/interaction'
     BatchCardComponent,
     SubbatchCardComponent,
     LandingPageComponent,
-    AdminDashboardComponent
+    ProfileComponent,
+    DashboardComponent,
+    SectionCardsComponent
     // AdminSidebarComponent,
   ],
   imports: [
