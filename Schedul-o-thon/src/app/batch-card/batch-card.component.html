@@ -14,28 +14,45 @@
 </div>
 </div> -->
 
-<mat-card>
+<app-admin-sidebar></app-admin-sidebar>
+<!-- <mat-card>
   <nav class="navbar navbar-dark bg-primary">
     <a href="" class ="navbar-brand">Schedulo Batch Page</a>
   </nav>
-</mat-card>
-<section class="mt-3">
-  <div class="container">
-            <div class="row">
-              <div  *ngFor="let item of data" class="col md-3 col lg-3">
-                <div class="card">
-                  <p class="text-title">{{item.batch_name | titlecase}}</p>
-                  <p class="text-body">Subbatches : {{item.subbatch_count}}</p>
-                  <p class="text-body">Batch size : {{item.batch_size}}</p>
-                  <p class="text-body">Location : {{item.location|titlecase}}</p>
-                  <p class="text-body">Start date : {{item.start_date| date:'longDate'}}</p>
-                  <div class="d-md-flex justify-content-md-center">
-                    <button type="button" class="btn btn-outline-primary m-1">Edit</button>
-                    <button type="button" [routerLink]="['/subbatches',item.batch_id]" class="btn btn-outline-secondary m-1">View More</button>
-                    <button type="button" class="btn btn-outline-danger m-1">Delete</button>
-                  </div>
-                </div>
+</mat-card> -->
+<!-- <section class="mt-3"> -->
+  <div class="main-container">
+    <div class="pd-20 card-box mb-30">
+    <!-- <div class="container"> -->
+      <div class="row">
+        <div *ngFor="let item of data" class="col md-2 col-lg-4">
+          <div class="card">
+            <p class="text-title">{{ item.batch_name | titlecase }}</p>
+            <p class="text-body">Subbatches : {{ item.subbatch_count }}</p>
+            <p class="text-body">Batch size : {{ item.batch_size }}</p>
+            <p class="text-body">Location : {{ item.location | titlecase }}</p>
+            <p class="text-body">
+              Start date : {{ item.start_date | date : "longDate" }}
+            </p>
+            <div class="d-md-flex justify-content-md-center">
+              <button type="button" class="btn btn-outline-primary m-1">
+                Edit
+              </button>
+              <button
+                type="button"
+                [routerLink]="['/subbatches', item.batch_id]"
+                class="btn btn-outline-secondary m-1"
+              >
+                View More
+              </button>
+              <button type="button" class="btn btn-outline-danger m-1">
+                Delete
+              </button>
             </div>
-    </div> 
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
   </div>
-</section>
+  </div>
+<!-- </section> -->
