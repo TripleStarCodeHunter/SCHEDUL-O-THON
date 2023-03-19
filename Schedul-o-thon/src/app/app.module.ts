@@ -29,8 +29,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction'
 import { SectionCardsComponent } from './section-cards/section-cards.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 @NgModule({
   declarations: [
+    AdminDashboardComponent,
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
@@ -45,7 +47,8 @@ import { SectionCardsComponent } from './section-cards/section-cards.component';
     LandingPageComponent,
     ProfileComponent,
     DashboardComponent,
-    SectionCardsComponent
+    SectionCardsComponent,
+    UserDashboardComponent
     // AdminSidebarComponent,
   ],
   imports: [
