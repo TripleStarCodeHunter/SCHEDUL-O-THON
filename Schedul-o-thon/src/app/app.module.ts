@@ -27,9 +27,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction';
+ import {FontawesomeObject} from '@fortawesome/fontawesome-svg-core';
 import { SectionCardsComponent } from './section-cards/section-cards.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserHeaderComponent } from './user-dashboard/user-header/user-header.component';
+import { UserSidebarComponent } from './user-dashboard/user-sidebar/user-sidebar.component';
+import { MainComponent } from './user-dashboard/main/main.component';
+import { faFontAwesome,faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserSidebarModule } from './user-dashboard/user-sidebar/user-sidebar.module';
+
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -48,7 +56,10 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ProfileComponent,
     DashboardComponent,
     SectionCardsComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    UserHeaderComponent,
+    UserSidebarComponent,
+    MainComponent
     // AdminSidebarComponent,
   ],
   imports: [
@@ -64,7 +75,9 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     // NgbCollapseModule,
     MatCardModule,
     AdminSidebarComponent,
-    FullCalendarModule
+    FullCalendarModule,
+    FontAwesomeModule,
+    UserSidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

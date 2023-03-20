@@ -1,0 +1,23 @@
+.side-nav
+{
+    padding-top:40px;
+    .nav-item{
+        padding: 25px 50px;
+        cursor: pointer;
+        @media only screen and (max-width:1300px) {
+            padding: 25px 40px;
+        }
+        &:hover
+        {
+            background-color:white;
+            color:darkblue;
+        }
+        fa-icon{
+            margin-right: 20px;
+            font-size: 22px;
+        }
+        span{
+            display: inline;
+        }
+    }
+}
