@@ -20,13 +20,17 @@
             width:50px;
             height:50px;
             border-radius: 50%;
-            border: 2px solid ivory;
-            background-color: rgb(69, 201, 211);
+            border: 2px solid turquoise;
+            background-color: rgb(121, 255, 68);
             margin-left: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            &:hover{
+                cursor:pointer;
+            }
         }
+        
     }
 }

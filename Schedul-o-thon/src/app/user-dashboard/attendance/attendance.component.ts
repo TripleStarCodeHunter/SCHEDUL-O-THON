@@ -7,9 +7,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./attendance.component.scss']
 })
 export class AttendanceComponent {
+  usr={"attd": 75}; 
   onsubmit()
   {
     this.router.navigateByUrl('/profile');
   }
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    
+  }
+  
 }
