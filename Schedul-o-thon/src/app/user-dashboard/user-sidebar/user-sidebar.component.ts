@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faHandshake } from '@fortawesome/free-regular-svg-icons';
+import { faHandPaper, faHandshake } from '@fortawesome/free-regular-svg-icons';
 import { faCalendar, faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,4 +11,5 @@ export class UserSidebarComponent {
   faCalendar=faCalendar;
   fahome=faHome;
   fahs=faHandshake;
+  faAttendance=faHandPaper;
 }

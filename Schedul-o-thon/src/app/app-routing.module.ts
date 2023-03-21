@@ -10,6 +10,7 @@ import { SectionFormComponent } from './section-form/section-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { BatchCardComponent } from './batch-card/batch-card.component';
+import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'profile',component:ProfileComponent},
     {path:'section',component:SectionFormComponent},
     {path:'calendar',component:CalendarComponent},
-    {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent}
+    {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent},
+    {path:'attendance',component:AttendanceComponent}
   ];
 
 @NgModule({

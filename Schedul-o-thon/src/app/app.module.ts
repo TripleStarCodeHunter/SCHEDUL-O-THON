@@ -37,6 +37,7 @@ import { MainComponent } from './user-dashboard/main/main.component';
 import { faFontAwesome,faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserSidebarModule } from './user-dashboard/user-sidebar/user-sidebar.module';
+import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UserSidebarModule } from './user-dashboard/user-sidebar/user-sidebar.mo
     UserDashboardComponent,
     UserHeaderComponent,
     UserSidebarComponent,
-    MainComponent
+    MainComponent,
+    AttendanceComponent
     // AdminSidebarComponent,
   ],
   imports: [
