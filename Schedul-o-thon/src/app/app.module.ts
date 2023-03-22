@@ -27,13 +27,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction';
+ import {FontawesomeObject} from '@fortawesome/fontawesome-svg-core';
 import { SectionCardsComponent } from './section-cards/section-cards.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserHeaderComponent } from './user-dashboard/user-header/user-header.component';
+import { UserSidebarComponent } from './user-dashboard/user-sidebar/user-sidebar.component';
+import { MainComponent } from './user-dashboard/main/main.component';
+import { faFontAwesome,faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserSidebarModule } from './user-dashboard/user-sidebar/user-sidebar.module';
+import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
+
 // import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
+    AdminDashboardComponent,
     LoginPageComponent,
     RegisterPageComponent,
     NavbarComponent,
@@ -49,6 +60,13 @@ import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     DashboardComponent,
     SectionCardsComponent,
+
+    UserDashboardComponent,
+    UserHeaderComponent,
+    UserSidebarComponent,
+    MainComponent,
+    AttendanceComponent
+
     AdminDashboardComponent,
     EventFormComponent,
     // AdminNavbarComponent,
@@ -70,6 +88,8 @@ import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     // AdminNavbarComponent,
     AdminSidebarComponent,
     FullCalendarModule,
+    FontAwesomeModule,
+    UserSidebarModule
     NgbModule,
     // CalendarComponent,
   ],

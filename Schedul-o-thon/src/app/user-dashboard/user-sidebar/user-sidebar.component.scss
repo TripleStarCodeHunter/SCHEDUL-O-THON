@@ -1,0 +1,33 @@
+.side-nav
+{
+    width: 500px;
+        min-width: 230px;
+        min-height: calc(100vh - 70px);
+        background-color: darkblue;
+        color: aliceblue;
+        box-shadow: 5px 5px 5px gray;
+        @media only screen and (min-width: 1300px){
+            width:300px;
+            min-width: 100px;
+        }
+    padding-top:2px;
+    .nav-item{
+        padding: 25px 50px;
+        cursor: pointer;
+        @media only screen and (max-width:1300px) {
+            padding: 25px 40px;
+        }
+        &:hover
+        {
+            background-color:white;
+            color:darkblue;
+        }
+        fa-icon{
+            margin-right: 20px;
+            font-size: 22px;
+        }
+        span{
+            display: inline;
+        }
+    }
+}

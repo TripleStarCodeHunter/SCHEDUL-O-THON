@@ -1,0 +1,36 @@
+.header{
+    height: 70px;
+    min-width: fit-content;
+    padding:20px 10px;
+    background-color: whitesmoke;
+    color:black;
+    display:flex;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px gray;
+    .logo{
+        font-weight: bold;
+        font-size:20px;
+        color: blue;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        .user-image{
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            border: 2px solid turquoise;
+            background-color: rgb(121, 255, 68);
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            &:hover{
+                cursor:pointer;
+            }
+        }
+        
+    }
+}
