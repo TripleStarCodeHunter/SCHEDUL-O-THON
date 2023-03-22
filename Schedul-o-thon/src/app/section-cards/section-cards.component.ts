@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from '../shared/services/data-service.service';
-
+import { SectionDataService } from '../shared/services/section-data.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-section-cards',
   templateUrl: './section-cards.component.html',
@@ -8,16 +8,17 @@ import { DataService } from '../shared/services/data-service.service';
 })
 export class SectionCardsComponent {
   data !: any[];
-  d=[
-    {section_name:"2022 Aug Java A",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-A",schedule:"link here",section_id:"A"},
-    {section_name:"2022 Aug Java B",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-B",schedule:"link here",section_id:"B"},
-    {section_name:"2022 Aug Java A",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-C",schedule:"link here",section_id:"C"},
-  ];
+  // d=[
+  //   {section_name:"2022 Aug Java A",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-A",schedule:"link here",section_id:"A"},
+  //   {section_name:"2022 Aug Java B",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-B",schedule:"link here",section_id:"B"},
+  //   {section_name:"2022 Aug Java A",strength:30,track_name:"Java",classroom_name:"Mysuru-Aug-2022-C",schedule:"link here",section_id:"C"},
+  // ];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: SectionDataService, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.dataService.getData()
+    const id = this.route.snapshot.paramMap.get('sub_batch_id');
+    this.dataService.getData(id)
       .subscribe(data => {
         this.data = data;
       });
