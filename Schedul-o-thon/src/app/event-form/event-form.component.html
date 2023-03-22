@@ -1,0 +1,267 @@
+<head> </head>
+<body>
+  <!-- <app-admin-sidebar></app-admin-sidebar> -->
+  <div class="main-container">
+    <div class="pd-20 card-box mb-30">
+      <div class="clearfix">
+        <div class="pull-left">
+          <h4 class="text-blue h4">Create Event</h4>
+          <p>Fill all the mandatory fields</p>
+        </div>
+      </div>
+
+      <form [formGroup]="eventsform" (ngSubmit)="onSubmit()">
+        <!-- Event Name -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label" for="eventname"
+            >Event Name<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-10">
+            <input
+              id="eventname"
+              class="eventname form-control"
+              type="text"
+              placeholder="Event Name"
+              formControlName="eventname"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="eventname?.errors?.['required'] && (eventname?.touched || eventname?.dirty)"
+            >
+              Event Name should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- start and end date in one row -->
+        <div class="form-group row">
+          <!-- Start Date -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Start Date<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              placeholder="Select Date"
+              type="date"
+              formControlName="start"
+            />
+
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+
+          <!-- End Date -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >End Date<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              placeholder="Select Date"
+              type="date"
+              formControlName="end"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div>
+
+        <!-- instructor and Additional Info in one row -->
+        <div class="form-group row">
+          <!-- instructor -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Instructor<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter Instructor Name"
+              formControlName="instructor"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="instructor?.errors?.['required'] && (instructor?.touched || instructor?.dirty)"
+            >
+              Enter Instructor
+            </div>
+          </div>
+          <!-- Additional Info -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Additional Info<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter Additional Info"
+              formControlName="additionalInfo"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="additionalInfo?.errors?.['required'] && (additionalInfo?.touched || additionalInfo?.dirty)"
+            >
+              Enter Additional Info
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Form -->
+
+        <!-- Schedule Name -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label" for="scheduleName"
+            >Schedule Name<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-10">
+            <input
+              id="scheduleName"
+              class="scheduleName form-control"
+              type="text"
+              placeholder="Schedule Name"
+              formControlName="scheduleName"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="scheduleName?.errors?.['required'] && (scheduleName?.touched || scheduleName?.dirty)"
+            >
+              Schedule Name should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- batch and subbatch in one row -->
+        <div class="form-group row">
+          <!-- Select Batch Name -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Batch Name<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="batch"
+              (change)="changeBatchName($event)"
+              formControlName="batch"
+            >
+              <option selected="" value="">Choose Batch</option>
+              <option *ngFor="let item of BatchName" [ngValue]="item">
+                {{ item }}
+              </option>
+            </select>
+            <!-- validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="batch?.errors?.['required'] && (batch?.touched || batch?.dirty)"
+            >
+              Enter Batch Name
+            </div>
+          </div>
+          <!-- Select SubBatch Name -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Sub Batch Name<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="sub_batch"
+              (change)="changeSubBatchName($event)"
+              formControlName="sub_batch"
+            >
+              <option selected="" value="">Choose Sub Batch</option>
+              <option *ngFor="let item of SubBatchName" [ngValue]="item">
+                {{ item }}
+              </option>
+            </select>
+            <!-- validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="sub_batch?.errors?.['required'] && (sub_batch?.touched || sub_batch?.dirty)"
+            >
+              Enter Sub Batch Name
+            </div>
+          </div>
+        </div>
+
+        <!-- Section and description in one row -->
+        <div class="form-group row">
+          <!-- Select Section Name -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Section Name<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="section"
+              (change)="changeSectionName($event)"
+              formControlName="section"
+            >
+              <option selected="" value="">Choose Section</option>
+              <option *ngFor="let item of SectionName" [ngValue]="item">
+                {{ item }}
+              </option>
+            </select>
+            <!-- validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="section?.errors?.['required'] && (section?.touched || section?.dirty)"
+            >
+              Enter Section Name
+            </div>
+          </div>
+          <!-- Description -->
+          <label class="col-sm-12 col-md-2 col-form-label" for="description"
+            >Description<span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              id="description"
+              class="description form-control"
+              type="text"
+              placeholder="Description"
+              formControlName="description"
+            />
+            <!-- Validations -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="description?.errors?.['required'] && (description?.touched || description?.dirty)"
+            >
+              Description should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label"></label>
+          <div class="col-sm-12 col-md-10">
+            <button type="submit" class="btn btn-outline-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Default Basic Forms End -->
+
+  <!-- js -->
+  <!-- <script src="/src/assets/assets/vendors/scripts/core.js"></script>
+    <script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+    <script src="/src/assets/assets/vendors/scripts/process.js"></script>
+    <script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script> -->
+</body>

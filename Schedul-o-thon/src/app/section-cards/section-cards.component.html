@@ -1,0 +1,25 @@
+<mat-card>
+    <nav class="navbar navbar-dark bg-primary">
+      <a href="" class ="navbar-brand">Schedulo Section Page</a>
+    </nav>
+</mat-card>
+  <section class="mt-3">
+    <div class="container">
+              <div class="row">
+                <div  *ngFor="let item of d" class="col md-3 col lg-3">
+                  <div class="card">
+                    <p class="text-title">{{item.section_name | titlecase}}</p>
+                    <p class="text-body">Strength : {{item.strength}}</p>
+                    <p class="text-body">Track Name : {{item.track_name|titlecase}}</p>
+                    <p class="text-body">Classroom name : {{item.classroom_name|titlecase}}</p>
+                    <p class="text-body">Schedule:{{item.schedule}}</p>
+                    <div class="d-md-flex justify-content-md-center">
+                      <button type="button" class="btn btn-outline-primary m-1">Edit</button>
+                      <button type="button" class="btn btn-outline-secondary m-1">View More</button>
+                      <button type="button" class="btn btn-outline-danger m-1">Delete</button>
+                    </div>
+                  </div>
+              </div>
+      </div> 
+    </div>
+  </section>

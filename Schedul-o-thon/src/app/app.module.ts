@@ -20,13 +20,18 @@ import { BatchCardComponent } from './batch-card/batch-card.component';
 import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
-import {MatCardModule} from "@angular/material/card";
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { MatCardModule} from "@angular/material/card";
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction'
+import { SectionCardsComponent } from './section-cards/section-cards.component';
+// import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -42,8 +47,13 @@ import interactionPlugin from '@fullcalendar/interaction'
     SubbatchCardComponent,
     LandingPageComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    SectionCardsComponent,
+    AdminDashboardComponent,
+    EventFormComponent,
+    // AdminNavbarComponent,
     // AdminSidebarComponent,
+    // FullCalendarModule,
   ],
   imports: [
     BrowserModule,
@@ -55,10 +65,13 @@ import interactionPlugin from '@fullcalendar/interaction'
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatSidenavModule,
-    // NgbCollapseModule,
+    NgbCollapseModule,
     MatCardModule,
+    // AdminNavbarComponent,
     AdminSidebarComponent,
-    FullCalendarModule
+    FullCalendarModule,
+    NgbModule,
+    // CalendarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,26 +1,24 @@
-@import "/src/assets/assets/src/plugins/jquery-steps/jquery.steps.css";
-@import "/src/assets/assets/vendors/styles/core.css";
-@import "/src/assets/assets/vendors/styles/icon-font.min.css";
-@import "/src/assets/assets/vendors/styles/style.css";
 .batch-container{
     width:50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: aqua;
 }
 .card {
     margin-bottom: 30px;
     width: 360px; //original : 190px
-    height: 280px; //original : 254px
+    height: 350px; //original : 254px
     border-radius: 20px;
     background: #f5f5f5;
     position: relative;
     padding: 1.8rem;
     border: 2px solid #c3c6ce;
     transition: 0.5s ease-out;
-    overflow: visible;
    }
-   
+   .text-title{
+    max-width: fit-content;
+   }
    .card-details {
     color: black;
     height: 100%;
@@ -51,13 +49,16 @@
    
    /*Text*/
    .text-title {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.4em;
+    font-weight:bold;
+    max-width: 100%;
+    word-wrap: break-word;
    }
    
    /*Hover*/
    .card:hover {
-    border-color: #008bf8;
+    border-color: #51b8ca;
+    border-width:medium;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
    }
    
@@ -71,3 +72,9 @@
     white-space: nowrap;
     overflow: hidden;
    }
+/*div .text-title{
+    word-wrap: break-word;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}*/
