@@ -254,21 +254,25 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
     end_batch,
     admin_batch,
   } = req.body;
-  const new_batch_name = batch_name.slice(3,)
-  console.log(new_batch_name)
+  const new_batch_name = batch_name.slice(3);
+  console.log(new_batch_name);
   // console.log(req.body);
 
-  let sqlq = "SELECT * FROM sub_batches where sub_batch_name='" + s_batchname + "'";
+  let sqlq =
+    "SELECT * FROM sub_batches where sub_batch_name='" + s_batchname + "'";
   let f_batchid;
-  let get_fbatchid = "SELECT batch_id FROM batch_info WHERE batch_name = '" + new_batch_name + "'";
-  console.log(get_fbatchid)
+  let get_fbatchid =
+    "SELECT batch_id FROM batch_info WHERE batch_name = '" +
+    new_batch_name +
+    "'";
+  console.log(get_fbatchid);
   client.query(get_fbatchid, (err, result) => {
     if (err) {
       res.json({ message: err });
     } else {
       f_batchid = result.rows[0].batch_id;
     }
-  })
+  });
 
   client.query(sqlq, (err, result) => {
     if (err) {
@@ -316,6 +320,32 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
   });
 });
 
+router.get(`${rootUrl}/batches`, (req, res) => {
+  if (req.session.user) {
+    let sqlqeury =
+      "SELECT * FROM batch_info where created_by='" +
+      req.session.user.username +
+      "'";
+    client.query(sqlqeury, (err, result) => {
+      if (err) throw err;
+      else res.json(result.rows);
+    });
+  }
+});
+
+router.get(`${rootUrl}/sub_batches`, (req, res) => {
+  if (req.session.user) {
+    let sqlqeury =
+      "SELECT * FROM sub_batches where batch_admin='" +
+      req.session.user.username +
+      "'";
+    client.query(sqlqeury, (err, result) => {
+      if (err) throw err;
+      else res.json(result.rows);
+    });
+  }
+});
+
 ////////////////////////////////////////////////////
 //section creation
 router.post(`${rootUrl}/section`, async (req, res) => {
@@ -327,31 +357,29 @@ router.post(`${rootUrl}/section`, async (req, res) => {
     classroom,
     section_dl,
     trainee_list,
-    subb
+    subb,
   } = req.body;
 
   console.log(req.body);
 
   const new_sub_batch_name = subb;
-  console.log(new_sub_batch_name)
+  console.log(new_sub_batch_name);
 
-
-
-
-  let sqlq = "SELECT * FROM sections_info where section_name='" + sectionName + "'";
+  let sqlq =
+    "SELECT * FROM sections_info where section_name='" + sectionName + "'";
   let sub_batch_id;
-  let get_subbatchid = "SELECT sub_batch_id FROM sub_batches WHERE sub_batch_name = '" + new_sub_batch_name + "'";
+  let get_subbatchid =
+    "SELECT sub_batch_id FROM sub_batches WHERE sub_batch_name = '" +
+    new_sub_batch_name +
+    "'";
   // console.log(get_subbatchid)
   client.query(get_subbatchid, (err, result) => {
     if (err) {
       res.json({ message: err });
     } else {
-
       sub_batch_id = result.rows[0].sub_batch_id;
-
-
     }
-  })
+  });
 
   client.query(sqlq, (err, result) => {
     // console.log(result)
@@ -360,9 +388,7 @@ router.post(`${rootUrl}/section`, async (req, res) => {
     }
     if (result.rows.length > 0) {
       res.json({ add: false, message: "already exists" });
-    }
-    else {
-
+    } else {
       const query = {
         text: "INSERT INTO sections_info(section_name,strength,track,section_owner,classroom,section_dl, trainee_list,sub_batch_id,sub_batch_name) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *",
         values: [
@@ -375,11 +401,8 @@ router.post(`${rootUrl}/section`, async (req, res) => {
           trainee_list,
           sub_batch_id,
           subb,
-
         ],
       };
-
-
 
       try {
         const result = client.query(query);
@@ -391,9 +414,6 @@ router.post(`${rootUrl}/section`, async (req, res) => {
     }
   });
 });
-
-
-
 
 ////////////////////////////
 
