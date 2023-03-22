@@ -29,6 +29,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction'
 import { SectionCardsComponent } from './section-cards/section-cards.component';
+// import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -45,8 +48,12 @@ import { SectionCardsComponent } from './section-cards/section-cards.component';
     LandingPageComponent,
     ProfileComponent,
     DashboardComponent,
-    SectionCardsComponent
+    SectionCardsComponent,
+    AdminDashboardComponent,
+    EventFormComponent,
+    // AdminNavbarComponent,
     // AdminSidebarComponent,
+    // FullCalendarModule,
   ],
   imports: [
     BrowserModule,
@@ -58,10 +65,13 @@ import { SectionCardsComponent } from './section-cards/section-cards.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatSidenavModule,
-    // NgbCollapseModule,
+    NgbCollapseModule,
     MatCardModule,
+    // AdminNavbarComponent,
     AdminSidebarComponent,
-    FullCalendarModule
+    FullCalendarModule,
+    NgbModule,
+    // CalendarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

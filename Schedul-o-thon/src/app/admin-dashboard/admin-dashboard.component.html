@@ -1,4 +1,6 @@
+<app-admin-sidebar></app-admin-sidebar>
 <div class="main-container">
+  <!-- <div class="pd-20 card-box mb-30"> -->
   <div class="xs-pd-20-10 pd-ltr-20">
     <div class="title pb-20">
       <h2 class="h3 mb-0">Overview</h2>
@@ -9,9 +11,6 @@
           <div class="d-flex flex-wrap">
             <div class="widget-data">
               <div class="weight-700 font-24 text-dark">Schedule</div>
-              <!-- <div class="font-14 text-secondary weight-500">
-                                Schedule
-                            </div> -->
             </div>
             <div class="widget-icon">
               <div class="icon" data-color="#00eccf">
@@ -82,28 +81,17 @@
             <!-- <th class="datatable-nosort">Actions</th> -->
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let item of d">
           <tr>
             <td class="table-plus">
-              <div class="name-avatar d-flex align-items-center">
-                <!-- <div class="avatar mr-2 flex-shrink-0">
-                                    <img
-                                        src="vendors/images/photo4.jpg"
-                                        class="border-radius-100 shadow"
-                                        width="40"
-                                        height="40"
-                                        alt=""
-                                    />
-                                </div> -->
-                <div class="txt">
-                  <div class="weight-600">Batch 1 Name</div>
-                </div>
+              <div class="txt">
+                <div class="weight-600">{{ item.batch_name | titlecase }}</div>
               </div>
             </td>
-            <td>Sub-Batch Name</td>
-            <td>Section Name</td>
-            <td>Instructor</td>
-            <td>01/01/2023</td>
+            <td>{{ item.subbatch_name }}</td>
+            <td>{{ item.section_name }}</td>
+            <td>{{ item.instructor_name }}</td>
+            <td>{{ item.date }}</td>
             <td>
               <span
                 class="badge badge-pill"
@@ -114,38 +102,7 @@
             </td>
             <td>
               <div class="table-actions">
-                <a href="#" data-color="#265ed7"
-                  ><i class="icon-copy dw dw-edit2"></i
-                ></a>
-                <a href="#" data-color="#e95959"
-                  ><i class="icon-copy dw dw-delete-3"></i
-                ></a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-plus">
-              <div class="name-avatar d-flex align-items-center">
-                <div class="txt">
-                  <div class="weight-600">Batch 2 Name</div>
-                </div>
-              </div>
-            </td>
-            <td>Sub-Batch Name</td>
-            <td>Section Name</td>
-            <td>Instructor</td>
-            <td>22 Jul 2020</td>
-            <td>
-              <span
-                class="badge badge-pill"
-                data-bgcolor="#e7ebf5"
-                data-color="#265ed7"
-                >Complete</span
-              >
-            </td>
-            <td>
-              <div class="table-actions">
-                <a href="#" data-color="#265ed7"
+                <a data-color="#265ed7" role="button"
                   ><i class="icon-copy dw dw-edit2"></i
                 ></a>
                 <a href="#" data-color="#e95959"
@@ -157,61 +114,16 @@
         </tbody>
       </table>
     </div>
-
-    <div class="title pb-20 pt-20">
-      <h2 class="h3 mb-0">Quick Start</h2>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 mb-20">
-        <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-          <div class="img pb-30">
-            <img src="vendors/images/medicine-bro.svg" alt="" />
-          </div>
-          <div class="content">
-            <h3 class="h4">Services</h3>
-            <p class="max-width-200">
-              We provide superior health care in a compassionate maner
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4 mb-20">
-        <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-          <div class="img pb-30">
-            <img src="vendors/images/remedy-amico.svg" alt="" />
-          </div>
-          <div class="content">
-            <h3 class="h4">Medications</h3>
-            <p class="max-width-200">
-              Look for prescription and over-the-counter drug information.
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4 mb-20">
-        <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-          <div class="img pb-30">
-            <img src="vendors/images/paper-map-cuate.svg" alt="" />
-          </div>
-          <div class="content">
-            <h3 class="h4">Locations</h3>
-            <p class="max-width-200">
-              Convenient locations when and where you need them.
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
   </div>
 </div>
+<!-- </div> -->
 <script src="/src/assets/assets/vendors/scripts/core.js"></script>
-  <script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
-  <script src="/src/assets/assets/vendors/scripts/process.js"></script>
-  <script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script>
-  <script src="/src/assets/assets/src/plugins/apexcharts/apexcharts.min.js"></script>
-  <script src="/src/assets/assets/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-  <script src="/src/assets/assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-  <script src="/src/assets/assets/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-  <script src="/src/assets/assets/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-  <script src="/src/assets/assets/vendors/scripts/dashboard3.js"></script>
+<script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+<script src="/src/assets/assets/vendors/scripts/process.js"></script>
+<script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script>
+<script src="/src/assets/assets/src/plugins/apexcharts/apexcharts.min.js"></script>
+<script src="/src/assets/assets/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/assets/assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/assets/assets/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/assets/assets/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<script src="/src/assets/assets/vendors/scripts/dashboard3.js"></script>
