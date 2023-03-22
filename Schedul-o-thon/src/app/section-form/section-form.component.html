@@ -1,7 +1,4 @@
-
-<head>
-    
-</head>
+<head> </head>
 <body>
   <!-- <app-admin-sidebar></app-admin-sidebar> -->
   <div class="main-container">
@@ -9,6 +6,7 @@
       <div class="clearfix">
         <div class="pull-left">
           <h4 class="text-blue h4">Create Section</h4>
+          <p>Fill all the mandatory fields</p>
         </div>
       </div>
 
@@ -16,7 +14,7 @@
         <!-- section Name -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="sectionname"
-            >Section Name</label
+            >Section Name <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-10">
             <input
@@ -40,27 +38,34 @@
         <div class="form-group row">
           <!-- strength -->
           <label class="col-sm-12 col-md-2 col-form-label" for="strength"
-            >Strength of a section </label>
+            >Strength of a section <span class="mandatory"><sup>*</sup></span>
+          </label>
           <div class="col-sm-12 col-md-4">
-            <input  class="form-control" 
-            value="1" 
-            [pattern]="numberPattern" 
-            type="text" 
-            placeholder="Section Strength" 
-            formControlName="strength" />
+            <input
+              class="form-control"
+              value="1"
+              [pattern]="numberPattern"
+              type="text"
+              placeholder="Section Strength"
+              formControlName="strength"
+            />
             <!-- validations -->
-            <div class="form-invalid-warn-text alert alert-danger"  
-            *ngIf="strength?.errors?.['required'] && (strength?.touched || strength?.dirty)" >
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="strength?.errors?.['required'] && (strength?.touched || strength?.dirty)"
+            >
               Strength should not be empty
             </div>
-            <div  class="form-invalid-warn-text alert alert-danger"  
-            *ngIf="strength?.errors?.['pattern']"  >
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="strength?.errors?.['pattern']"
+            >
               strength not valid. Enter correct number.
             </div>
           </div>
           <!-- Track -->
           <label class="col-sm-12 col-md-2 col-form-label" for="track"
-            >Track</label
+            >Track <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-4">
             <select
@@ -87,8 +92,8 @@
         <!-- section_owner and classroom in one row -->
 
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="section_owner"
-            >Section Owner</label
+          <label class="col-sm-12 col-md-2 col-form-label" for="section_owner"
+            >Section Owner <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-4">
             <select
@@ -98,7 +103,10 @@
               formControlName="section_owner"
             >
               <option selected="" value="">Choose Section Owner</option>
-              <option *ngFor="let section_owner of SectionOwner" [ngValue]="section_owner">
+              <option
+                *ngFor="let section_owner of SectionOwner"
+                [ngValue]="section_owner"
+              >
                 {{ section_owner }}
               </option>
             </select>
@@ -113,7 +121,7 @@
 
           <!-- Classroom -->
           <label class="col-sm-12 col-md-2 col-form-label" for="classroom"
-            >Classroom Name</label
+            >Classroom Name <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-4">
             <input
@@ -137,7 +145,9 @@
 
         <!-- section_dl -->
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="section_dl">Section DL</label>
+          <label class="col-sm-12 col-md-2 col-form-label" for="section_dl"
+            >Section DL <span class="mandatory"><sup>*</sup></span></label
+          >
 
           <div class="col-sm-12 col-md-4">
             <input
@@ -176,26 +186,28 @@
               Trainee List should not be empty
             </div>
           </div> -->
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-12 col-md-2 col-form-label">Belonging to Subbatch</label>
+          <label class="col-sm-12 col-md-2 col-form-label" for="subb"
+            >Choose Sub Batch <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
-              <select
-              class="custom-select col-12"
+            <select
+              class="custom-select"
               id="subb"
               (change)="changeSubbatch($event)"
-              formControlName="subb">
+              formControlName="subb"
+            >
               <option selected="" value="">Choose Subbatch</option>
               <option *ngFor="let sub of data" [ngValue]="sub.sub_batch_name">
                 {{ sub.sub_batch_name }}
               </option>
             </select>
-            </div>
+          </div>
         </div>
+        
         <!-- trainee list -->
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"
-            >Trainee List</label
+          <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"
+            >Trainee List<span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-10">
             <input
@@ -234,5 +246,4 @@
   <script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
   <script src="/src/assets/assets/vendors/scripts/process.js"></script>
   <script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script> -->
-
 </body>
