@@ -5,12 +5,12 @@
     <div class="pd-20 card-box mb-30">
       <div class="clearfix">
         <div class="pull-left">
-          <h4 class="text-blue h4">Create Batch</h4>
-          <p>Fill all the mandatory fields</p><br>
+          <h4 class="text-blue h4">Update Batch</h4>
+          <p>Fill only the fields to be updated</p> <br>
         </div>
       </div>
 
-      <form [formGroup]="batch" (ngSubmit)="onSubmit()">
+      <form [formGroup]="update_batch" (ngSubmit)="onSubmit()">
         <!-- Batch Name -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="batchname"
@@ -37,7 +37,7 @@
         <div class="form-group row">
           <!-- no of sub batches -->
           <label class="col-sm-12 col-md-2 col-form-label" for="noOfSubBatch"
-            >Number of Sub Batches <span class="mandatory"><sup>*</sup></span></label
+            >No. of Sub Batches <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-4">
             <input
