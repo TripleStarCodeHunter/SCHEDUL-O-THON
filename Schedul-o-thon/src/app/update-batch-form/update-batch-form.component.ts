@@ -3,12 +3,11 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 @Component({
-  selector: 'app-batch',
-  templateUrl: './batch.component.html',
-  styleUrls: ['./batch.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-update-batch-form',
+  templateUrl: './update-batch-form.component.html',
+  styleUrls: ['./update-batch-form.component.scss']
 })
-export class BatchComponent implements OnInit {
+export class UpdateBatchFormComponent implements OnInit {
   ngOnInit(): void { }
   isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
@@ -24,7 +23,7 @@ export class BatchComponent implements OnInit {
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient
   ) { }
-  batch = this.fb.group({
+  update_batch = this.fb.group({
     batchname: ['', Validators.required],
     location: ['', Validators.required],
     batchType: ['', Validators.required],
@@ -43,38 +42,38 @@ export class BatchComponent implements OnInit {
     });
   }
   get batchname() {
-    return this.batch.get('batchname');
+    return this.update_batch.get('batchname');
   }
   get location() {
-    return this.batch.get('location');
+    return this.update_batch.get('location');
   }
   get batchType() {
-    return this.batch.get('batchType');
+    return this.update_batch.get('batchType');
   }
   get noOfSubBatch() {
-    return this.batch.get('noOfSubBatch');
+    return this.update_batch.get('noOfSubBatch');
   }
   get batchSize() {
-    return this.batch.get('batchSize');
+    return this.update_batch.get('batchSize');
   }
   get start() {
-    return this.batch.get('start');
+    return this.update_batch.get('start');
   }
   durationInSeconds = 5;
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.batch.valid) {
+    if (!this.update_batch.valid) {
       false;
       // alert("Form is Invalid")
       this._snackBar.open('Form Invalid', 'OK');
     } else {
       const formData = {
-        b_batchname: this.batch.value.batchname,
-        location_batch: this.batch.value.location,
-        batch_type: this.batch.value.batchType,
-        num_sub_batches: this.batch.value.noOfSubBatch,
-        size_batch: this.batch.value.batchSize,
-        start_batch: this.batch.value.start,
+        b_batchname: this.update_batch.value.batchname,
+        location_batch: this.update_batch.value.location,
+        batch_type: this.update_batch.value.batchType,
+        num_sub_batches: this.update_batch.value.noOfSubBatch,
+        size_batch: this.update_batch.value.batchSize,
+        start_batch: this.update_batch.value.start,
       };
       // console.log(formData);
       this.http
@@ -87,12 +86,12 @@ export class BatchComponent implements OnInit {
             this._snackBar.open('Batch Created', 'OK', {
               duration: this.durationInSeconds * 1000,
             });
-            this.batch.reset();
+            this.update_batch.reset();
           } else if (check == false) {
             this._snackBar.open('Batch already exists', 'Cancel', {
               duration: this.durationInSeconds * 1000,
             });
-            this.batch.reset();
+            this.update_batch.reset();
           }
         });
     }
