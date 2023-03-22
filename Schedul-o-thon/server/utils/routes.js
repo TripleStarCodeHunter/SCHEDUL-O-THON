@@ -225,7 +225,7 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////////
-//disply batches
+//display batches
 
 router.get(`${rootUrl}/batch`, async (req, res) => {
   try {
@@ -315,8 +315,8 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
     sqlQuery += ` WHERE f_batchid = '${f_batchid}'`;
   }
   client.query(sqlQuery, (err, result) => {
-    if (err) throw err;
-    else res.json(result.rows);
+    if (err){ throw err;}
+    else {res.json(result.rows);}
   });
 });
 
