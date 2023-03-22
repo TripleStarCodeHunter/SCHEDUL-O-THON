@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, Inject } from '@angular/core';
-import { 
+import {
   FormControl,
   FormGroup,
   FormBuilder,
@@ -10,11 +10,11 @@ import { HttpClient } from '@angular/common/http';
 import { GetSectionService } from '../shared/services/get-section.service';
 
 @Component({
-  selector: 'app-section-form',
-  templateUrl: './section-form.component.html',
-  styleUrls: ['./section-form.component.scss']
+  selector: 'app-update-section-form',
+  templateUrl: './update-section-form.component.html',
+  styleUrls: ['./update-section-form.component.scss']
 })
-export class SectionFormComponent implements OnInit {
+export class UpdateSectionFormComponent implements OnInit {
   // ngOnInit(): void {}
   isSubmitted = false;
   SectionOwner: any = ['Owner1', 'Owner2', 'Owner3'];
@@ -32,7 +32,7 @@ export class SectionFormComponent implements OnInit {
     private http: HttpClient,
     private GetSectionService: GetSectionService,
   ) { }
-  section = this.fb.group({
+  update_section = this.fb.group({
     sectionName: ['', Validators.required],
     strength: ['', Validators.required],
     track: ['', Validators.required],
@@ -43,29 +43,23 @@ export class SectionFormComponent implements OnInit {
     trainee_list: ['', Validators.required],
     subb: ['', Validators.required]
   });
-
-
   data!: any[];
-
   ngOnInit() {
     this.GetSectionService.getData().subscribe((data) => {
       this.data = data;
       console.log(this.data)
     });
   }
-
-
   changeSubbatch(e: any) {
     this.Subbatch?.setValue(e.target.value, {
       onlySelf: true,
     });
   }
-
   get sectionName() {
-    return this.section.get('sectionName');
+    return this.update_section.get('sectionName');
   }
   get strength() {
-    return this.section.get('strength');
+    return this.update_section.get('strength');
   }
   changeTrack(e: any) {
     this.track?.setValue(e.target.value, {
@@ -73,7 +67,7 @@ export class SectionFormComponent implements OnInit {
     });
   }
   get track() {
-    return this.section.get('track');
+    return this.update_section.get('track');
   }
   changeSectionOwner(e: any) {
     this.section_owner?.setValue(e.target.value, {
@@ -81,49 +75,42 @@ export class SectionFormComponent implements OnInit {
     });
   }
   get section_owner() {
-    return this.section.get('section_owner');
+    return this.update_section.get('section_owner');
   }
-
-
   get section_dl() {
-    return this.section.get('section_dl');
+    return this.update_section.get('section_dl');
   }
   get classroom() {
-    return this.section.get('classroom');
+    return this.update_section.get('classroom');
   }
   get schedule() {
-    return this.section.get('schedule');
+    return this.update_section.get('schedule');
   }
   get trainee_list() {
-    return this.section.get('trainee_list');
+    return this.update_section.get('trainee_list');
   }
-
   get subb() {
-    return this.section.get('subb');
+    return this.update_section.get('subb');
   }
-
-
   durationInSeconds = 5;
   onSubmit() {
     this.isSubmitted = true;
-    if (!this.section.valid) {
+    if (!this.update_section.valid) {
       false;
       // alert("Form is Invalid")
       this._snackBar.open('Form Invalid', 'OK');
     } else {
       const formData = {
-        sectionName: this.section.value.sectionName,
-        strength: this.section.value.strength,
-        track: this.section.value.track,
-        section_owner: this.section.value.section_owner,
-        section_dl: this.section.value.section_dl,
-        classroom: this.section.value.classroom,
-        trainee_list: this.section.value.trainee_list,
-        subb: this.section.value.subb
+        sectionName: this.update_section.value.sectionName,
+        strength: this.update_section.value.strength,
+        track: this.update_section.value.track,
+        section_owner: this.update_section.value.section_owner,
+        section_dl: this.update_section.value.section_dl,
+        classroom: this.update_section.value.classroom,
+        trainee_list: this.update_section.value.trainee_list,
+        subb: this.update_section.value.subb
 
       };
-
-
       this.http.get('http://localhost:3000/api/login').subscribe((response) => {
         console.log(response);
       });
@@ -138,12 +125,12 @@ export class SectionFormComponent implements OnInit {
             this._snackBar.open('section created', 'OK', {
               duration: this.durationInSeconds * 1000,
             });
-            this.section.reset();
+            this.update_section.reset();
           } else if (check == false) {
             this._snackBar.open('section already exists', 'Cancel', {
               duration: this.durationInSeconds * 1000,
             });
-            this.section.reset();
+            this.update_section.reset();
           }
         });
     }

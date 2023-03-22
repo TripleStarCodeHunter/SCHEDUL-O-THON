@@ -4,11 +4,11 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../shared/services/data-service.service';
 @Component({
-  selector: 'app-sub-batch',
-  templateUrl: './sub-batch.component.html',
-  styleUrls: ['./sub-batch.component.scss'],
+  selector: 'app-update-sub-batch-form',
+  templateUrl: './update-sub-batch-form.component.html',
+  styleUrls: ['./update-sub-batch-form.component.scss']
 })
-export class SubBatchComponent implements OnInit {
+export class UpdateSubBatchFormComponent implements OnInit {
   isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
   numberPattern = '^[0-9]{1,4}$';
@@ -21,7 +21,7 @@ export class SubBatchComponent implements OnInit {
     private dataService: DataService,
     private _snackBar: MatSnackBar
   ) { }
-  subBatch = this.fb.group({
+  update_subBatch = this.fb.group({
     subBatchName: ['', Validators.required],
     batch: ['', Validators.required],
     stream: ['', Validators.required],
@@ -40,7 +40,7 @@ export class SubBatchComponent implements OnInit {
     });
   }
   get subBatchName() {
-    return this.subBatch.get('subBatchName');
+    return this.update_subBatch.get('subBatchName');
   }
   changeBatchName(e: any) {
     this.batch?.setValue(e.target.value, {
@@ -48,7 +48,7 @@ export class SubBatchComponent implements OnInit {
     });
   }
   get batch() {
-    return this.subBatch.get('batch');
+    return this.update_subBatch.get('batch');
   }
   changeStream(e: any) {
     this.stream?.setValue(e.target.value),
@@ -57,10 +57,10 @@ export class SubBatchComponent implements OnInit {
     };
   }
   get stream() {
-    return this.subBatch.get('stream');
+    return this.update_subBatch.get('stream');
   }
   get size() {
-    return this.subBatch.get('size');
+    return this.update_subBatch.get('size');
   }
   changeLocation(e: any) {
     this.location?.setValue(e.target.value, {
@@ -68,34 +68,34 @@ export class SubBatchComponent implements OnInit {
     });
   }
   get location() {
-    return this.subBatch.get('location');
+    return this.update_subBatch.get('location');
   }
   get start() {
-    return this.subBatch.get('start');
+    return this.update_subBatch.get('start');
   }
   get end() {
-    return this.subBatch.get('end');
+    return this.update_subBatch.get('end');
   }
   get adminName() {
-    return this.subBatch.get('adminName');
+    return this.update_subBatch.get('adminName');
   }
   durationInSeconds = 5;
   onSubmit() {
     this.isSubmitted = true;
-    if (this.subBatch.invalid) {
+    if (this.update_subBatch.invalid) {
       false;
       this._snackBar.open('Form Invalid', 'OK');
       return;
     } else {
       const formData = {
-        s_batchname: this.subBatch.value.subBatchName,
-        batch_name: this.subBatch.value.batch,
-        stream_name: this.subBatch.value.stream,
-        size_batch: this.subBatch.value.size,
-        location_batch: this.subBatch.value.location,
-        start_batch: this.subBatch.value.start,
-        end_batch: this.subBatch.value.end,
-        admin_batch: this.subBatch.value.adminName,
+        s_batchname: this.update_subBatch.value.subBatchName,
+        batch_name: this.update_subBatch.value.batch,
+        stream_name: this.update_subBatch.value.stream,
+        size_batch: this.update_subBatch.value.size,
+        location_batch: this.update_subBatch.value.location,
+        start_batch: this.update_subBatch.value.start,
+        end_batch: this.update_subBatch.value.end,
+        admin_batch: this.update_subBatch.value.adminName,
       };
 
       this.http.get('http://localhost:3000/api/login').subscribe((response) => {
@@ -112,12 +112,12 @@ export class SubBatchComponent implements OnInit {
             this._snackBar.open('Sub batch Created', 'OK', {
               duration: this.durationInSeconds * 1000,
             });
-            this.subBatch.reset();
+            this.update_subBatch.reset();
           } else if (check == false) {
             this._snackBar.open('Sub batch already exists', 'Cancel', {
               duration: this.durationInSeconds * 1000,
             });
-            this.subBatch.reset();
+            this.update_subBatch.reset();
           }
         });
       console.log(formData);

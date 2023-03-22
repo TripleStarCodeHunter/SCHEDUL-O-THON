@@ -42,6 +42,10 @@ import { AttendanceComponent } from './user-dashboard/attendance/attendance.comp
 // import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.component';
+import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
+import { UpdateSectionFormComponent } from './update-section-form/update-section-form.component';
+import { UpdateEventFormComponent } from './update-event-form/update-event-form.component';
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -67,6 +71,10 @@ import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AttendanceComponent,
     AdminDashboardComponent,
     EventFormComponent,
+    UpdateBatchFormComponent,
+    UpdateSubBatchFormComponent,
+    UpdateSectionFormComponent,
+    UpdateEventFormComponent,
     // AdminNavbarComponent,
     // AdminSidebarComponent,
     // FullCalendarModule,
