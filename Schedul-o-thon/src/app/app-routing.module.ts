@@ -10,6 +10,7 @@ import { SectionFormComponent } from './section-form/section-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { BatchCardComponent } from './batch-card/batch-card.component';
+
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
