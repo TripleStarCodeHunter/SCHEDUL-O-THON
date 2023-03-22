@@ -39,6 +39,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserSidebarModule } from './user-dashboard/user-sidebar/user-sidebar.module';
 import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
 
+// import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -57,12 +60,18 @@ import { AttendanceComponent } from './user-dashboard/attendance/attendance.comp
     ProfileComponent,
     DashboardComponent,
     SectionCardsComponent,
+
     UserDashboardComponent,
     UserHeaderComponent,
     UserSidebarComponent,
     MainComponent,
     AttendanceComponent
+
+    AdminDashboardComponent,
+    EventFormComponent,
+    // AdminNavbarComponent,
     // AdminSidebarComponent,
+    // FullCalendarModule,
   ],
   imports: [
     BrowserModule,
@@ -74,12 +83,15 @@ import { AttendanceComponent } from './user-dashboard/attendance/attendance.comp
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatSidenavModule,
-    // NgbCollapseModule,
+    NgbCollapseModule,
     MatCardModule,
+    // AdminNavbarComponent,
     AdminSidebarComponent,
     FullCalendarModule,
     FontAwesomeModule,
     UserSidebarModule
+    NgbModule,
+    // CalendarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

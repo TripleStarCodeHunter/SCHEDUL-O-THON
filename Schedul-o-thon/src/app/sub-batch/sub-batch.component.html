@@ -1,20 +1,18 @@
-<head>
-  
-</head>
+<head> </head>
 <body>
   <div class="main-container">
-  
     <div class="pd-20 card-box mb-30">
       <div class="clearfix">
         <div class="pull-left">
           <h4 class="text-blue h4">Create Sub-Batch</h4>
+          <p>Fill all the mandatory fields</p>
         </div>
       </div>
       <form [formGroup]="subBatch" (ngSubmit)="onSubmit()">
         <!-- subBatchName -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="subBatchName"
-            >Sub Batch Name</label
+            >Sub Batch Name <span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-10">
             <input
@@ -37,7 +35,9 @@
         <!-- batch name and stream in one row -->
         <div class="form-group row">
           <!-- Select Batch Name -->
-          <label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Batch Name <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <select
               class="custom-select col-12"
@@ -59,7 +59,9 @@
             </div>
           </div>
           <!-- Stream -->
-          <label class="col-sm-12 col-md-2 col-form-label">Stream</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Stream <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <select
               class="custom-select col-12"
@@ -132,7 +134,9 @@
         <!-- size and location in one row -->
         <div class="form-group row">
           <!-- Size -->
-          <label class="col-sm-12 col-md-2 col-form-label">Size</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Size <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <input
               class="form-control"
@@ -155,7 +159,9 @@
             </div>
           </div>
           <!-- Location -->
-          <label class="col-sm-12 col-md-2 col-form-label">Location</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Location <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <select
               class="custom-select col-12"
@@ -221,7 +227,9 @@
         <!-- start and end date in one row -->
         <div class="form-group row">
           <!-- Start Date -->
-          <label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Start Date <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <input
               class="form-control date-picker"
@@ -240,7 +248,9 @@
           </div>
 
           <!-- End Date -->
-          <label class="col-sm-12 col-md-2 col-form-label">End Date</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >End Date <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <input
               class="form-control date-picker"
@@ -300,7 +310,9 @@
 
         <!-- Batch Admin Name -->
         <div class="form-group row">
-          <label class="col-sm-12 col-md-2 col-form-label">Batch Admin</label>
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Batch Admin <span class="mandatory"><sup>*</sup></span></label
+          >
           <div class="col-sm-12 col-md-4">
             <input
               class="form-control"
