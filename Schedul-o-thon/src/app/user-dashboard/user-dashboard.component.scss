@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+body{
+    background-color: rgb(228, 156, 61);
+}
+
+.main-container{
+    display:flex;
+    .side-nav{
+        width: 500px;
+        min-width: 230px;
+        min-height: calc(100vh - 70px);
+        background-color: darkblue;
+        color: aliceblue;
+        box-shadow: 5px 5px 5px gray;
+        @media only screen and (min-width: 1300px){
+            width:300px;
+            min-width: 100px;
+        }
+    }
+    .main{
+        padding: 30px;
+    }
+}
