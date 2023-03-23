@@ -418,11 +418,16 @@ router.post(`${rootUrl}/section`, async (req, res) => {
 ////////////////////////////
 
 router.get(`${rootUrl}/sections`, (req, res) => {
-  let sqlqeury = "SELECT * FROM sections_info";
-  client.query(sqlqeury, (err, result) => {
-    if (err) throw err;
-    else res.json(result.rows);
+  const sub_batch_id = req.query.sub_batch_id;
+  let sqlQuery = "SELECT * FROM sections_info";
+  if (sub_batch_id) {
+    sqlQuery += ` WHERE sub_batch_id = '${sub_batch_id}'`;
+  }
+  client.query(sqlQuery, (err, result) => {
+    if (err){ throw err;}
+    else {res.json(result.rows);}
   });
+
 });
 
 /////////////////////////////////

@@ -45,7 +45,7 @@
               >
                 View More
               </button>
-              <button type="button" class="btn btn-outline-danger m-1">
+              <button type="button" class="btn btn-outline-danger m-1" [routerLink]="['/batches', item.batch_id]" (click)="deletebatch()">
                 Delete
               </button>
             </div>
