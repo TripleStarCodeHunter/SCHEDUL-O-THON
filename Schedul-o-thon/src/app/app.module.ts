@@ -46,6 +46,11 @@ import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.
 import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
 import { UpdateSectionFormComponent } from './update-section-form/update-section-form.component';
 import { UpdateEventFormComponent } from './update-event-form/update-event-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule, MatChipInputEvent, MatChipInput } from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -75,9 +80,11 @@ import { UpdateEventFormComponent } from './update-event-form/update-event-form.
     UpdateSubBatchFormComponent,
     UpdateSectionFormComponent,
     UpdateEventFormComponent,
+    // MatAutocompleteSelectedEvent,
     // AdminNavbarComponent,
     // AdminSidebarComponent,
     // FullCalendarModule,
+    
   ],
   imports: [
     BrowserModule,
@@ -98,8 +105,12 @@ import { UpdateEventFormComponent } from './update-event-form/update-event-form.
     UserSidebarModule,
     NgbModule,
     // CalendarComponent,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
   ],
-  providers: [],
+  providers: [  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
