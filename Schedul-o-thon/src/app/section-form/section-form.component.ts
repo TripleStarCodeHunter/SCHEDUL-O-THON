@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, Inject } from '@angular/core';
-import { 
+import { Component, ViewEncapsulation, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
+import {
   FormControl,
   FormGroup,
   FormBuilder,
@@ -8,7 +8,11 @@ import {
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { GetSectionService } from '../shared/services/get-section.service';
-
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-section-form',
   templateUrl: './section-form.component.html',
@@ -26,12 +30,24 @@ export class SectionFormComponent implements OnInit {
   Subbatch: any = ['S1', 'S2', 'S3'];
 
   numberPattern = '^[0-9]{1,4}$';
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = ['Trainee1@gmail.com', 'trainee@gmail.com', 'trainee3@edu.in', 'traineeeeee@yahoo.com', 'ok@okay.com'];
+
+  @ViewChild('fruitInput') fruitInput:ElementRef<HTMLInputElement>;
+  
   constructor(
     private fb: FormBuilder,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient,
     private GetSectionService: GetSectionService,
-  ) { }
+  ) { this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    startWith(null),
+    map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+  ); }
   section = this.fb.group({
     sectionName: ['', Validators.required],
     strength: ['', Validators.required],
@@ -102,6 +118,39 @@ export class SectionFormComponent implements OnInit {
     return this.section.get('subb');
   }
 
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.fruits.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.fruitCtrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
 
   durationInSeconds = 5;
   onSubmit() {

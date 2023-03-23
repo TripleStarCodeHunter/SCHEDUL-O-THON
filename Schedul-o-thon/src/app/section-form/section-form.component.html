@@ -6,7 +6,8 @@
       <div class="clearfix">
         <div class="pull-left">
           <h4 class="text-blue h4">Create Section</h4>
-          <p>Fill all the mandatory fields</p> <br>
+          <p>Fill all the mandatory fields</p>
+          <br />
         </div>
       </div>
 
@@ -203,20 +204,63 @@
             </select>
           </div>
         </div>
-        
+
         <!-- trainee list -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="trainee_list"
             >Trainee List<span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-10">
-            <input
+            <!-- <input
               id="trainee_list"
               class="trainee_list form-control"
               type="text"
               placeholder="Trainee List"
               formControlName="trainee_list"
-            />
+            /> -->
+            <!-- Validations -->
+            <!-- <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="trainee_list?.errors?.['required'] && (trainee_list?.touched || trainee_list?.dirty)"
+            >
+              Trainee List should not be empty
+            </div> -->
+            <!-- <mat-form-field class="example-chip-list" appearance="fill"> -->
+              <!-- <mat-label>Trainee List</mat-label> -->
+              <mat-chip-grid #chipGrid aria-label="Fruit selection">
+                <mat-chip-row
+                  *ngFor="let fruit of fruits"
+                  (removed)="remove(fruit)"
+                >
+                  {{ fruit }}
+                  <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </mat-chip-grid>
+              <input
+                id="trainee_list"
+                class="trainee_list form-control"
+                placeholder="Enter Trainee Name"
+                #fruitInput
+                [formControl]="fruitCtrl"
+                [matChipInputFor]="chipGrid"
+                [matAutocomplete]="auto"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)"
+              />
+              <mat-autocomplete
+                #auto="matAutocomplete"
+                (optionSelected)="selected($event)"
+              >
+                <mat-option
+                  *ngFor="let fruit of filteredFruits | async"
+                  [value]="fruit"
+                >
+                  {{ fruit }}
+                </mat-option>
+              </mat-autocomplete>
+            <!-- </mat-form-field> -->
             <!-- Validations -->
             <div
               class="form-invalid-warn-text alert alert-danger"
