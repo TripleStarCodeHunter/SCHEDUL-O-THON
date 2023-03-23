@@ -10,7 +10,7 @@ const rootUrl = "/api";
 app.use(
   cors({
     origin: ["http://localhost:4200"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST","DELETE"],
     credentials: true,
   })
 );

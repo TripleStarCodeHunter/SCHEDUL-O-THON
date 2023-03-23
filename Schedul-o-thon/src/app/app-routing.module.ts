@@ -25,7 +25,8 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'calendar',component:CalendarComponent},
     {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent},
     {path:'attendance',component:AttendanceComponent},
-    {path:'sections/:sub_batch_id',component:SectionCardsComponent}
+    {path:'sections/:sub_batch_id',component:SectionCardsComponent},
+    {path: 'batches/:batch_id',component:BatchCardComponent},
   ];
 
 @NgModule({
