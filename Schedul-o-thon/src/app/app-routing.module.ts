@@ -27,6 +27,7 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'attendance',component:AttendanceComponent},
     {path:'sections/:sub_batch_id',component:SectionCardsComponent},
     {path: 'batches/:batch_id',component:BatchCardComponent},
+    {path:'',component:LandingPageComponent}
   ];
 
 @NgModule({
