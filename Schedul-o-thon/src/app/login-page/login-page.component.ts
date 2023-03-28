@@ -71,7 +71,12 @@ export class LoginPageComponent implements OnInit {
           this._snackBar.open('Login successful', 'OK', {
             duration: this.durationInSeconds * 1000,
           });
-          this.router.navigate(['/dashboard']);
+
+          if (formData.userType === 'admin') {
+            this.router.navigate(['/admindashboard']);
+          } else {
+            this.router.navigate(['/dashboard']);
+          }
         } else {
           this._snackBar.open(message, 'Cancel', {
             duration: this.durationInSeconds * 1000,
