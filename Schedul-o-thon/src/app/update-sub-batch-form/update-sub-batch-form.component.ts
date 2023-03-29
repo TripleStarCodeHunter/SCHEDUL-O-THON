@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../shared/services/data-service.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-update-sub-batch-form',
   templateUrl: './update-sub-batch-form.component.html',
-  styleUrls: ['./update-sub-batch-form.component.scss']
+  styleUrls: ['./update-sub-batch-form.component.scss'],
 })
 export class UpdateSubBatchFormComponent implements OnInit {
   isSubmitted = false;
@@ -19,8 +26,9 @@ export class UpdateSubBatchFormComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private dataService: DataService,
-    private _snackBar: MatSnackBar
-  ) { }
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {}
   update_subBatch = this.fb.group({
     subBatchName: ['', Validators.required],
     batch: ['', Validators.required],
@@ -52,9 +60,9 @@ export class UpdateSubBatchFormComponent implements OnInit {
   }
   changeStream(e: any) {
     this.stream?.setValue(e.target.value),
-    {
-      onlySelf: true,
-    };
+      {
+        onlySelf: true,
+      };
   }
   get stream() {
     return this.update_subBatch.get('stream');
@@ -98,29 +106,13 @@ export class UpdateSubBatchFormComponent implements OnInit {
         admin_batch: this.update_subBatch.value.adminName,
       };
 
-      this.http.get('http://localhost:3000/api/login').subscribe((response) => {
-        console.log(response);
-      });
+      const id = this.route.snapshot.paramMap.get('batch_id');
 
       this.http
-        .post('http://localhost:3000/api/sub_batch', formData)
+        .post(`http://localhost:3000/api/update_sub_batch/${id}`, formData)
         .subscribe((response) => {
           console.log(response);
-          const myObject: { [key: string]: any } = response;
-          const check = myObject['add'];
-          if (check == true) {
-            this._snackBar.open('Sub batch Created', 'OK', {
-              duration: this.durationInSeconds * 1000,
-            });
-            this.update_subBatch.reset();
-          } else if (check == false) {
-            this._snackBar.open('Sub batch already exists', 'Cancel', {
-              duration: this.durationInSeconds * 1000,
-            });
-            this.update_subBatch.reset();
-          }
         });
-      console.log(formData);
     }
   }
 }

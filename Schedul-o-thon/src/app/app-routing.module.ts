@@ -13,24 +13,33 @@ import { BatchCardComponent } from './batch-card/batch-card.component';
 import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
 import { SectionCardsComponent } from './section-cards/section-cards.component';
 import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-coming-events.component';
-const routes: Routes = [{ path:'landing',component:LandingPageComponent},
-    {path:'register',component:RegisterPageComponent},
-    {path:'login',component:LoginPageComponent},
-    {path:'register',component:RegisterPageComponent},
-    {path:'batch-form',component:BatchComponent},
-    {path:'batch-cards',component:BatchCardComponent},
-    {path:'landing',component:LandingPageComponent},
-    {path:'dashboard',component:DashboardComponent},
-    {path:'profile',component:ProfileComponent},
-    {path:'section',component:SectionFormComponent},
-    {path:'calendar',component:CalendarComponent},
-    {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent},
-    {path:'attendance',component:AttendanceComponent},
-    {path:'sections/:sub_batch_id',component:SectionCardsComponent},
-    {path: 'batches/:batch_id',component:BatchCardComponent},
-    {path:'',component:LandingPageComponent},
-    {path:'events',component:UpComingEventsComponent}
-  ];
+import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.component';
+import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
+
+const routes: Routes = [
+  { path: 'landing', component: LandingPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  { path: 'batch-form', component: BatchComponent },
+  { path: 'batch-cards', component: BatchCardComponent },
+  { path: 'landing', component: LandingPageComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'section', component: SectionFormComponent },
+  { path: 'calendar', component: CalendarComponent },
+  { path: 'subbatches/:fbatch_id', component: SubbatchCardComponent },
+  { path: 'attendance', component: AttendanceComponent },
+  { path: 'sections/:sub_batch_id', component: SectionCardsComponent },
+  { path: 'batches/:batch_id', component: BatchCardComponent },
+  { path: '', component: LandingPageComponent },
+  { path: 'events', component: UpComingEventsComponent },
+  { path: 'update_batch/:batch_id', component: UpdateBatchFormComponent },
+  {
+    path: 'update_sub_batch/:sub_batch_id',
+    component: UpdateSubBatchFormComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

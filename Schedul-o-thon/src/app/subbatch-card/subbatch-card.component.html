@@ -35,11 +35,17 @@
             Start date : {{ item.start_date | date : "longDate" }}
           </p>
           <div class="d-md-flex justify-content-md-center">
-            <button type="button" class="btn btn-outline-primary m-1" >
+            <button
+              type="button"
+              class="btn btn-outline-primary m-1"
+              [routerLink]="['/update_sub_batch', item.sub_batch_id]"
+            >
               Edit
             </button>
-            <button type="button" class="btn btn-outline-secondary m-1"
-            [routerLink]="['/sections', item.sub_batch_id]"
+            <button
+              type="button"
+              class="btn btn-outline-secondary m-1"
+              [routerLink]="['/sections', item.sub_batch_id]"
             >
               View More
             </button>

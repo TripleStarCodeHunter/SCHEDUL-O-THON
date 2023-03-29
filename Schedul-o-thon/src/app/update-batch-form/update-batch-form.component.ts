@@ -1,14 +1,21 @@
 import { Component, ViewEncapsulation, OnInit, Inject } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-update-batch-form',
   templateUrl: './update-batch-form.component.html',
-  styleUrls: ['./update-batch-form.component.scss']
+  styleUrls: ['./update-batch-form.component.scss'],
 })
 export class UpdateBatchFormComponent implements OnInit {
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
   TypeOfBatch: any = [
@@ -21,8 +28,9 @@ export class UpdateBatchFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
   update_batch = this.fb.group({
     batchname: ['', Validators.required],
     location: ['', Validators.required],
@@ -76,23 +84,13 @@ export class UpdateBatchFormComponent implements OnInit {
         start_batch: this.update_batch.value.start,
       };
       // console.log(formData);
+
+      const id = this.route.snapshot.paramMap.get('sub_batch_id');
+
       this.http
-        .post('http://localhost:3000/api/batch', formData)
+        .post(`http://localhost:3000/api/update_batch/${id}`, formData)
         .subscribe((response) => {
-          // console.log(response);
-          const myObject: { [key: string]: any } = response;
-          const check = myObject['add'];
-          if (check == true) {
-            this._snackBar.open('Batch Created', 'OK', {
-              duration: this.durationInSeconds * 1000,
-            });
-            this.update_batch.reset();
-          } else if (check == false) {
-            this._snackBar.open('Batch already exists', 'Cancel', {
-              duration: this.durationInSeconds * 1000,
-            });
-            this.update_batch.reset();
-          }
+          console.log(response);
         });
     }
   }

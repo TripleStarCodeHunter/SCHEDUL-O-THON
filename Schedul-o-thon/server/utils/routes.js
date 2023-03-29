@@ -315,8 +315,11 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
     sqlQuery += ` WHERE f_batchid = '${f_batchid}'`;
   }
   client.query(sqlQuery, (err, result) => {
-    if (err){ throw err;}
-    else {res.json(result.rows);}
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
   });
 });
 
@@ -424,10 +427,12 @@ router.get(`${rootUrl}/sections`, (req, res) => {
     sqlQuery += ` WHERE sub_batch_id = '${sub_batch_id}'`;
   }
   client.query(sqlQuery, (err, result) => {
-    if (err){ throw err;}
-    else {res.json(result.rows);}
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
   });
-
 });
 
 /////////////////////////////////
@@ -451,6 +456,42 @@ router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
   }
 });
 
+/////////////////////////
+// update batches
+
+router.post(`${rootUrl}/update_batch/:batchId`, async (req, res) => {
+  const { batchId } = req.params;
+  const {
+    b_batchname,
+    location_batch,
+    batch_type,
+    num_sub_batches,
+    size_batch,
+    start_batch,
+  } = req.body;
+  try {
+    const result = await client.query(
+      "UPDATE batch_info SET batch_name=($1),location=($2),batch_type=($3), subbatch_count=($4), batch_size=($5),start_date=($6) where batch_id=($7)",
+      [
+        b_batchname,
+        location_batch,
+        batch_type,
+        num_sub_batches,
+        size_batch,
+        start_batch,
+        batchId,
+      ]
+    );
+    if (result.rowCount > 0) {
+      res.status(200).send(`Batch ${batchId} has been updated.`);
+    } else {
+      res.status(404).send(`Batch ${batchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 //////////////////
 //subbatch deletaion
 
@@ -465,6 +506,35 @@ router.delete(`${rootUrl}/:batchId/:subbatchId`, async (req, res, next) => {
       res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
     } else {
       res.status(404).send(`Subbatch ${subbatchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
+  const { subbatchId } = req.params;
+  const { subBatchName, batch, stream, size, location, start, end, adminName } =
+    req.body;
+  try {
+    const result = await client.query(
+      "UPDATE sub_batches SET sub_batch_name=($1),batch_name=($2),stream=($3), size=($4), location=($5),start_date=($6), end_date=($7), batch_admin=($8) where sub_batch_id=($9)",
+      [
+        subBatchName,
+        batch,
+        stream,
+        size,
+        location,
+        start,
+        end,
+        adminName,
+        subbatchId,
+      ]
+    );
+    if (result.rowCount > 0) {
+      res.status(200).send(`sub batch ${subbatchId} has been updated.`);
+    } else {
+      res.status(404).send(`sub batch ${subbatchId} not found.`);
     }
   } catch (err) {
     next(err);
