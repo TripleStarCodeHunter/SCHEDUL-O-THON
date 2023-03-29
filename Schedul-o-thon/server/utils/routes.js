@@ -235,6 +235,7 @@ router.get(`${rootUrl}/batch`, async (req, res) => {
     const result = await client.query("SELECT * FROM batch_info");
 
     // Return the batch information as a JSON response
+    console.log(result.rows)
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("error here");
@@ -243,6 +244,22 @@ router.get(`${rootUrl}/batch`, async (req, res) => {
   }
 });
 
+//batch dispaly form
+router.get(`${rootUrl}/batch-display-form/:batch_id`, async (req, res) => {
+  try {
+    // Fetch batch information from the database
+    const {batch_id}=req.params;
+    const result = await client.query("SELECT * FROM batch_info WHERE batch_id=$1",[batch_id]);
+
+    // Return the batch information as a JSON response
+    console.log(result.rows)
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("error here");
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 // route for sub_batch
 
 router.post(`${rootUrl}/sub_batch`, async (req, res) => {
@@ -496,7 +513,7 @@ router.post(`${rootUrl}/update_batch/:batchId`, async (req, res) => {
   }
 });
 
-//////////////////
+/////////////////
 //subbatch deletaion
 
 router.delete(`${rootUrl}/del-sub/:subbatchId`, async (req, res, next) => {

@@ -15,7 +15,7 @@
         <!-- Batch Name -->
         <div class="form-group row">
           <label class="col-sm-12 col-md-2 col-form-label" for="batchname"
-            >Batch Name <span class="mandatory"><sup>*</sup></span></label
+            >Batch Name<span class="mandatory"><sup>*</sup></span></label
           >
           <div class="col-sm-12 col-md-10">
             <input
@@ -24,13 +24,14 @@
               type="text"
               placeholder="Batch Name"
               formControlName="batchname"
+              [(ngModel)]="data[0].batch_name"
             />
             <!-- Validations -->
             <div
               class="form-invalid-warn-text alert alert-danger"
               *ngIf="batchname?.errors?.['required'] && (batchname?.touched || batchname?.dirty)"
             >
-              Batch Name should not be empty
+              Batch Name should not be empty 
             </div>
           </div>
         </div>
@@ -49,6 +50,7 @@
               type="text"
               placeholder="Enter number of sub batches"
               formControlName="noOfSubBatch"
+              [(ngModel)]="data[0].subbatch_count"
             />
             <!-- validations -->
             <div
@@ -74,6 +76,7 @@
               id="location"
               (change)="changeLocation($event)"
               formControlName="location"
+              [(ngModel)]="data[0].location"
             >
               <option selected="" value="">Choose Location</option>
               <option *ngFor="let location of Location" [ngValue]="location">
@@ -157,6 +160,7 @@
               placeholder="Enter Batch Size"
               [pattern]="numberPattern"
               formControlName="batchSize"
+              [(ngModel)]="data[0].batch_size"
             />
             <!-- validations -->
             <div
@@ -182,6 +186,7 @@
               placeholder="Select Date"
               type="date"
               formControlName="start"
+              [(ngModel)]="data[0].start_date"
             />
             <!-- validations -->
             <div
@@ -249,6 +254,7 @@
               class="custom-select col-12"
               (change)="changeBatchType($event)"
               formControlName="batchType"
+              [(ngModel)]="data[0].batch_type"
             >
               <option selected="" value="">Choose Type of Batch</option>
               <option

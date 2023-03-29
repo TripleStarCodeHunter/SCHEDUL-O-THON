@@ -8,14 +8,15 @@ import {
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'app-update-batch-form',
   templateUrl: './update-batch-form.component.html',
   styleUrls: ['./update-batch-form.component.scss'],
 })
 export class UpdateBatchFormComponent implements OnInit {
-  ngOnInit(): void {}
+  data!:any;
+  
+
   isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
   TypeOfBatch: any = [
@@ -29,8 +30,18 @@ export class UpdateBatchFormComponent implements OnInit {
     private fb: FormBuilder,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
+  ngOnInit() {
+    let batch_id = this.route.snapshot.paramMap.get('batch_id');
+    const url = `api/batch-display-form/${batch_id}`;
+
+    this.http.get(url).subscribe((response) => {
+      this.data = response;
+      console.log(this.data)
+
+    });
+  }
   update_batch = this.fb.group({
     batchname: ['', Validators.required],
     location: ['', Validators.required],
@@ -85,7 +96,7 @@ export class UpdateBatchFormComponent implements OnInit {
       };
       // console.log(formData);
 
-      const id = this.route.snapshot.paramMap.get('sub_batch_id');
+      const id = this.route.snapshot.paramMap.get('batch_id');
 
       this.http
         .post(`http://localhost:3000/api/update_batch/${id}`, formData)
