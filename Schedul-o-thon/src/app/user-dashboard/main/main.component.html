@@ -1,9 +1,11 @@
 <div class="top-section">
     <h2>Calendar-Events</h2>
+    <br>
     <div class="pd-20 card-box mb-30">
         <div class="calendar-wrap">
           <div id="calendar">
             <div class="container">
+              
               <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
                 <!-- <ng-template #eventContent let-arg>
                   <b>{{ arg.timeText }}</b>
@@ -109,5 +111,8 @@
       </div>
 </div>
 <div class="middle">
-  <h2>Take A Tour of Our Website</h2>
+  <h2>Upcoming Events</h2>
+</div>
+<div class="event-table">
+  <app-up-coming-events></app-up-coming-events>
 </div>

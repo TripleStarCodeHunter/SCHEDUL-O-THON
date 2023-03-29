@@ -187,6 +187,8 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
     batch_type,
   } = req.body;
 
+  const new_location_batch = location_batch.slice(3);
+
   console.log(req.body);
   const currentDate = new Date();
   const created_on = currentDate;
@@ -206,7 +208,7 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
           b_batchname,
           num_sub_batches,
           size_batch,
-          location_batch,
+          new_location_batch,
           start_batch,
           batch_type,
           created_on,
@@ -255,6 +257,8 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
     admin_batch,
   } = req.body;
   const new_batch_name = batch_name.slice(3);
+  const new_stream_name = stream_name.slice(3);
+  const new_location = location_batch.slice(3);
   console.log(new_batch_name);
   // console.log(req.body);
 
@@ -287,9 +291,9 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
           s_batchname,
           f_batchid,
           new_batch_name,
-          stream_name,
+          new_stream_name,
           size_batch,
-          location_batch,
+          new_location,
           start_batch,
           end_batch,
           admin_batch,
@@ -315,8 +319,11 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
     sqlQuery += ` WHERE f_batchid = '${f_batchid}'`;
   }
   client.query(sqlQuery, (err, result) => {
-    if (err){ throw err;}
-    else {res.json(result.rows);}
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
   });
 });
 
@@ -424,10 +431,12 @@ router.get(`${rootUrl}/sections`, (req, res) => {
     sqlQuery += ` WHERE sub_batch_id = '${sub_batch_id}'`;
   }
   client.query(sqlQuery, (err, result) => {
-    if (err){ throw err;}
-    else {res.json(result.rows);}
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
   });
-
 });
 
 /////////////////////////////////
@@ -443,6 +452,42 @@ router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
     );
     if (result.rowCount > 0) {
       res.status(200).send(`Batch ${batchId} has been deleted.`);
+    } else {
+      res.status(404).send(`Batch ${batchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+/////////////////////////
+// update batches
+
+router.post(`${rootUrl}/update_batch/:batchId`, async (req, res) => {
+  const { batchId } = req.params;
+  const {
+    b_batchname,
+    location_batch,
+    batch_type,
+    num_sub_batches,
+    size_batch,
+    start_batch,
+  } = req.body;
+  try {
+    const result = await client.query(
+      "UPDATE batch_info SET batch_name=($1),location=($2),batch_type=($3), subbatch_count=($4), batch_size=($5),start_date=($6) where batch_id=($7)",
+      [
+        b_batchname,
+        location_batch,
+        batch_type,
+        num_sub_batches,
+        size_batch,
+        start_batch,
+        batchId,
+      ]
+    );
+    if (result.rowCount > 0) {
+      res.status(200).send(`Batch ${batchId} has been updated.`);
     } else {
       res.status(404).send(`Batch ${batchId} not found.`);
     }
@@ -467,6 +512,35 @@ router.delete(`${rootUrl}/del-sub/:subbatchId`, async (req, res, next) => {
     console.log(err);
     next(err);
 
+  }
+});
+
+router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
+  const { subbatchId } = req.params;
+  const { subBatchName, batch, stream, size, location, start, end, adminName } =
+    req.body;
+  try {
+    const result = await client.query(
+      "UPDATE sub_batches SET sub_batch_name=($1),batch_name=($2),stream=($3), size=($4), location=($5),start_date=($6), end_date=($7), batch_admin=($8) where sub_batch_id=($9)",
+      [
+        subBatchName,
+        batch,
+        stream,
+        size,
+        location,
+        start,
+        end,
+        adminName,
+        subbatchId,
+      ]
+    );
+    if (result.rowCount > 0) {
+      res.status(200).send(`sub batch ${subbatchId} has been updated.`);
+    } else {
+      res.status(404).send(`sub batch ${subbatchId} not found.`);
+    }
+  } catch (err) {
+    next(err);
   }
 });
 

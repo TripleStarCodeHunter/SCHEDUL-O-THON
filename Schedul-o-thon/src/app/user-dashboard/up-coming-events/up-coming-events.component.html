@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Event name</th>
+        <th scope-="col">Date and Time</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of d">
+        <tr>
+            <th scope="row">{{item.sno}}</th>
+            <td>{{item.event}}</td>
+            <td>{{item.date}}</td>
+        </tr>
+    </tbody>
+</table>

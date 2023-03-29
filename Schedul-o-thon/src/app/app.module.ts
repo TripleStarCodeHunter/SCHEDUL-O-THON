@@ -50,6 +50,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule, MatChipInputEvent, MatChipInput } from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-coming-events.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     UpdateSubBatchFormComponent,
     UpdateSectionFormComponent,
     UpdateEventFormComponent,
+    UpComingEventsComponent,
     // MatAutocompleteSelectedEvent,
     // AdminNavbarComponent,
     // AdminSidebarComponent,

@@ -12,6 +12,9 @@ import { SubbatchCardComponent } from './subbatch-card/subbatch-card.component';
 import { BatchCardComponent } from './batch-card/batch-card.component';
 import { AttendanceComponent } from './user-dashboard/attendance/attendance.component';
 import { SectionCardsComponent } from './section-cards/section-cards.component';
+import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-coming-events.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { MainComponent } from './user-dashboard/main/main.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -19,15 +22,18 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'batch-form',component:BatchComponent},
     {path:'batch-cards',component:BatchCardComponent},
     {path:'landing',component:LandingPageComponent},
-    {path:'dashboard',component:DashboardComponent},
+    {path:'userdashboard',component:UserDashboardComponent,children:[
+      {path:'calendar',component:MainComponent},
+      {path:'events',component:UpComingEventsComponent},
+      {path:'attendance',component:AttendanceComponent},
+    ]},
     {path:'profile',component:ProfileComponent},
     {path:'section',component:SectionFormComponent},
     {path:'calendar',component:CalendarComponent},
     {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent},
-    {path:'attendance',component:AttendanceComponent},
     {path:'sections/:sub_batch_id',component:SectionCardsComponent},
     {path: 'batches/:batch_id',component:BatchCardComponent},
-    {path:'',component:LandingPageComponent}
+    {path:'',component:LandingPageComponent},
   ];
 
 @NgModule({
