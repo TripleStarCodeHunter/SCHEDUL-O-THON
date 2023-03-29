@@ -187,6 +187,8 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
     batch_type,
   } = req.body;
 
+  const new_location_batch = location_batch.slice(3);
+
   console.log(req.body);
   const currentDate = new Date();
   const created_on = currentDate;
@@ -206,7 +208,7 @@ router.post(`${rootUrl}/batch`, async (req, res) => {
           b_batchname,
           num_sub_batches,
           size_batch,
-          location_batch,
+          new_location_batch,
           start_batch,
           batch_type,
           created_on,
@@ -255,6 +257,8 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
     admin_batch,
   } = req.body;
   const new_batch_name = batch_name.slice(3);
+  const new_stream_name = stream_name.slice(3);
+  const new_location = location_batch.slice(3);
   console.log(new_batch_name);
   // console.log(req.body);
 
@@ -287,9 +291,9 @@ router.post(`${rootUrl}/sub_batch`, async (req, res) => {
           s_batchname,
           f_batchid,
           new_batch_name,
-          stream_name,
+          new_stream_name,
           size_batch,
-          location_batch,
+          new_location,
           start_batch,
           end_batch,
           admin_batch,
