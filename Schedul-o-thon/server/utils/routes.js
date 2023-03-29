@@ -454,20 +454,19 @@ router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
 //////////////////
 //subbatch deletaion
 
-router.delete(`${rootUrl}/:batchId/:subbatchId`, async (req, res, next) => {
+router.delete(`${rootUrl}/del-sub/:subbatchId`, async (req, res, next) => {
   const { subbatchId } = req.params;
   try {
     const result = await client.query(
       "DELETE FROM sub_batches WHERE sub_batch_id = $1",
       [subbatchId]
     );
-    if (result.rowCount > 0) {
-      res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
-    } else {
-      res.status(404).send(`Subbatch ${subbatchId} not found.`);
-    }
+    res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
+    
   } catch (err) {
+    console.log(err);
     next(err);
+
   }
 });
 
