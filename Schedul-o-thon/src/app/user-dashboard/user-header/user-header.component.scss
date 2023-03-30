@@ -6,9 +6,9 @@
     color:black;
     display:flex;
     justify-content: space-between;
-    box-shadow: 2px 2px 2px gray;
+    // box-shadow: 2px 2px 2px gray;
     .logo{
-        font-weight: bold;
+        font-weight:medium;
         font-size:20px;
         color: blue;
     }
@@ -21,7 +21,7 @@
             height:50px;
             border-radius: 50%;
             border: 2px solid turquoise;
-            background-color: rgb(121, 255, 68);
+            background-color: rgb(135, 241, 227);
             margin-left: 20px;
             display: flex;
             align-items: center;

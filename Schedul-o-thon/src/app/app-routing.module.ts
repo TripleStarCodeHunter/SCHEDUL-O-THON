@@ -17,6 +17,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { MainComponent } from './user-dashboard/main/main.component';
 import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.component';
 import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
+import { CommonModule } from '@angular/common';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
       {path:'events',component:UpComingEventsComponent},
       {path:'attendance',component:AttendanceComponent},
     ]},
+    {path:'attendance',component:AttendanceComponent},
     {path:'profile',component:ProfileComponent},
     {path:'section',component:SectionFormComponent},
     {path:'calendar',component:CalendarComponent},
@@ -41,7 +43,8 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
