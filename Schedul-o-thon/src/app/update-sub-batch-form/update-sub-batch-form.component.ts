@@ -40,11 +40,18 @@ export class UpdateSubBatchFormComponent implements OnInit {
     adminName: ['', Validators.required],
   });
 
-  data!: any[];
+  data!: any;
+  items!:any[];
 
   ngOnInit() {
+    let subbatch_id = this.route.snapshot.paramMap.get('sub_batch_id');
+    const url = `api/update-subbatch-form/${subbatch_id}`;
+
+    this.http.get(url).subscribe((response) => {
+      this.data = response;
+    });
     this.dataService.getData().subscribe((data) => {
-      this.data = data;
+      this.items = data;
     });
   }
   get subBatchName() {

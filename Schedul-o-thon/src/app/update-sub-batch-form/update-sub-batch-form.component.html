@@ -5,7 +5,7 @@
       <div class="clearfix">
         <div class="pull-left">
           <h4 class="text-blue h4">Update Sub-Batch</h4>
-          <p>Fill only the fields to be updated</p>
+          <p>Edit the fields that need to be updated</p>
           <br />
         </div>
       </div>
@@ -21,6 +21,7 @@
               type="text"
               placeholder="Sub Batch Name"
               formControlName="subBatchName"
+              [(ngModel)]="data[0].sub_batch_name"
             />
 
             <!-- Validatiors -->
@@ -45,9 +46,10 @@
               id="batch"
               (change)="changeBatchName($event)"
               formControlName="batch"
+              [(ngModel)]="data[0].batch_name"
             >
               <option selected="" value="">Choose Batch</option>
-              <option *ngFor="let item of data" [ngValue]="item.batch_name">
+              <option *ngFor="let item of items" [ngValue]="item.batch_name">
                 {{ item.batch_name }}
               </option>
             </select>
@@ -68,6 +70,7 @@
               class="custom-select col-12"
               formControlName="stream"
               (change)="changeStream($event)"
+              [(ngModel)]="data[0].stream"
             >
               <option selected="" value="">Choose...</option>
               <option *ngFor="let stream of Stream" [ngValue]="stream">
@@ -144,6 +147,7 @@
               type="text"
               [pattern]="numberPattern"
               formControlName="size"
+              [(ngModel)]="data[0].size"
             />
             <!-- Validators -->
             <div
@@ -169,6 +173,7 @@
               id="location"
               (change)="changeLocation($event)"
               formControlName="location"
+              [ngModel]="data[0].location"
             >
               <option selected="" value="">Choose Location</option>
               <option *ngFor="let location of Location" [ngValue]="location">
@@ -237,6 +242,8 @@
               placeholder="Select Date"
               type="date"
               formControlName="start"
+              [(ngModel)]="data[0].start_date"
+              [ngModel]="data[0].start_date |  date:'yyyy-MM-dd'"
             />
 
             <!-- Validators -->
@@ -258,6 +265,8 @@
               placeholder="Select Date"
               type="date"
               formControlName="end"
+              [(ngModel)]="data[0].end_date"
+              [ngModel]="data[0].end_date |  date:'yyyy-MM-dd'"
             />
             <!-- Validators -->
             <div
@@ -320,6 +329,7 @@
               type="text"
               placeholder="Batch Admin Name"
               formControlName="adminName"
+              [(ngModel)]="data[0].batch_admin"
             />
             <!-- Validators -->
             <div

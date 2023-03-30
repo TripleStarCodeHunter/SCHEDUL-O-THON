@@ -344,6 +344,23 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
   });
 });
 
+//Getting subbatch for update form
+router.get(`${rootUrl}/update-subbatch-form/:subbatch_id`, async (req, res) => {
+  try {
+    // Fetch batch information from the database
+    const {subbatch_id}=req.params;
+    const result = await client.query("SELECT * FROM sub_batches WHERE sub_batch_id=$1",[subbatch_id]);
+
+    // Return the batch information as a JSON response
+    console.log(result.rows)
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("error here");
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 router.get(`${rootUrl}/batches`, (req, res) => {
   if (req.session.user) {
     let sqlqeury =

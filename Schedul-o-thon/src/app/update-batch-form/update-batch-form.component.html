@@ -6,7 +6,7 @@
       <div class="clearfix">
         <div class="pull-left">
           <h4 class="text-blue h4">Update Batch</h4>
-          <p>Fill only the fields to be updated</p>
+          <p>Edit the fields that need to be updated</p>
           <br />
         </div>
       </div>
@@ -187,6 +187,7 @@
               type="date"
               formControlName="start"
               [(ngModel)]="data[0].start_date"
+              [ngModel]="data[0].start_date |  date:'yyyy-MM-dd'"
             />
             <!-- validations -->
             <div

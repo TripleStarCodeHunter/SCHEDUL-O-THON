@@ -16,6 +16,7 @@ import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-co
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { MainComponent } from './user-dashboard/main/main.component';
 import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.component';
+import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'sections/:sub_batch_id',component:SectionCardsComponent},
     {path: 'batches/:batch_id',component:BatchCardComponent},
     {path:'update_batch/:batch_id',component:UpdateBatchFormComponent},
+    {path:'update_sub_batch/:sub_batch_id',component:UpdateSubBatchFormComponent},
     {path:'',component:LandingPageComponent},
   ];
 
