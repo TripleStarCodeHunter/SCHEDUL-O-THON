@@ -75,7 +75,7 @@ export class LoginPageComponent implements OnInit {
           if (formData.userType === 'admin') {
             this.router.navigate(['/admindashboard']);
           } else {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/userdashboard']);
           }
         } else {
           this._snackBar.open(message, 'Cancel', {

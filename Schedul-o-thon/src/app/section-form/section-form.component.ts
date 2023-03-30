@@ -72,7 +72,7 @@ export class SectionFormComponent implements OnInit {
 
 
   changeSubbatch(e: any) {
-    this.subb?.setValue(e.target.value, {
+    this.Subbatch?.setValue(e.target.value, {
       onlySelf: true,
     });
   }

@@ -235,7 +235,7 @@ router.get(`${rootUrl}/batch`, async (req, res) => {
     const result = await client.query("SELECT * FROM batch_info");
 
     // Return the batch information as a JSON response
-    console.log(result.rows)
+    // console.log(result.rows)
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("error here");
@@ -476,7 +476,7 @@ router.get(`${rootUrl}/sections`, (req, res) => {
 /////////////////////////////////
 //delete batches
 
-router.delete(`${rootUrl}/:batchId`, async (req, res, next) => {
+router.delete(`${rootUrl}/del-batch/:batchId`, async (req, res, next) => {
   const { batchId } = req.params;
 
   try {

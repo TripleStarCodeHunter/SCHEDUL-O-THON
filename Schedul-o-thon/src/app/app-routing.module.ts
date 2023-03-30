@@ -17,6 +17,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { MainComponent } from './user-dashboard/main/main.component';
 import { UpdateBatchFormComponent } from './update-batch-form/update-batch-form.component';
 import { UpdateSubBatchFormComponent } from './update-sub-batch-form/update-sub-batch-form.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path: 'batches/:batch_id',component:BatchCardComponent},
     {path:'update_batch/:batch_id',component:UpdateBatchFormComponent},
     {path:'update_sub_batch/:sub_batch_id',component:UpdateSubBatchFormComponent},
+    {path:'admindashboard',component:AdminDashboardComponent},
     {path:'',component:LandingPageComponent},
   ];
 
