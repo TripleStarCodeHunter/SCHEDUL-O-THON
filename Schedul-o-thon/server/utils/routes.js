@@ -62,7 +62,7 @@ router.post(`${rootUrl}/register`, (req, res) => {
         if (err) console.log(err);
 
         let sqlquery =
-          "INSERT INTO register_info (name,user_name,email,phone_number,password,roll) VALUES ($1, $2,$3,$4,$5,$6)";
+          "INSERT INTO register_info (name,user_name,email,phone_number,password,role) VALUES ($1, $2,$3,$4,$5,$6)";
 
         if (password !== cpassword) {
           res.send({ message: "passwords do not match!!!" });
@@ -117,7 +117,7 @@ router.post(`${rootUrl}/login`, (req, res) => {
   let sqlquery =
     "SELECT * FROM register_info where user_name='" +
     username +
-    "' and roll='" +
+    "' and role='" +
     usertype +
     "'";
 
@@ -577,5 +577,20 @@ router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
     next(err);
   }
 });
+
+//get-student info
+// router.get(`${rootUrl}/get-student`, async (req, res, next) => {
+
+//   try {
+//     const result = await client.query(
+//       "SELECT email FROM register_info WHERE role='student'"
+//     );
+//     res.status(200).json(result.rows);
+
+    
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = router;
