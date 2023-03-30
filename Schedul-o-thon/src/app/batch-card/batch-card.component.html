@@ -53,7 +53,7 @@
               type="button"
               class="btn btn-outline-danger m-1"
               [routerLink]="['/batches', item.batch_id]"
-              (click)="deletebatch()"
+              (click)="deletebatch(item.batch_id)"
             >
               Delete
             </button>
