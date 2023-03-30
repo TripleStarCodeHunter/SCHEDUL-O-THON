@@ -27,6 +27,7 @@ app.use(`${rootUrl}/batches`, routes);
 app.use(`${rootUrl}/sub_batch`, routes);
 app.use(`${rootUrl}/section`, routes);
 app.use(`${rootUrl}/sections`, routes);
+app.use(`${rootUrl}/event`, routes);
 app.use(`${rootUrl}/:batchId`, routes);
 app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
 

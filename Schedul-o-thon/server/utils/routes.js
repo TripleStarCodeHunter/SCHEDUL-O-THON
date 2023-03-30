@@ -7,6 +7,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const client = require("./conn");
 const cookieParser = require("cookie-parser");
+const { query } = require("express");
 const rootUrl = "/api";
 
 const saltrounds = 10;
@@ -455,6 +456,116 @@ router.post(`${rootUrl}/section`, async (req, res) => {
     }
   });
 });
+
+////////////////////////////
+
+////////////////////////////////////////////////////
+
+
+router.post(`${rootUrl}/event`, async (req, res) => {
+  const {
+    eventname,
+    start,
+    end,
+    instructor,
+    additionalInfo,
+    scheduleName,
+    batch,
+    sub_batch,
+    section,
+    description,
+    
+  } = req.body;
+
+  console.log(req.body);
+
+  const new_sub_batch_name = sub_batch;
+  const new_batch = batch;
+  const new_section = section;
+
+  console.log(new_sub_batch_name);
+
+ 
+  let sub_batch_id;
+  let batch_id;
+  let id;
+  let get_subbatchid =
+    "SELECT sub_batch_id FROM sub_batches WHERE sub_batch_name = '" +
+    new_sub_batch_name +
+    "'";
+    let get_batchid =
+    "SELECT batch_id FROM batch-info WHERE batch_name = '" +
+    new_batch +
+    "'";
+
+     let get_sectionid =
+    "SELECT id FROM sections_info WHERE section_name = '" +
+    new_section +
+    "'";
+
+ 
+  client.query(get_subbatchid, (err, result) => {
+    if (err) {
+      res.json({ message: err });
+    } else {
+      sub_batch_id = result.rows[0].sub_batch_id;
+    }
+  });
+
+   client.query(get_batchid, (err, result) => {
+    if (err) {
+      res.json({ message: err });
+    } else {
+      batch_id = result.rows[0].batch_id;
+    }
+  });
+
+  client.query(get_sectionid, (err, result) => {
+    if (err) {
+      res.json({ message: err });
+    } else {
+      id = result.rows[0].id;
+    }
+  });
+
+  client.query(query, (err, result) => {
+    // console.log(result)
+    if (err) {
+      res.json({ message: err });
+    }
+    
+    else {
+      const query = {
+        text: "INSERT INTO events(event_name,start_date,end_date,instructor,additional_info, schedule_name,batch,sub_batch,section,description,batch_id,sub_batch_id,section_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *",
+        values: [
+    eventname,
+    start,
+    end,
+    instructor,
+    additionalInfo,
+    scheduleName,
+    batch,
+    sub_batch,
+    section,
+    description,
+    batch_id,
+    sub_batch_id,
+    id
+
+        ],
+      };
+
+      try {
+        const result = client.query(query);
+        res.json({ add: true });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    }
+  });
+});
+
 
 ////////////////////////////
 
