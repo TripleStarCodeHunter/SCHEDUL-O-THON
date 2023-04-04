@@ -704,4 +704,19 @@ router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
 //   }
 // });
 
+//get-section-details -for update
+router.get(`${rootUrl}/update-section-form/:section_id`, (req, res) => {
+  const id = req.query.section_id;
+  let sqlQuery = "SELECT * FROM sections_info";
+  if (id) {
+    sqlQuery += ` WHERE id = '${id}'`;
+  }
+  client.query(sqlQuery, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
 module.exports = router;

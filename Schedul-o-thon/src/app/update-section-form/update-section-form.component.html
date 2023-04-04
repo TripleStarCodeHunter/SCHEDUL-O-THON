@@ -21,6 +21,7 @@
               type="text"
               placeholder="Section Name"
               formControlName="sectionName"
+              [(ngModel)]="data[0].section_name"
             />
             <!-- Validations -->
             <div
@@ -46,6 +47,7 @@
               type="text"
               placeholder="Section Strength"
               formControlName="strength"
+              [(ngModel)]="data[0].strength"
             />
             <!-- validations -->
             <div
@@ -71,6 +73,7 @@
               id="track"
               (change)="changeTrack($event)"
               formControlName="track"
+              [(ngModel)]="data[0].track"
             >
               <option selected="" value="">Choose Track</option>
               <option *ngFor="let track of Track" [ngValue]="track">
@@ -99,6 +102,7 @@
               id="section_owner"
               (change)="changeSectionOwner($event)"
               formControlName="section_owner"
+              [(ngModel)]="data[0].section_owner"
             >
               <option selected="" value="">Choose Section Owner</option>
               <option
@@ -128,6 +132,7 @@
               type="text"
               placeholder="Classroom Name"
               formControlName="classroom"
+              [(ngModel)]="data[0].classroom"
             />
             <!-- Validations -->
             <div
@@ -154,6 +159,7 @@
               type="email"
               placeholder="Section DL"
               formControlName="section_dl"
+              [(ngModel)]="data[0].section_dl"
             />
             <!-- Validations -->
             <div
@@ -193,6 +199,7 @@
               id="subb"
               (change)="changeSubbatch($event)"
               formControlName="subb"
+              [(ngModel)]="data[0].sub_batch_name"
             >
               <option selected="" value="">Choose Subbatch</option>
               <option *ngFor="let sub of data" [ngValue]="sub.sub_batch_name">
@@ -214,6 +221,7 @@
               type="text"
               placeholder="Trainee List"
               formControlName="trainee_list"
+              [(ngModel)]="data[0].trainee_list"
             />
             <!-- Validations -->
             <div

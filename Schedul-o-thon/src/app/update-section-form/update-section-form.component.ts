@@ -8,7 +8,7 @@ import {
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { GetSectionService } from '../shared/services/get-section.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-update-section-form',
   templateUrl: './update-section-form.component.html',
@@ -31,6 +31,7 @@ export class UpdateSectionFormComponent implements OnInit {
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient,
     private GetSectionService: GetSectionService,
+    private route:ActivatedRoute
   ) { }
   update_section = this.fb.group({
     sectionName: ['', Validators.required],
@@ -43,12 +44,17 @@ export class UpdateSectionFormComponent implements OnInit {
     trainee_list: ['', Validators.required],
     subb: ['', Validators.required]
   });
-  data!: any[];
+  data!: any;
   ngOnInit() {
-    this.GetSectionService.getData().subscribe((data) => {
-      this.data = data;
-      console.log(this.data)
+    let section_id = this.route.snapshot.paramMap.get('section_id');
+    const url = `api/update-section-form/${section_id}`;
+    this.http.get(url).subscribe((response) => {
+      this.data = response;
     });
+    // this.GetSectionService.getData().subscribe((data) => {
+    //   this.data = data;
+    //   console.log(this.data)
+    // });
   }
   changeSubbatch(e: any) {
     this.Subbatch?.setValue(e.target.value, {

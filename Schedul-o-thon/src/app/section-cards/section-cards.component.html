@@ -14,7 +14,8 @@
                     <p class="text-body">Classroom name : {{item.classroom|titlecase}}</p>
                     <p class="text-body">Schedule:{{item.schedule}}</p>
                     <div class="d-md-flex justify-content-md-center">
-                      <button type="button" class="btn btn-outline-primary m-1">Edit</button>
+                      <button type="button" class="btn btn-outline-primary m-1"
+                      [routerLink]="['/update_section', item.id]">Edit</button>
                       <button type="button" class="btn btn-outline-secondary m-1">View More</button>
                       <button type="button" class="btn btn-outline-danger m-1">Delete</button>
                     </div>

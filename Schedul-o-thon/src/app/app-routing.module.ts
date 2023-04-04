@@ -21,6 +21,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { SubBatchComponent } from './sub-batch/sub-batch.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import { CommonModule } from '@angular/common';
+import { UpdateSectionFormComponent } from './update-section-form/update-section-form.component';
 const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path:'register',component:RegisterPageComponent},
     {path:'login',component:LoginPageComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [{ path:'landing',component:LandingPageComponent},
     {path: 'batches/:batch_id',component:BatchCardComponent},
     {path:'update_batch/:batch_id',component:UpdateBatchFormComponent},
     {path:'update_sub_batch/:sub_batch_id',component:UpdateSubBatchFormComponent},
+    {path:'update_section/:section_id',component:UpdateSectionFormComponent},
     {path:'event-form',component:EventFormComponent},
     {path:'admindashboard',component:AdminDashboardComponent},
     {path:'',component:LandingPageComponent},
