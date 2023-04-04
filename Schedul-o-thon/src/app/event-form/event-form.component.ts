@@ -30,7 +30,8 @@ export class EventFormComponent implements OnInit {
     private dataService: DataService,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient
-  ) { }
+  ) 
+  { }
   eventsform = this.fb.group({
     eventname: ['', Validators.required],
     start: ['', Validators.required],
@@ -127,33 +128,38 @@ export class EventFormComponent implements OnInit {
       // alert("Form is Invalid")
       this._snackBar.open('Form Invalid', 'OK');
     } else {
-      // const formData = {
-        // b_batchname: this.eventsform.value.batchname,
-        // location_batch: this.eventsform.value.location,
-        // batch_type: this.eventsform.value.batchType,
-        // num_sub_batches: this.eventsform.value.noOfSubBatch,
-        // size_batch: this.eventsform.value.batchSize,
-        // start_batch: this.eventsform.value.start,
-      // };
-      // console.log(formData);
-      // this.http
-        // .post('http://localhost:3000/api/batch', formData)
-        // .subscribe((response) => {
-          // console.log(response);
-        //   const myObject: { [key: string]: any } = response;
-        //   const check = myObject['add'];
-        //   if (check == true) {
-        //     this._snackBar.open('Batch Created', 'OK', {
-        //       duration: this.durationInSeconds * 1000,
-        //     });
-        //     this.eventsform.reset();
-        //   } else if (check == false) {
-        //     this._snackBar.open('Batch already exists', 'Cancel', {
-        //       duration: this.durationInSeconds * 1000,
-        //     });
-        //     this.eventsform.reset();
-        //   }
-        // });
+      const formData = {
+        eventname: this.eventsform.value.eventname,
+        start: this.eventsform.value.start,
+        end: this.eventsform.value.end,
+        instructor: this.eventsform.value.instructor,
+        additionalInfo: this.eventsform.value.additionalInfo,
+        scheduleName: this.eventsform.value.scheduleName,
+        batch: this.eventsform.value.batch,
+        sub_batch: this.eventsform.value.sub_batch,
+        section: this.eventsform.value.section,
+        description: this.eventsform.value.description,
+      };
+      console.log(formData);
+      this.http
+        .post('http://localhost:3000/api/event', formData)
+        .subscribe((response) => {
+          console.log(response);
+          const myObject: { [key: string]: any } = response;
+          const check = myObject['add'];
+          if (check == true) {
+            this._snackBar.open('Event Created', 'OK', {
+              duration: this.durationInSeconds * 1000,
+            });
+            this.eventsform.reset();
+        }
+         else if (check == false) {
+            this._snackBar.open('Event already exists', 'Cancel', {
+              duration: this.durationInSeconds * 1000,
+            });
+            this.eventsform.reset();
+          }
+        });
     }
   }
 
