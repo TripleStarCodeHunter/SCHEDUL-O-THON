@@ -6,7 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { GetSectionService } from '../shared/services/get-section.service';
+import { GetSectionNameService } from '../shared/services/get-section-name.service';
 import { HttpClient } from '@angular/common/http';
+import { combineLatest } from 'rxjs';
+import { DataService } from '../shared/services/data-service.service';
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
@@ -14,13 +18,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventFormComponent implements OnInit {
 
-  ngOnInit(): void { }
+  // ngOnInit(): void { }
   isSubmitted = false;
   BatchName: any = ['Batch 1', 'Batch 2', 'Batch 3', 'Batch 4'];
   SubBatchName: any = ['Sub Batch 1', 'Sub Batch 2', 'Sub Batch 3', 'Sub Batch 4'];
   SectionName: any = ['Section 1', 'Section 2', 'Section 3', 'Section 4'];
   constructor(
     private fb: FormBuilder,
+    private GetSectionService: GetSectionService,
+    private secdataService: GetSectionNameService,
+    private dataService: DataService,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient
   ) { }
@@ -36,7 +43,35 @@ export class EventFormComponent implements OnInit {
     section: ['', Validators.required],
     description: ['', Validators.required],
   });
-  data!: any[];
+   data!: any[];
+ data1!: any[];
+ data2!: any[];
+// data: { table1Data: any; table2Data: any };
+  
+  
+
+  ngOnInit() {
+    // this.GetSectionService.getData().subscribe((data) => {
+    //   this.data = data;
+    //   console.log(this.data)
+      
+    // });
+    // this.dataService.getData().subscribe((data1) => {
+    //   this.data = data1;
+    // });
+
+    combineLatest([
+      this.GetSectionService.getData(),
+      this.dataService.getData(),
+      this.secdataService.getData()
+    ]).subscribe(([data, data1,data2]) => {
+      this.data = data;
+      this.data1 = data1;
+      this.data2 = data2;
+    });
+  }
+  
+
 
   get eventname() {
     return this.eventsform.get('eventname');

@@ -159,8 +159,8 @@
               formControlName="batch"
             >
               <option selected="" value="">Choose Batch</option>
-              <option *ngFor="let item of BatchName" [ngValue]="item">
-                {{ item }}
+              <option *ngFor="let item of data1" [ngValue]="item.batch_name">
+                {{ item.batch_name }}
               </option>
             </select>
             <!-- validators -->
@@ -183,8 +183,8 @@
               formControlName="sub_batch"
             >
               <option selected="" value="">Choose Sub Batch</option>
-              <option *ngFor="let item of SubBatchName" [ngValue]="item">
-                {{ item }}
+              <option  *ngFor="let sub of data" [ngValue]="sub.sub_batch_name">
+                {{ sub.sub_batch_name }}
               </option>
             </select>
             <!-- validators -->
@@ -211,8 +211,8 @@
               formControlName="section"
             >
               <option selected="" value="">Choose Section</option>
-              <option *ngFor="let item of SectionName" [ngValue]="item">
-                {{ item }}
+              <option  *ngFor="let item of data2" [ngValue]="item.section_name">
+                {{ item.section_name}}
               </option>
             </select>
             <!-- validators -->
