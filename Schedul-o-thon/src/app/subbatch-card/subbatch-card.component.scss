@@ -20,7 +20,9 @@
     transition: 0.5s ease-out;
     overflow: visible;
    }
-   
+   .text-title{
+    max-width: fit-content;
+   }
    .card-details {
     color: black;
     height: 100%;
