@@ -162,7 +162,7 @@ router.post(`${rootUrl}/login`, (req, res) => {
 });
 
 router.get("/api/login", (req, res) => {
-  res.send(req.session.user.username);
+  res.send({ username: req.session.user.username });
 });
 
 router.get("/api/logout", (req, res) => {
@@ -249,11 +249,14 @@ router.get(`${rootUrl}/batch`, async (req, res) => {
 router.get(`${rootUrl}/batch-display-form/:batch_id`, async (req, res) => {
   try {
     // Fetch batch information from the database
-    const {batch_id}=req.params;
-    const result = await client.query("SELECT * FROM batch_info WHERE batch_id=$1",[batch_id]);
+    const { batch_id } = req.params;
+    const result = await client.query(
+      "SELECT * FROM batch_info WHERE batch_id=$1",
+      [batch_id]
+    );
 
     // Return the batch information as a JSON response
-    console.log(result.rows)
+    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("error here");
@@ -349,11 +352,14 @@ router.get(`${rootUrl}/sub_batch`, (req, res) => {
 router.get(`${rootUrl}/update-subbatch-form/:subbatch_id`, async (req, res) => {
   try {
     // Fetch batch information from the database
-    const {subbatch_id}=req.params;
-    const result = await client.query("SELECT * FROM sub_batches WHERE sub_batch_id=$1",[subbatch_id]);
+    const { subbatch_id } = req.params;
+    const result = await client.query(
+      "SELECT * FROM sub_batches WHERE sub_batch_id=$1",
+      [subbatch_id]
+    );
 
     // Return the batch information as a JSON response
-    console.log(result.rows)
+    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (error) {
     console.log("error here");
@@ -476,9 +482,6 @@ router.get(`${rootUrl}/sections`, async (req, res) => {
 
 ////////////////////////////////////////////////////
 
-
-
-
 router.post(`${rootUrl}/event`, async (req, res) => {
   const {
     eventname,
@@ -501,8 +504,7 @@ router.post(`${rootUrl}/event`, async (req, res) => {
     const sub_batch_result = await client.query(sub_batch_query, [sub_batch]);
     const sub_batch_id = sub_batch_result.rows[0].sub_batch_id;
 
-    const batch_query =
-      "SELECT batch_id FROM batch_info WHERE batch_name = $1";
+    const batch_query = "SELECT batch_id FROM batch_info WHERE batch_name = $1";
     const batch_result = await client.query(batch_query, [batch]);
     const batch_id = batch_result.rows[0].batch_id;
 
@@ -536,7 +538,6 @@ router.post(`${rootUrl}/event`, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 ////////////////////////////
 
@@ -623,11 +624,9 @@ router.delete(`${rootUrl}/del-sub/:subbatchId`, async (req, res, next) => {
       [subbatchId]
     );
     res.status(200).send(`Subbatch ${subbatchId} has been deleted.`);
-    
   } catch (err) {
     console.log(err);
     next(err);
-
   }
 });
 
@@ -669,7 +668,6 @@ router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
 //     );
 //     res.status(200).json(result.rows);
 
-    
 //   } catch (err) {
 //     next(err);
 //   }
