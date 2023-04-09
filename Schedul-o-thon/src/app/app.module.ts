@@ -51,6 +51,7 @@ import {MatChipsModule, MatChipInputEvent, MatChipInput } from '@angular/materia
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-coming-events.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { UpComingEventsComponent } from './user-dashboard/up-coming-events/up-co
     UpdateSectionFormComponent,
     UpdateEventFormComponent,
     UpComingEventsComponent,
+    EventCardComponent,
     // MatAutocompleteSelectedEvent,
     // AdminNavbarComponent,
     // AdminSidebarComponent,

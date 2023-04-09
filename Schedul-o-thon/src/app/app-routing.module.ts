@@ -22,35 +22,44 @@ import { SubBatchComponent } from './sub-batch/sub-batch.component';
 import { EventFormComponent } from './event-form/event-form.component';
 import { CommonModule } from '@angular/common';
 import { UpdateSectionFormComponent } from './update-section-form/update-section-form.component';
-const routes: Routes = [{ path:'landing',component:LandingPageComponent},
-    {path:'register',component:RegisterPageComponent},
-    {path:'login',component:LoginPageComponent},
-    {path:'register',component:RegisterPageComponent},
-    {path:'batch-form',component:BatchComponent},
-    {path:'batch-cards',component:BatchCardComponent},
-    {path:'landing',component:LandingPageComponent},
-    {path:'userdashboard',component:UserDashboardComponent,children:[
-      {path:'calendar',component:MainComponent},
-      {path:'events',component:UpComingEventsComponent},
-      {path:'attendance',component:AttendanceComponent},
-    ]},
-    {path:'profile',component:ProfileComponent},
-    {path:'section',component:SectionFormComponent},
-    {path:'calendar',component:CalendarComponent},
-    {path: 'subbatches/:fbatch_id',component:SubbatchCardComponent},
-    {path:'sections/:sub_batch_id',component:SectionCardsComponent},
-    {path: 'batches/:batch_id',component:BatchCardComponent},
-    {path:'update_batch/:batch_id',component:UpdateBatchFormComponent},
-    {path:'update_sub_batch/:sub_batch_id',component:UpdateSubBatchFormComponent},
-    {path:'update_section/:section_id',component:UpdateSectionFormComponent},
-    {path:'event-form',component:EventFormComponent},
-    {path:'admindashboard',component:AdminDashboardComponent},
-    {path:'',component:LandingPageComponent},
-  ];
+import { EventCardComponent } from './event-card/event-card.component';
+const routes: Routes = [
+  { path: 'landing', component: LandingPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  { path: 'batch-form', component: BatchComponent },
+  { path: 'batch-cards', component: BatchCardComponent },
+  { path: 'landing', component: LandingPageComponent },
+  {
+    path: 'userdashboard',
+    component: UserDashboardComponent,
+    children: [
+      { path: 'calendar', component: MainComponent },
+      { path: 'events', component: UpComingEventsComponent },
+      { path: 'attendance', component: AttendanceComponent },
+    ],
+  },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'section', component: SectionFormComponent },
+  { path: 'calendar', component: CalendarComponent },
+  { path: 'subbatches/:fbatch_id', component: SubbatchCardComponent },
+  { path: 'sections/:sub_batch_id', component: SectionCardsComponent },
+  { path: 'batches/:batch_id', component: BatchCardComponent },
+  { path: 'update_batch/:batch_id', component: UpdateBatchFormComponent },
+  {
+    path: 'update_sub_batch/:sub_batch_id',
+    component: UpdateSubBatchFormComponent,
+  },
+  { path: 'update_section/:section_id', component: UpdateSectionFormComponent },
+  { path: 'event-form', component: EventFormComponent },
+  { path: 'admindashboard', component: AdminDashboardComponent },
+  { path: '', component: LandingPageComponent },
+  { path: 'events/:id', component: EventCardComponent },
+];
 
 @NgModule({
-  imports: [CommonModule,
-    RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
