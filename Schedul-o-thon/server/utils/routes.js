@@ -482,6 +482,21 @@ router.get(`${rootUrl}/sections`, async (req, res) => {
 
 ////////////////////////////////////////////////////
 
+router.get(`${rootUrl}/event`, (req, res) => {
+  const id = req.query.id;
+  let sqlQuery = "SELECT * FROM events";
+  if (id) {
+    sqlQuery += ` WHERE section_id = '${id}'`;
+  }
+  client.query(sqlQuery, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
 router.post(`${rootUrl}/event`, async (req, res) => {
   const {
     eventname,
