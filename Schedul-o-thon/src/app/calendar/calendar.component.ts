@@ -4,12 +4,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
-import {Router} from '@angular/router';
-
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-//import { FullCalendarModule } from '@fullcalendar/angular';
-
 
 @Component({
   selector: 'app-calendar',
@@ -17,13 +13,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
-  onsubmit()
-  {
-    this.router.navigateByUrl('/profile');
-  }
   calendarVisible = true;
-  title='fullCal';
-  Events: any[]=[];
+  title = 'fullCal';
+  Events: any[] = [];
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -37,7 +29,7 @@ export class CalendarComponent {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    events: [],
     weekends: true,
     editable: true,
     selectable: true,
@@ -45,20 +37,33 @@ export class CalendarComponent {
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
+    eventsSet: this.handleEvents.bind(this),
   };
   currentEvents: EventApi[] = [];
 
-  constructor(private httpClient: HttpClient,private changeDetector: ChangeDetectorRef,private router:Router) {
+  constructor(
+    private httpClient: HttpClient,
+    private changeDetector: ChangeDetectorRef,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {
+    this.fetchEvents();
   }
-  // ngOnInit(){
-  //   this.httpClient.get().subscribe();
-  // }
+
+  fetchEvents() {
+    this.httpClient.get<any[]>('/api/events').subscribe((events) => {
+      this.Events = events;
+      this.calendarOptions.events = this.Events.map((event) => ({
+        title: event.event_name,
+        start: event.start_date,
+        end: event.end_date,
+        allDay: true,
+        description: event.description
+      }));
+    });
+  }
+
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }
@@ -76,7 +81,6 @@ export class CalendarComponent {
 
     if (title) {
       calendarApi.addEvent({
-        id: createEventId(),
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
@@ -84,12 +88,17 @@ export class CalendarComponent {
       });
     }
   }
-
+  currentEvent:any
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-    }
+    this.currentEvent = {
+      id: clickInfo.event.id,
+      title: clickInfo.event.title,
+      start: clickInfo.event.start,
+      end: clickInfo.event.end,
+      description: clickInfo.event.extendedProps['description'] || 'abc'
+    };
   }
+  
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;

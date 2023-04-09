@@ -688,4 +688,16 @@ router.get(`${rootUrl}/update-section-form/:section_id`, (req, res) => {
     }
   });
 });
+
+//fetching events
+router.get(`${rootUrl}/events`, async (req, res) => {
+  try {
+    const { rows } = await client.query('SELECT * FROM events');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;

@@ -54,6 +54,23 @@ calendarVisible = true;
 
   constructor(private httpClient: HttpClient,private changeDetector: ChangeDetectorRef,private router:Router) {
   }
+  ngOnInit() {
+    this.fetchEvents();
+  }
+
+  fetchEvents() {
+    this.httpClient.get<any[]>('/api/events').subscribe((events) => {
+      this.Events = events;
+      this.calendarOptions.events = this.Events.map((event) => ({
+        title: event.event_name,
+        start: event.start_date,
+        end: event.end_date,
+        allDay: true,
+        description: event.description
+      }));
+    });
+  }
+
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }
@@ -71,7 +88,6 @@ calendarVisible = true;
 
     if (title) {
       calendarApi.addEvent({
-        id: createEventId(),
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
@@ -80,11 +96,17 @@ calendarVisible = true;
     }
   }
 
+  currentEvent:any
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-    }
+    this.currentEvent = {
+      id: clickInfo.event.id,
+      title: clickInfo.event.title,
+      start: clickInfo.event.start,
+      end: clickInfo.event.end,
+      description: clickInfo.event.extendedProps['description'] || 'abc'
+    };
   }
+  
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
