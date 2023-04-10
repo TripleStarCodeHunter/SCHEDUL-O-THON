@@ -12,7 +12,9 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
+import { GetRegisterInfoService } from '../shared/services/get-register-info.service';
 import {map, startWith} from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
 @Component({
   selector: 'app-section-form',
   templateUrl: './section-form.component.html',
@@ -44,6 +46,7 @@ export class SectionFormComponent implements OnInit {
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
     private http: HttpClient,
     private GetSectionService: GetSectionService,
+    private GetRegisterInfoService : GetRegisterInfoService
   ) { this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
     startWith(null),
     map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
@@ -62,12 +65,24 @@ export class SectionFormComponent implements OnInit {
 
 
   data!: any[];
+  data1!: any[];
 
   ngOnInit() {
-    this.GetSectionService.getData().subscribe((data) => {
+
+    combineLatest([
+      this.GetSectionService.getData(),
+      this.GetRegisterInfoService.getData(),
+      
+    ]).subscribe(([data, data1]) => {
       this.data = data;
-      console.log(this.data)
+      this.data1 = data1;
+      console.log(data1)
+     
     });
+    // this.GetSectionService.getData().subscribe((data) => {
+    //   this.data = data;
+    //   console.log(this.data)
+    // });
   }
 
 

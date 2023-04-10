@@ -173,6 +173,24 @@ router.get("/api/logout", (req, res) => {
   }
 });
 
+////////////////////////////////////////////
+router.get(`${rootUrl}/register_info`, async (req, res) => {
+  try {
+    // Fetch batch information from the database
+    const result = await client.query("SELECT * FROM register_info");
+
+    // Return the batch information as a JSON response
+    // console.log(result.rows)
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("error here");
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //batch creation

@@ -253,10 +253,10 @@
                 (optionSelected)="selected($event)"
               >
                 <mat-option
-                  *ngFor="let fruit of filteredFruits | async"
-                  [value]="fruit"
+                  *ngFor="let fruit of data1 "
+                  [value]="fruit.email"
                 >
-                  {{ fruit }}
+                  {{ fruit.email }}
                 </mat-option>
               </mat-autocomplete>
             <!-- </mat-form-field> -->

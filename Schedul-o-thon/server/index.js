@@ -30,6 +30,7 @@ app.use(`${rootUrl}/sections`, routes);
 app.use(`${rootUrl}/event`, routes);
 app.use(`${rootUrl}/:batchId`, routes);
 app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
+app.use(`${rootUrl}/register_info`, routes);
 
 
 app.listen(3000, () => {
