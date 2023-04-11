@@ -6,11 +6,11 @@
         <th scope-="col">Date and Time</th>
         </tr>
     </thead>
-    <tbody *ngFor="let item of d">
+    <tbody *ngFor="let item of data">
         <tr>
-            <th scope="row">{{item.sno}}</th>
-            <td>{{item.event}}</td>
-            <td>{{item.date}}</td>
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.event_name}}</td>
+            <td>{{item.start_date}}</td>
         </tr>
     </tbody>
 </table>

@@ -31,6 +31,7 @@ app.use(`${rootUrl}/event`, routes);
 app.use(`${rootUrl}/:batchId`, routes);
 app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
 app.use(`${rootUrl}/register_info`, routes);
+app.use(`${rootUrl}/upcoming-events`, routes);
 
 
 app.listen(3000, () => {

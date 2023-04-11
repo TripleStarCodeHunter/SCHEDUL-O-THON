@@ -733,4 +733,28 @@ router.get(`${rootUrl}/events`, async (req, res) => {
   }
 });
 
+
+///////////////////////////////////////////////////////////////////////////////////
+
+router.get(`${rootUrl}/upcoming-events`, (req, res) => {
+  const query = `
+    SELECT *
+    FROM events
+    WHERE start_date >= NOW()
+    ORDER BY start_date ASC
+    LIMIT 3
+  `;
+  client.query(query, (error, result) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
+
+
+
 module.exports = router;
