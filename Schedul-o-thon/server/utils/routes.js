@@ -706,6 +706,22 @@ router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
 //   }
 // });
 
+//delete section
+router.delete(`${rootUrl}/del-section/:sectionId`, async (req, res, next) => {
+  const { sectionId } = req.params;
+  try {
+    const result = await client.query(
+      "DELETE FROM sections_info WHERE id = $1",
+      [sectionId]
+    );
+    console.log("HLELO");
+    res.status(200).send({message:`Section ${sectionId} has been deleted.`});
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 //get-section-details -for update
 router.get(`${rootUrl}/update-section-form/:section_id`, (req, res) => {
   const id = req.query.section_id;
