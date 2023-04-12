@@ -24,4 +24,13 @@ export class EventCardComponent {
     });
     console.log(this.data);
   }
+
+  onDelete(id: number) {
+    // Make a DELETE request to your backend API to delete the event
+    this.http
+      .delete(`http://localhost:3000/api/del-event/${id}`)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 }
