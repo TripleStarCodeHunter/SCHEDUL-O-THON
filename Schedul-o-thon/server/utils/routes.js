@@ -173,6 +173,22 @@ router.get("/api/logout", (req, res) => {
   }
 });
 
+////////////////////////////////////////////
+router.get(`${rootUrl}/register_info`, async (req, res) => {
+  try {
+    // Fetch batch information from the database
+    const result = await client.query("SELECT * FROM register_info");
+
+    // Return the batch information as a JSON response
+    // console.log(result.rows)
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.log("error here");
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //batch creation
@@ -554,17 +570,6 @@ router.post(`${rootUrl}/event`, async (req, res) => {
   }
 });
 
-router.delete(`${rootUrl}/del-event/:id`, async (req, res, next) => {
-  const { id } = req.params;
-  try {
-    const result = await client.query("DELETE FROM events WHERE id = $1", [id]);
-    res.status(200).send(`Event ${id} has been deleted.`);
-  } catch (err) {
-    console.log(err);
-    next(err);
-  }
-});
-
 ////////////////////////////
 
 router.get(`${rootUrl}/sections`, (req, res) => {
@@ -685,6 +690,36 @@ router.post(`${rootUrl}/:subbatchId`, async (req, res) => {
   }
 });
 
+//get-student info
+// router.get(`${rootUrl}/get-student`, async (req, res, next) => {
+
+//   try {
+//     const result = await client.query(
+//       "SELECT email FROM register_info WHERE role='student'"
+//     );
+//     res.status(200).json(result.rows);
+
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+//delete section
+router.delete(`${rootUrl}/del-section/:sectionId`, async (req, res, next) => {
+  const { sectionId } = req.params;
+  try {
+    const result = await client.query(
+      "DELETE FROM sections_info WHERE id = $1",
+      [sectionId]
+    );
+    console.log("HLELO");
+    res.status(200).send({ message: `Section ${sectionId} has been deleted.` });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
 //get-section-details -for update
 router.get(`${rootUrl}/update-section-form/:section_id`, (req, res) => {
   const id = req.query.section_id;
@@ -700,4 +735,49 @@ router.get(`${rootUrl}/update-section-form/:section_id`, (req, res) => {
     }
   });
 });
+
+//fetching events
+router.get(`${rootUrl}/events`, async (req, res) => {
+  try {
+    const { rows } = await client.query("SELECT * FROM events");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//delete event
+
+router.delete(`${rootUrl}/del-event/:id`, async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const result = await client.query("DELETE FROM events WHERE id = $1", [id]);
+    res.status(200).send(`Event ${id} has been deleted.`);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
+///////////////////////////////////////////////////////////////////////////////////
+
+router.get(`${rootUrl}/upcoming-events`, (req, res) => {
+  const query = `
+    SELECT *
+    FROM events
+    WHERE start_date >= NOW()
+    ORDER BY start_date ASC
+    LIMIT 3
+  `;
+  client.query(query, (error, result) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
 module.exports = router;

@@ -10,7 +10,7 @@ const rootUrl = "/api";
 app.use(
   cors({
     origin: ["http://localhost:4200"],
-    methods: ["GET", "POST","DELETE"],
+    methods: ["GET", "POST", "DELETE"],
     credentials: true,
   })
 );
@@ -32,7 +32,7 @@ app.use(`${rootUrl}/:batchId`, routes);
 app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
 app.use(`${rootUrl}/register_info`, routes);
 app.use(`${rootUrl}/upcoming-events`, routes);
-
+app.use(`${rootUrl}/del-event/:id`, routes);
 
 app.listen(3000, () => {
   console.log("port running on port 3000");
