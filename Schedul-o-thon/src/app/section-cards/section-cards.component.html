@@ -1,0 +1,37 @@
+<app-admin-sidebar></app-admin-sidebar>
+<section class="main-container">
+  <div class="pd-20 card-box mb-30">
+    <div class="row">
+      <div *ngFor="let item of data" class="col md-3 col lg-3">
+        <div class="card">
+          <p class="text-title">{{ item.section_name | titlecase }}</p>
+          <p class="text-body">Strength : {{ item.strength }}</p>
+          <p class="text-body">Track Name : {{ item.track | titlecase }}</p>
+          <p class="text-body">
+            Classroom name : {{ item.classroom | titlecase }}
+          </p>
+          <p class="text-body">Schedule:{{ item.schedule }}</p>
+          <div class="d-md-flex justify-content-md-center">
+            <button
+              type="button"
+              class="btn btn-outline-primary m-1"
+              [routerLink]="['/update_section', item.id]"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary m-1"
+              [routerLink]="['/events', item.id]"
+            >
+              View More
+            </button>
+            <button type="button" class="btn btn-outline-danger m-1" (click)="onDelete(item.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

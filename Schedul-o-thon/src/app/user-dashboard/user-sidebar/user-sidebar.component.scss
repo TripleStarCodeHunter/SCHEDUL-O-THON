@@ -1,0 +1,37 @@
+*{
+    width:300px;
+}
+.side-nav
+{
+    position: fixed;
+    width: 300px;
+        min-width: 230px;
+        min-height: calc(100vh - 70px);
+        background-color:#95d3fc;
+        box-shadow: 5px 5px 5px gray;
+        @media only screen and (max-width: 1300px){
+            width:250px;
+            min-width: 100px;
+        }
+    padding-top:2px;
+    .nav-item{
+        color: black;
+        padding: 25px 50px;
+        cursor: pointer;
+        @media only screen and (max-width:1300px) {
+            padding: 25px 40px;
+        }
+        &:hover
+        {
+            background-color:white;
+            color:darkblue;
+        }
+        fa-icon{
+            margin-right: 20px;
+            font-size: 22px;
+        }
+        span{
+            display: inline;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../shared/services/data-service.service';
@@ -11,12 +11,16 @@ import { DataService } from '../shared/services/data-service.service';
 export class SubBatchComponent implements OnInit {
   isSubmitted = false;
   Location: any = ['Mysore', 'Bengaluru', 'Online'];
-  numberPattern = "^[0-9]{1,4}$";
+  numberPattern = '^[0-9]{1,4}$';
   BatchName: any = ['Batch 1', 'Batch 2', 'Batch 3', 'Batch 4'];
   Stream: any = ['Java', 'Python', 'Big Data', 'C/C++'];
 
-
-  constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService, private _snackBar: MatSnackBar) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private dataService: DataService,
+    private _snackBar: MatSnackBar
+  ) { }
   subBatch = this.fb.group({
     subBatchName: ['', Validators.required],
     batch: ['', Validators.required],
@@ -28,13 +32,12 @@ export class SubBatchComponent implements OnInit {
     adminName: ['', Validators.required],
   });
 
-  data !: any[];
+  data!: any[];
 
   ngOnInit() {
-    this.dataService.getData()
-      .subscribe(data => {
-        this.data = data;
-      });
+    this.dataService.getData().subscribe((data) => {
+      this.data = data;
+    });
   }
   get subBatchName() {
     return this.subBatch.get('subBatchName');
@@ -81,10 +84,9 @@ export class SubBatchComponent implements OnInit {
     this.isSubmitted = true;
     if (this.subBatch.invalid) {
       false;
-      this._snackBar.open("Form Invalid", "OK");
+      this._snackBar.open('Form Invalid', 'OK');
       return;
-    }
-    else {
+    } else {
       const formData = {
         s_batchname: this.subBatch.value.subBatchName,
         batch_name: this.subBatch.value.batch,
@@ -95,13 +97,24 @@ export class SubBatchComponent implements OnInit {
         end_batch: this.subBatch.value.end,
         admin_batch: this.subBatch.value.adminName,
       };
+
+      this.http.get('http://localhost:3000/api/login').subscribe((response) => {
+        console.log(response);
+      });
+
       this.http
         .post('http://localhost:3000/api/sub_batch', formData)
         .subscribe((response) => {
           console.log(response);
-          if (response) {
-            // alert('sub_batch created successfully!');
-            this._snackBar.open("Sub Batch Created", "OK", {
+          const myObject: { [key: string]: any } = response;
+          const check = myObject['add'];
+          if (check == true) {
+            this._snackBar.open('Sub batch Created', 'OK', {
+              duration: this.durationInSeconds * 1000,
+            });
+            this.subBatch.reset();
+          } else if (check == false) {
+            this._snackBar.open('Sub batch already exists', 'Cancel', {
               duration: this.durationInSeconds * 1000,
             });
             this.subBatch.reset();

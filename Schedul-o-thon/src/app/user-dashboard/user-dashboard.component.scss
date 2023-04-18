@@ -1,0 +1,32 @@
+// @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+*{
+    margin:0;
+    padding: 0;
+    width:100%;
+    // width: 100vw;
+    // height: 100vh;
+}
+
+.container{
+    width: 100%;
+    display:contents;
+    .header
+    {
+        width: auto;
+        background-color: white;
+    }
+
+    .main-container{
+        display:flex;
+        .side-nav{
+            display: flex;
+            width:200px;
+            height: 1000px;
+            padding-right: 30px;
+        }
+        .main{
+            padding-left: 210px;
+            padding-right: 210px;
+        }
+    }
+}

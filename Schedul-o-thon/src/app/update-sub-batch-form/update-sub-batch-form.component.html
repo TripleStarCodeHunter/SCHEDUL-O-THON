@@ -1,0 +1,370 @@
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="main-container">
+    <div class="pd-20 card-box mb-30">
+      <div class="clearfix">
+        <div class="pull-left">
+          <h4 class="text-blue h4">Update Sub-Batch</h4>
+          <p>Edit the fields that need to be updated</p>
+          <br />
+        </div>
+      </div>
+      <form [formGroup]="update_subBatch" (ngSubmit)="onSubmit()">
+        <!-- subBatchName -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label" for="subBatchName"
+            >Sub Batch Name <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Sub Batch Name"
+              formControlName="subBatchName"
+              [(ngModel)]="data[0].sub_batch_name"
+            />
+
+            <!-- Validatiors -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="subBatchName?.errors?.['required'] && (subBatchName?.touched || subBatchName?.dirty)"
+            >
+              Sub Batch Name should not be empty
+            </div>
+          </div>
+        </div>
+
+        <!-- batch name and stream in one row -->
+        <div class="form-group row">
+          <!-- Select Batch Name -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Batch Name <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="batch"
+              (change)="changeBatchName($event)"
+              formControlName="batch"
+              [(ngModel)]="data[0].batch_name"
+            >
+              <option selected="" value="">{{data[0].batch_name}}</option>
+              <option *ngFor="let item of items" >
+                {{ item.batch_name }}
+              </option>
+            </select>
+            <!-- validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="batch?.errors?.['required'] && (batch?.touched || batch?.dirty)"
+            >
+              Enter Batch Name
+            </div>
+          </div>
+          <!-- Stream -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Stream <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              formControlName="stream"
+              (change)="changeStream($event)"
+              [(ngModel)]="data[0].stream"
+            >
+              <option selected="" value="">Choose...</option>
+              <option *ngFor="let stream of Stream" [ngValue]="stream">
+                {{ stream }}
+              </option>
+            </select>
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"
+            >
+              Enter Valid Stream
+            </div>
+          </div>
+        </div>
+        <!-- Select Batch Name
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Batch Name</label>
+          <div class="col-sm-12 col-md-10">
+            <select
+              class="custom-select col-12"
+              id="batch"
+              (change)="changeBatchName($event)"
+              formControlName="batch"
+            >
+              <option selected="" value="">Choose Batch</option>
+              <option *ngFor="let item of data" [ngValue]="item.batch_name">
+                {{ item.batch_name }}
+              </option>
+            </select>
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="batch?.errors?.['required'] && (batch?.touched || batch?.dirty)"
+            >
+              Enter Batch Name
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Stream
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Stream</label>
+          <div class="col-sm-12 col-md-10">
+            <select
+              class="custom-select col-12"
+              formControlName="stream"
+              (change)="changeStream($event)"
+            >
+              <option selected="" value="">Choose...</option>
+              <option *ngFor="let stream of Stream" [ngValue]="stream">
+                {{ stream }}
+              </option>
+            </select>
+
+            Validators
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="stream?.errors?.['required'] && (stream?.touched || stream?.dirty)"
+            >
+              Enter Valid Stream
+            </div>
+          </div>
+        </div> -->
+
+        <!-- size and location in one row -->
+        <div class="form-group row">
+          <!-- Size -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Size <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              [pattern]="numberPattern"
+              formControlName="size"
+              [(ngModel)]="data[0].size"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="size?.errors?.['required'] && (size?.touched || size?.dirty)"
+            >
+              Enter size of sub-batch
+            </div>
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="size?.errors?.['pattern']"
+            >
+              Sub Batch Size not valid. Enter correct number.
+            </div>
+          </div>
+          <!-- Location -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Location <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <select
+              class="custom-select col-12"
+              id="location"
+              (change)="changeLocation($event)"
+              formControlName="location"
+              [ngModel]="data[0].location"
+            >
+              <option selected="" value="">Choose Location</option>
+              <option *ngFor="let location of Location" [ngValue]="location">
+                {{ location }}
+              </option>
+            </select>
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
+            >
+              Enter Location
+            </div>
+          </div>
+        </div>
+
+        <!-- Size
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Size</label>
+          <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="number" formControlName="size" />
+            Validators
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="size?.errors?.['required'] && (size?.touched || size?.dirty)"
+            >
+              Enter size of sub-batch
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Location
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Location</label>
+          <div class="col-sm-12 col-md-10">
+            <select
+              class="custom-select col-12"
+              id="location"
+              (change)="changeLocation($event)"
+              formControlName="location"
+            >
+              <option selected="" value="">Choose Location</option>
+              <option *ngFor="let location of Location" [ngValue]="location">
+                {{ location }}
+              </option>
+            </select>
+            Validators
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="location?.errors?.['required'] && (location?.touched || location?.dirty)"
+            >
+              Enter Location
+            </div>
+          </div>
+        </div> -->
+
+        <!-- start and end date in one row -->
+        <div class="form-group row">
+          <!-- Start Date -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Start Date <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control  "
+              placeholder="Select Date"
+              type="date"
+              formControlName="start"
+              [(ngModel)]="data[0].start_date"
+              [ngModel]="data[0].start_date |  date:'yyyy-MM-dd'"
+            />
+
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+
+          <!-- End Date -->
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >End Date <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control  "
+              placeholder="Select Date"
+              type="date"
+              formControlName="end"
+              [(ngModel)]="data[0].end_date"
+              [ngModel]="data[0].end_date |  date:'yyyy-MM-dd'"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Date -->
+        <!-- <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Start Date</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control  "
+              placeholder="Select Date"
+              type="date"
+              formControlName="start"
+            /> -->
+        <!-- Validators -->
+        <!-- <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="start?.errors?.['required'] && (start?.touched || start?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div> -->
+
+        <!-- End Date -->
+        <!-- <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">End Date</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control  "
+              placeholder="Select Date"
+              type="date"
+              formControlName="end"
+            /> -->
+        <!-- Validators -->
+        <!-- <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="end?.errors?.['required'] && (end?.touched || end?.dirty)"
+            >
+              Enter Correct Date
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Batch Admin Name -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label"
+            >Batch Admin <span class="mandatory"><sup>*</sup></span></label
+          >
+          <div class="col-sm-12 col-md-4">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Batch Admin Name"
+              formControlName="adminName"
+              [(ngModel)]="data[0].batch_admin"
+            />
+            <!-- Validators -->
+            <div
+              class="form-invalid-warn-text alert alert-danger"
+              *ngIf="adminName?.errors?.['required'] && (adminName?.touched || adminName?.dirty)"
+            >
+              Enter Correct Admin Name
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label"></label>
+          <div class="col-sm-12 col-md-10">
+            <button type="submit" class="btn btn-outline-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- js -->
+  <script src="/src/assets/assets/vendors/scripts/core.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/script.min.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/process.js"></script>
+  <script src="/src/assets/assets/vendors/scripts/layout-settings.js"></script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript
+    ><iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+      height="0"
+      width="0"
+      style="display: none; visibility: hidden"
+    ></iframe
+  ></noscript>
+  <!-- End Google Tag Manager (noscript) -->

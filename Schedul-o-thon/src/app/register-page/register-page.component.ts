@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observer } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register-page.component.html',
@@ -19,7 +22,11 @@ export class RegisterPageComponent implements OnInit {
   responseData: any;
   myMessage: string = '';
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    @Inject(MatSnackBar) private _snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.registration = new FormGroup({
       fullname: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
@@ -30,6 +37,9 @@ export class RegisterPageComponent implements OnInit {
       userType: new FormControl('', [Validators.required]),
     });
   }
+
+  durationInSeconds = 5;
+
   ngOnInit(): void {}
   registerSubmitted() {
     if (this.registration.invalid) {
@@ -52,7 +62,11 @@ export class RegisterPageComponent implements OnInit {
         const myObject: { [key: string]: any } = response;
         this.myMessage = myObject['message'] as string;
         if (this.myMessage == 'done') {
-          alert('Registeration successful');
+          // alert('Registeration successful');
+          this.router.navigate(['/login']);
+          this._snackBar.open('Registration successful', 'OK', {
+            duration: this.durationInSeconds * 1000,
+          });
         }
       });
   }

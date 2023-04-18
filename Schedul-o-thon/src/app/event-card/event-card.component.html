@@ -1,0 +1,42 @@
+<app-admin-sidebar></app-admin-sidebar>
+<div class="main-container">
+  <div class="pd-20 card-box mb-30">
+    <div class="row">
+      <div *ngFor="let item of data" class="col md-3 col-lg-4">
+        <div class="card">
+          <p class="text-title">{{ item.event_name | titlecase }}</p>
+          <p class="text-body">Instructor: {{ item.instructor }}</p>
+          <p class="text-body">
+            Schedule name : {{ item.schedule_name | titlecase }}
+          </p>
+          <p class="text-body">
+            Start date : {{ item.start_date | date : "longDate" }}
+          </p>
+          <div class="d-md-flex justify-content-md-center">
+            <button
+              type="button"
+              class="btn btn-outline-primary m-1"
+              [routerLink]="['/update_event', item.id]"
+            >
+              Edit
+            </button>
+            <!-- <button
+              type="button"
+              class="btn btn-outline-secondary m-1"
+              [routerLink]="['/sections', item.sub_batch_id]"
+            >
+              View More
+            </button> -->
+            <button
+              type="button"
+              class="btn btn-outline-danger m-1"
+              (click)="onDelete(item.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

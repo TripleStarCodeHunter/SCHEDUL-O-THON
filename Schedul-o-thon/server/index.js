@@ -10,7 +10,7 @@ const rootUrl = "/api";
 app.use(
   cors({
     origin: ["http://localhost:4200"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "DELETE"],
     credentials: true,
   })
 );
@@ -24,9 +24,15 @@ app.use(`${rootUrl}/isUserAuth`, routes);
 app.use(`${rootUrl}/login`, routes);
 app.use(`${rootUrl}/batch`, routes);
 app.use(`${rootUrl}/batches`, routes);
+app.use(`${rootUrl}/sub_batch`, routes);
 app.use(`${rootUrl}/section`, routes);
 app.use(`${rootUrl}/sections`, routes);
-
+app.use(`${rootUrl}/event`, routes);
+app.use(`${rootUrl}/:batchId`, routes);
+app.use(`${rootUrl}/:batchId/:subbatchId`, routes);
+app.use(`${rootUrl}/register_info`, routes);
+app.use(`${rootUrl}/upcoming-events`, routes);
+app.use(`${rootUrl}/del-event/:id`, routes);
 
 app.listen(3000, () => {
   console.log("port running on port 3000");

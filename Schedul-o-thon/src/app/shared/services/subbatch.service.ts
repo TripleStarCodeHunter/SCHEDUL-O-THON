@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubbatchService {
-
-  private apiUrl = '/api/sub_batches';
+  private apiUrl = '/api/sub_batch';
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getData(fbatch_id?: string |null): Observable<any[]> {
+    const url = `${this.apiUrl}?fbatch_id=${fbatch_id}`;
+    return this.http.get<any[]>(url);
   }
 }

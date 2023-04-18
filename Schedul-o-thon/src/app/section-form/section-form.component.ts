@@ -1,20 +1,27 @@
-import { Component,ViewEncapsulation, OnInit, Inject  } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-
+import { GetSectionService } from '../shared/services/get-section.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {Observable} from 'rxjs';
+import { GetRegisterInfoService } from '../shared/services/get-register-info.service';
+import {map, startWith} from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
 @Component({
   selector: 'app-section-form',
   templateUrl: './section-form.component.html',
   styleUrls: ['./section-form.component.scss']
 })
-export class SectionFormComponent implements OnInit{
-  ngOnInit(): void {}
+export class SectionFormComponent implements OnInit {
+  // ngOnInit(): void {}
   isSubmitted = false;
   SectionOwner: any = ['Owner1', 'Owner2', 'Owner3'];
   Track: any = [
@@ -22,12 +29,28 @@ export class SectionFormComponent implements OnInit{
     'Big Data',
     'Python'
   ];
+  Subbatch: any = ['S1', 'S2', 'S3'];
+
   numberPattern = '^[0-9]{1,4}$';
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = ['Trainee1@gmail.com', 'trainee@gmail.com', 'trainee3@edu.in', 'traineeeeee@yahoo.com', 'ok@okay.com'];
+
+  @ViewChild('fruitInput') fruitInput:ElementRef<HTMLInputElement>;
+  
   constructor(
     private fb: FormBuilder,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    private GetSectionService: GetSectionService,
+    private GetRegisterInfoService : GetRegisterInfoService
+  ) { this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    startWith(null),
+    map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+  ); }
   section = this.fb.group({
     sectionName: ['', Validators.required],
     strength: ['', Validators.required],
@@ -37,9 +60,38 @@ export class SectionFormComponent implements OnInit{
     classroom: ['', Validators.required],
     // schedule: ['', Validators.required],
     trainee_list: ['', Validators.required],
+    subb: ['', Validators.required]
   });
-  
-  
+
+
+  data!: any[];
+  data1!: any[];
+
+  ngOnInit() {
+
+    combineLatest([
+      this.GetSectionService.getData(),
+      this.GetRegisterInfoService.getData(),
+      
+    ]).subscribe(([data, data1]) => {
+      this.data = data;
+      this.data1 = data1;
+      console.log(data1)
+     
+    });
+    // this.GetSectionService.getData().subscribe((data) => {
+    //   this.data = data;
+    //   console.log(this.data)
+    // });
+  }
+
+
+  changeSubbatch(e: any) {
+    this.Subbatch?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
   get sectionName() {
     return this.section.get('sectionName');
   }
@@ -62,6 +114,8 @@ export class SectionFormComponent implements OnInit{
   get section_owner() {
     return this.section.get('section_owner');
   }
+
+
   get section_dl() {
     return this.section.get('section_dl');
   }
@@ -74,6 +128,45 @@ export class SectionFormComponent implements OnInit{
   get trainee_list() {
     return this.section.get('trainee_list');
   }
+
+  get subb() {
+    return this.section.get('subb');
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.fruits.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.fruitCtrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
   durationInSeconds = 5;
   onSubmit() {
     this.isSubmitted = true;
@@ -90,9 +183,15 @@ export class SectionFormComponent implements OnInit{
         section_dl: this.section.value.section_dl,
         classroom: this.section.value.classroom,
         trainee_list: this.section.value.trainee_list,
+        subb: this.section.value.subb
 
       };
-      // console.log(formData);
+
+
+      this.http.get('http://localhost:3000/api/login').subscribe((response) => {
+        console.log(response);
+      });
+      console.log(formData);
       this.http
         .post('http://localhost:3000/api/section', formData)
         .subscribe((response) => {
