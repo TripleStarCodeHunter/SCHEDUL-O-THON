@@ -73,9 +73,8 @@
               id="track"
               (change)="changeTrack($event)"
               formControlName="track"
-              [(ngModel)]="data[0].track"
             >
-              <option selected="" value="">Choose Track</option>
+              <option selected="" value="">{{data[0].track}}</option>
               <option *ngFor="let track of Track" [ngValue]="track">
                 {{ track }}
               </option>
@@ -102,9 +101,8 @@
               id="section_owner"
               (change)="changeSectionOwner($event)"
               formControlName="section_owner"
-              [(ngModel)]="data[0].section_owner"
             >
-              <option selected="" value="">Choose Section Owner</option>
+              <option selected="" value="">{{data[0].section_owner}}</option>
               <option
                 *ngFor="let section_owner of SectionOwner"
                 [ngValue]="section_owner"

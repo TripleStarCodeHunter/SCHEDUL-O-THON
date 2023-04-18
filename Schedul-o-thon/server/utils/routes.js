@@ -747,6 +747,69 @@ router.get(`${rootUrl}/events`, async (req, res) => {
   }
 });
 
+//updating-events
+
+router.post(`${rootUrl}/update-event-form/:eventId`, async (req, res) => {
+  const { eventId } = req.params;
+  const {
+    eventname,
+    start,
+    end,
+    instructor,
+    additionalInfo,
+    scheduleName,
+    batch,
+    sub_batch,
+    section,
+    description,
+  } = req.body;
+  
+
+  console.log(req.body);
+
+  try {
+    const sub_batch_query =
+      "SELECT sub_batch_id FROM sub_batches WHERE sub_batch_name = $1";
+    const sub_batch_result = await client.query(sub_batch_query, [sub_batch]);
+    const sub_batch_id = sub_batch_result.rows[0].sub_batch_id;
+
+    const batch_query = "SELECT batch_id FROM batch_info WHERE batch_name = $1";
+    const batch_result = await client.query(batch_query, [batch]);
+    const batch_id = batch_result.rows[0].batch_id;
+
+    const section_query =
+      "SELECT id FROM sections_info WHERE section_name = $1";
+    const section_result = await client.query(section_query, [section]);
+    const section_id = section_result.rows[0].id;
+
+    const insert_query =
+      "UPDATE events SET event_name=($1),start_date=($2),end_date=($3), instructor=($4), additional_info=($5),schedule_info=($6),batch=($7),sub_batch=($8),section=($9),description=($10),batch_id=($11),sub_batch_id=($12),section_id=($13) where id=($14) RETURNING *";
+    const values = [
+      eventname,
+      start,
+      end,
+      instructor,
+      additionalInfo,
+      scheduleName,
+      batch,
+      sub_batch,
+      section,
+      description,
+      batch_id,
+      sub_batch_id,
+      section_id,
+      eventId
+    ];
+    console.log("HELLO");
+    const result = await client.query(insert_query, values);
+    res.json({ add: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 //delete event
 
 router.delete(`${rootUrl}/del-event/:id`, async (req, res, next) => {
@@ -758,6 +821,23 @@ router.delete(`${rootUrl}/del-event/:id`, async (req, res, next) => {
     console.log(err);
     next(err);
   }
+});
+
+//getting events for update form 
+
+router.get(`${rootUrl}/event-info/:eventId`, (req, res) => {
+  const id = req.query.eventId;
+  let sqlQuery = "SELECT * FROM events";
+  if (id) {
+    sqlQuery += ` WHERE id = '${id}'`;
+  }
+  client.query(sqlQuery, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.json(result.rows);
+    }
+  });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////

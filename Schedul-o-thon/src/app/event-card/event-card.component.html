@@ -13,13 +13,13 @@
             Start date : {{ item.start_date | date : "longDate" }}
           </p>
           <div class="d-md-flex justify-content-md-center">
-            <!-- <button
+            <button
               type="button"
               class="btn btn-outline-primary m-1"
-              [routerLink]="['/update_sub_batch', item.sub_batch_id]"
+              [routerLink]="['/update_event', item.id]"
             >
               Edit
-            </button> -->
+            </button>
             <!-- <button
               type="button"
               class="btn btn-outline-secondary m-1"

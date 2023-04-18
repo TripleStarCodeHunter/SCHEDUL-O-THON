@@ -47,8 +47,8 @@
               formControlName="batch"
               [(ngModel)]="data[0].batch_name"
             >
-              <option selected="" value="">Choose Batch</option>
-              <option *ngFor="let item of items" [ngValue]="item.batch_name">
+              <option selected="" value="">{{data[0].batch_name}}</option>
+              <option *ngFor="let item of items" >
                 {{ item.batch_name }}
               </option>
             </select>

@@ -7,22 +7,51 @@ import {
 } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { combineLatest } from 'rxjs';
+import { GetSectionNameService } from '../shared/services/get-section-name.service';
+import { GetSectionService } from '../shared/services/get-section.service';
+import { DataService } from '../shared/services/data-service.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-update-event-form',
   templateUrl: './update-event-form.component.html',
   styleUrls: ['./update-event-form.component.scss']
 })
 export class UpdateEventFormComponent implements OnInit {
+  data!: any[];
+ data1!: any[];
+ data2!: any[];
+ items!:any;
+  ngOnInit(): void {
+    let event_id = this.route.snapshot.paramMap.get('event_id');
+    const url = `api/event-info/${event_id}`;
 
-  ngOnInit(): void { }
+    this.http.get(url).subscribe((response) => {
+      this.items = response;
+      console.log(this.items[0].batch)
+    });
+    combineLatest([
+      this.GetSectionService.getData(),
+      this.dataService.getData(),
+      this.secdataService.getData()
+    ]).subscribe(([data, data1,data2]) => {
+      this.data = data;
+      this.data1 = data1;
+      this.data2 = data2;
+    });
+   }
   isSubmitted = false;
-  BatchName: any = ['Batch 1', 'Batch 2', 'Batch 3', 'Batch 4'];
-  SubBatchName: any = ['Sub Batch 1', 'Sub Batch 2', 'Sub Batch 3', 'Sub Batch 4'];
-  SectionName: any = ['Section 1', 'Section 2', 'Section 3', 'Section 4'];
+  
   constructor(
     private fb: FormBuilder,
     @Inject(MatSnackBar) private _snackBar: MatSnackBar,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private GetSectionService: GetSectionService,
+    private secdataService: GetSectionNameService,
+    private dataService: DataService,
+
   ) { }
   update_eventsform = this.fb.group({
     eventname: ['', Validators.required],
@@ -36,7 +65,6 @@ export class UpdateEventFormComponent implements OnInit {
     section: ['', Validators.required],
     description: ['', Validators.required],
   });
-  data!: any[];
 
   get eventname() {
     return this.update_eventsform.get('eventname');
@@ -92,6 +120,8 @@ export class UpdateEventFormComponent implements OnInit {
       // alert("Form is Invalid")
       this._snackBar.open('Form Invalid', 'OK');
     } else {
+
+
       // const formData = {
       // b_batchname: this.eventsform.value.batchname,
       // location_batch: this.eventsform.value.location,

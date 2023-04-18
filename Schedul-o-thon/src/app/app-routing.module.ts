@@ -23,6 +23,7 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { CommonModule } from '@angular/common';
 import { UpdateSectionFormComponent } from './update-section-form/update-section-form.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { UpdateEventFormComponent } from './update-event-form/update-event-form.component';
 const routes: Routes = [
   { path: 'landing', component: LandingPageComponent },
   { path: 'register', component: RegisterPageComponent },
@@ -52,6 +53,7 @@ const routes: Routes = [
     component: UpdateSubBatchFormComponent,
   },
   { path: 'update_section/:section_id', component: UpdateSectionFormComponent },
+  {path:'update_event/:event_id',component:UpdateEventFormComponent},
   { path: 'event-form', component: EventFormComponent },
   { path: 'admindashboard', component: AdminDashboardComponent },
   { path: '', component: LandingPageComponent },

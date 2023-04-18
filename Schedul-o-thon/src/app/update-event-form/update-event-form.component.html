@@ -22,6 +22,8 @@
               type="text"
               placeholder="Event Name"
               formControlName="eventname"
+              [(ngModel)]="items[0].event_name"
+
             />
             <!-- Validations -->
             <div
@@ -45,6 +47,8 @@
               placeholder="Select Date"
               type="date"
               formControlName="start"
+              [(ngModel)]="items[0].start_date"
+
             />
 
             <!-- Validators -->
@@ -66,6 +70,8 @@
               placeholder="Select Date"
               type="date"
               formControlName="end"
+              [(ngModel)]="items[0].end_date"
+
             />
             <!-- Validators -->
             <div
@@ -89,6 +95,7 @@
               type="text"
               placeholder="Enter Instructor Name"
               formControlName="instructor"
+              [(ngModel)]="items[0].instructor"
             />
             <!-- Validators -->
             <div
@@ -108,6 +115,8 @@
               type="text"
               placeholder="Enter Additional Info"
               formControlName="additionalInfo"
+              [(ngModel)]="items[0].additional_info"
+
             />
             <!-- Validators -->
             <div
@@ -133,6 +142,8 @@
               type="text"
               placeholder="Schedule Name"
               formControlName="scheduleName"
+              [(ngModel)]="items[0].schedule_name"
+
             />
             <!-- Validations -->
             <div
@@ -156,10 +167,11 @@
               id="batch"
               (change)="changeBatchName($event)"
               formControlName="batch"
+
             >
-              <option selected="" value="">Choose Batch</option>
-              <option *ngFor="let item of BatchName" [ngValue]="item">
-                {{ item }}
+              <option selected="" value="">{{items[0].batch}}</option>
+              <option *ngFor="let item of data1" [ngValue]="item">
+                {{ item.batch_name }}
               </option>
             </select>
             <!-- validators -->
@@ -181,9 +193,9 @@
               (change)="changeSubBatchName($event)"
               formControlName="sub_batch"
             >
-              <option selected="" value="">Choose Sub Batch</option>
-              <option *ngFor="let item of SubBatchName" [ngValue]="item">
-                {{ item }}
+              <option selected="" value="">{{items[0].sub_batch}}</option>
+              <option *ngFor="let item of data" [ngValue]="item">
+                {{ item.sub_batch_name }}
               </option>
             </select>
             <!-- validators -->
@@ -209,9 +221,9 @@
               (change)="changeSectionName($event)"
               formControlName="section"
             >
-              <option selected="" value="">Choose Section</option>
-              <option *ngFor="let item of SectionName" [ngValue]="item">
-                {{ item }}
+              <option selected="" value="">{{items[0].section}}</option>
+              <option *ngFor="let item of data2" [ngValue]="item">
+                {{ item.section_name }}
               </option>
             </select>
             <!-- validators -->
@@ -233,6 +245,7 @@
               type="text"
               placeholder="Description"
               formControlName="description"
+              [(ngModel)]="items[0].description"
             />
             <!-- Validations -->
             <div
